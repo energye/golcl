@@ -1,11 +1,12 @@
 
 ----
 ## 基于 [govcl](https://gitee.com/ying32/govcl/) 库 出处 [Github](https://github.com/ying32/govcl) | [Gitee](https://gitee.com/ying32/govcl)
-#### *.为配合 [energy](https://github.com/energye/energy) 基于CEF的GUI开源框架顾修改和增加了以下内容
-#### *.增加资源文件在embed.FS读取和使用
-#### *.增加使用embed.FS内置liblcl库,运行时自动释放至系统用户目录：用户目录/golcl/liblcl.dll
-#### *.修改所有库使用初始化,为手动调用inits.Init(libs *embed.FS, resource *embed.FS) 用于导入liblcl库和资源文件
-#### *.修改二进制类库加载和init函数的初始化
+#### 为配合 [energy](https://github.com/energye/energy) 基于CEF的桌面客户端框架,修改和增加了以下内容
+#### 增加资源文件在embed.FS读取和使用
+#### 增加使用embed.FS内置liblcl库,运行时自动释放至系统用户目录：用户目录/golcl/liblcl.dll
+#### 修改所有库使用初始化,为手动调用inits.Init(libs *embed.FS, resource *embed.FS) 用于导入liblcl库和资源文件
+#### 修改二进制类库加载和init函数的初始化
+#### 其它修改不等
 
 ```golang
 //示例：inits.Init(emfs libs,emfs source)支持embed.FS
@@ -59,7 +60,7 @@ func main() {
 
 ----
 
-### 预编译GUI库二进制下载（[源代码](https://github.com/ying32/liblcl)）
+### 预编译GUI库二进制下载（[源代码](https://github.com/energye/liblcl)）
 [![liblcl](https://img.shields.io/github/downloads/ying32/govcl/latest/liblcl-2.2.0.zip.svg)](https://github.com/ying32/govcl/releases/download/v2.2.0/liblcl-2.2.0.zip)
 
 
@@ -88,7 +89,7 @@ func main() {
 
 ### 注意:
 
-**特别注意：所有UI组件都是非线程/协程安全的，当在goroutine中使用时，请使用[lcl.ThreadSync](https://gitee.com/ying32/golcl/wikis/pages?sort_id=976890&doc_id=102420)来同步更新到UI上。**
+**特别注意：所有UI组件都是非线程/协程安全的，当在goroutine中使用时，请使用[lcl.ThreadSync]来同步更新到UI上。**
 
 **特别注意2：如果你使用go>=1.15编译Windows可执行文件，则必须则必须使用`-buildmode=exe`编译选项，不然会有错误。**
 
