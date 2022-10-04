@@ -1,5 +1,5 @@
-// +build !windows
-// +build cgo
+//go:build !windows && cgo
+// +build !windows,cgo
 
 package dylib
 

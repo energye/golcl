@@ -20,7 +20,7 @@ func sysoRsrc() {
 func rsrc() error {
 	rsrc := winRes.NewRSRC()
 	//指定rsrc.exe根目录
-	rsrc.RSRCPath = "E:\\SWT\\gopath\\src\\gitee.com\\snxamdf\\golcl\\exe\\rsrc.exe"
+	rsrc.RSRCPath = "rsrc.exe"
 	//命令行运行的根目录
 	//在该目录下生成xxx.syso文件
 	//在该目录下resources/icon.ico文件

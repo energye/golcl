@@ -12,7 +12,7 @@
 package api
 
 import (
-	"github.com/energye/dylib"
+	"github.com/energye/golcl/dylib"
 	"github.com/energye/golcl/pkgs/libname"
 )
 

@@ -12,7 +12,7 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/energye/dylib"
+	"github.com/energye/golcl/dylib"
 )
 
 var (

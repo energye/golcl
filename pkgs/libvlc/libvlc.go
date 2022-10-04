@@ -13,9 +13,9 @@ import (
 	"runtime"
 	"unsafe"
 
-	"github.com/energye/dylib/floatpatch"
+	"github.com/energye/golcl/dylib/floatpatch"
 
-	"github.com/energye/dylib"
+	"github.com/energye/golcl/dylib"
 )
 
 type (

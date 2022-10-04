@@ -15,7 +15,7 @@ func main() {
 	lcl.Application.CreateForm(&FormListViewDraw)
 
 	// 加载信息
-	trainData, err := parseFromFile("D:\\SWT\\gopath\\src\\gitee.com\\snxamdf\\golcl\\samples\\Windows\\listviewcustomdraw\\testtraindata.json")
+	trainData, err := parseFromFile("testtraindata.json")
 	if err == nil {
 		// 设计器设计的ListView
 		fullResFormListViewInstance(trainData)

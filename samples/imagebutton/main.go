@@ -12,7 +12,6 @@ import (
 func main() {
 	inits.Init(nil, nil)
 	path := rtl.ExtractFilePath(lcl.Application.ExeName())
-	path = "E:\\SWT\\gopath\\src\\gitee.com\\snxamdf\\golcl\\samples\\imagebutton\\"
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 

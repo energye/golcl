@@ -3,7 +3,7 @@
 
 package api
 
-import "github.com/energye/dylib"
+import "github.com/energye/golcl/dylib"
 
 var (
 	GdkWindow_GetXId      *dylib.LazyProc

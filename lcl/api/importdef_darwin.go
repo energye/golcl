@@ -11,7 +11,7 @@
 
 package api
 
-import "github.com/energye/dylib"
+import "github.com/energye/golcl/dylib"
 
 var (
 	NSWindow_FromForm                      *dylib.LazyProc

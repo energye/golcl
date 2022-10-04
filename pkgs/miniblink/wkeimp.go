@@ -9,7 +9,7 @@ package miniblink
 import (
 	"github.com/energye/golcl/lcl/types"
 
-	"github.com/energye/dylib/floatpatch"
+	"github.com/energye/golcl/dylib/floatpatch"
 
 	"unsafe"
 )

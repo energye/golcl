@@ -72,7 +72,7 @@ func (f *TMainFrom) OnFormCreate(sender lcl.IObject) {
 	if f.isWindows {
 		// 这里模拟显示
 		f.stateImages = lcl.NewImageList(f)
-		bmpFileName := "E:\\SWT\\gopath\\src\\gitee.com\\snxamdf\\golcl\\samples\\listviewvirtualdata\\checkbox.png"
+		bmpFileName := "checkbox.png"
 		if rtl.FileExists(bmpFileName) {
 			pic := lcl.NewPicture()
 			pic.LoadFromFile(bmpFileName)

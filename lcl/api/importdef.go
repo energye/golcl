@@ -8,7 +8,7 @@
 
 package api
 
-import "github.com/energye/dylib"
+import "github.com/energye/golcl/dylib"
 
 var (
 	application_Instance   *dylib.LazyProc // = liblcl.NewProc("Application_Instance")

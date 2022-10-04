@@ -1,6 +1,6 @@
 package bass
 
-import "github.com/energye/dylib/floatpatch"
+import "github.com/energye/golcl/dylib/floatpatch"
 
 func ToUInt64(r1, r2 uintptr) uint64 {
 	return uint64(r1)
