@@ -1,0 +1,5 @@
+package rtl
+
+const (
+	PathSeparator = "\\"
+)

@@ -1,0 +1,77 @@
+{
+	"!language": {
+	    "Id": 2052,
+		"Name": "zh-CN",
+		"Description": "简体中文",
+		"Author": "ying32",
+		"AuthorEmail": "1444386932@qq.com"
+	},
+	"!libresources": {
+		"SOpenFileTitle": "打开",
+		"SOKButton": "确定",
+		"SCancelButton": "取消",
+		"SYesButton": "是(&Y)",
+		"SNoButton": "否(&N)",
+		"SHelpButton": "帮助(&H)",
+		"SCloseButton": "关闭(&C)",
+		"SIgnoreButton": "忽略(&I)",
+		"SRetryButton": "重试(&R)",
+		"SAbortButton": "终止",
+		"SAllButton": "全部(&A)",
+		"SMsgDlgWarning": "警告",
+		"SMsgDlgError": "错误",
+		"SMsgDlgInformation": "信息",
+		"SMsgDlgConfirm": "询问",
+		"SMsgDlgYes": "是(&Y)",
+		"SMsgDlgNo": "否(&N)",
+		"SMsgDlgOK": "确定",
+		"SMsgDlgCancel": "取消",
+		"SMsgDlgHelp": "帮助(&H)",
+		"SMsgDlgHelpNone": "没有有效的帮助",
+		"SMsgDlgHelpHelp": "帮助",
+		"SMsgDlgAbort": "终止(&A)",
+		"SMsgDlgRetry": "重试(&R)",
+		"SMsgDlgIgnore": "忽略(&I)",
+		"SMsgDlgAll": "全部(&A)",
+		"SMsgDlgNoToAll": "全否(&o)",
+		"SMsgDlgYesToAll": "全是(&A)",
+		"SMsgDlgClose": "关闭(&C)"
+	},
+
+	"!resources": {
+	},
+
+	"multilanguage": {
+		"!resources": {
+			"testMessage": "这是一个测试消息！",
+			"testMessage2":"你确定么？",
+			"testMessage3": "你好!"
+		},
+
+		"Form1": {
+		   "Caption": "多语言测试",
+		   "Button1.Caption": "按钮1",
+		   "Button2.Caption": "按钮2",
+		   "Button3.Caption": "按钮3",
+		   "MenuItem1.Caption": "文件(&F)",
+           "MenuItem2.Caption": "菜单项目2",
+           "MenuItem3.Caption": "菜单项目3",
+           "MenuItem4.Caption": "菜单项目4",
+           "MenuItem5.Caption": "菜单项目5",
+           "MenuItem6.Caption": "菜单项目6",
+           "MenuItem7.Caption": "菜单项目7",
+           "MenuItem8.Caption": "菜单项目8",
+           "MenuItem9.Caption": "菜单项目9",
+           "MenuItem10.Caption": "菜单项目10",
+           "ListView1.Columns[0].Caption": "编号",
+           "ListView1.Columns[1].Caption": "姓名",
+           "ListView1.Columns[2].Caption": "地址",
+           "ComboBox1.Items[0].": "项目1",
+           "ComboBox1.Items[1].": "项目2",
+           "ComboBox1.Items[2].": "项目3",
+           "ListBox1.Items[0].String": "项目1",
+           "ListBox1.Items[1].String": "项目2",
+           "ListBox1.Items[2].String": "项目3"
+		}
+	}
+}
