@@ -40,7 +40,6 @@ func toVersionString(ver uint32) string {
 }
 
 func LCLInit() {
-	//func init() {
 	if !DEBUG {
 		defer func() {
 			if err := recover(); err != nil {
