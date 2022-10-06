@@ -54,6 +54,22 @@ func QueueAsyncCall(fn QacFn) int {
 	return int(id)
 }
 
+func QueueSyncCall(fn QacFn) int {
+	qc := &queueCall{
+		isSync: true,
+		fn:     fn,
+		wg:     &sync.WaitGroup{},
+	}
+	qc.wg.Add(1)
+	id := qac.set(qc)
+	api.GetLazyProc("CEFApplication_QueueAsyncCall").Call(id)
+	qc.wg.Wait()
+	qc.fn = nil
+	qc.wg = nil
+	qc = nil
+	return int(id)
+}
+
 func (m *queueAsyncCall) call(id uintptr) {
 	if call, ok := m.calls.LoadAndDelete(id); ok {
 		qc := call.(*queueCall)
