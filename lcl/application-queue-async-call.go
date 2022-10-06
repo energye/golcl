@@ -17,7 +17,7 @@ import (
 )
 
 var (
-	qac                           = &queueAsyncCall{id: 0, calls: sync.Map{}}
+	Qac                           = &queueAsyncCall{id: 0, calls: sync.Map{}}
 	applicationQueueAsyncCallFunc *dylib.LazyProc
 )
 
@@ -27,17 +27,17 @@ func ApplicationQueueAsyncCallInit() {
 }
 
 func applicationQueueAsyncCallProc(id uintptr) uintptr {
-	qac.call(id)
+	Qac.call(id)
 	return 0
 }
 
 // 队列异步调用函数 id:事件id
 type QacFn func(id int)
 
-type queueCall struct {
-	isSync bool
-	fn     QacFn
-	wg     *sync.WaitGroup
+type QueueCall struct {
+	IsSync bool
+	Fn     QacFn
+	Wg     *sync.WaitGroup
 }
 
 type queueAsyncCall struct {
@@ -46,42 +46,42 @@ type queueAsyncCall struct {
 }
 
 func QueueAsyncCall(fn QacFn) int {
-	id := qac.set(&queueCall{
-		isSync: false,
-		fn:     fn,
+	id := Qac.Set(&QueueCall{
+		IsSync: false,
+		Fn:     fn,
 	})
 	api.GetLazyProc("CEFApplication_QueueAsyncCall").Call(id)
 	return int(id)
 }
 
 func QueueSyncCall(fn QacFn) int {
-	qc := &queueCall{
-		isSync: true,
-		fn:     fn,
-		wg:     &sync.WaitGroup{},
+	qc := &QueueCall{
+		IsSync: true,
+		Fn:     fn,
+		Wg:     &sync.WaitGroup{},
 	}
-	qc.wg.Add(1)
-	id := qac.set(qc)
+	qc.Wg.Add(1)
+	id := Qac.Set(qc)
 	api.GetLazyProc("CEFApplication_QueueAsyncCall").Call(id)
-	qc.wg.Wait()
-	qc.fn = nil
-	qc.wg = nil
+	qc.Wg.Wait()
+	qc.Fn = nil
+	qc.Wg = nil
 	qc = nil
 	return int(id)
 }
 
 func (m *queueAsyncCall) call(id uintptr) {
 	if call, ok := m.calls.LoadAndDelete(id); ok {
-		qc := call.(*queueCall)
-		if qc.isSync {
-			qc.fn(int(id))
-			qc.wg.Done()
+		qc := call.(*QueueCall)
+		if qc.IsSync {
+			qc.Fn(int(id))
+			qc.Wg.Done()
 		} else {
-			qc.fn(int(id))
+			qc.Fn(int(id))
 		}
 	}
 }
-func (m *queueAsyncCall) set(fn *queueCall) uintptr {
+func (m *queueAsyncCall) Set(fn *QueueCall) uintptr {
 	if m.id >= math.MaxUint {
 		m.id = 0
 	}
