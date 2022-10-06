@@ -64,7 +64,9 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	c := lcl.NewColorButton(f)
 	c.SetParent(f)
 	c.SetOnColorChanged(func(sender lcl.IObject) {
-		fmt.Println(c.ButtonColor())
+		lcl.QueueAsyncCall(func(id int) {
+			fmt.Println(c.ButtonColor())
+		})
 	})
 
 }
@@ -74,7 +76,10 @@ func (f *TMainForm) OnFormCloseQuery(Sender lcl.IObject, CanClose *bool) {
 }
 
 func (f *TMainForm) OnButton1Click(object lcl.IObject) {
-	form1.Show()
+	lcl.QueueAsyncCall(func(id int) {
+		fmt.Println("OnButton1Click")
+		form1.Show()
+	})
 }
 
 // ---------- Form1 ----------------

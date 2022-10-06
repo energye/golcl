@@ -100,6 +100,7 @@ func initAll() {
 	win.Init()
 	//lcl
 	lcl.LCLInit()
+	lcl.ApplicationQueueAsyncCallInit()
 	//i18n
 	i18n.I18NInit()
 
