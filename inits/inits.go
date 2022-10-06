@@ -6,7 +6,7 @@ import (
 	"github.com/energye/golcl/consts"
 	"github.com/energye/golcl/emfs"
 	"github.com/energye/golcl/lcl"
-	api "github.com/energye/golcl/lcl/api"
+	"github.com/energye/golcl/lcl/api"
 	"github.com/energye/golcl/lcl/i18n"
 	"github.com/energye/golcl/lcl/locales/zh_CN"
 	"github.com/energye/golcl/lcl/rtl"
@@ -27,24 +27,20 @@ var (
 )
 
 func Init(libs *embed.FS, resources *embed.FS) bool {
-	if libname.LibName == "" {
-		libname.LibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
-	}
-	//fmt.Println("emfs by libs:", libs, "\tresources:", resources)
 	emfs.SetLibsFS(libs)
 	emfs.SetResourcesFS(resources)
 
+	var currentPathLibName = consts.ExePath + consts.Separator + libname.GetDLLName()
+	if tools.IsExist(currentPathLibName) {
+		libname.LibName = currentPathLibName
+	} else if libname.LibName == "" {
+		libname.LibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
+	}
 	tools.MkdirAll(consts.HomeDir)
 	if !tools.IsExist(libname.LibName) {
-		fmt.Println("liblcl", libname.LibName, " is not exist.")
 		var path = libsPath + "/" + libname.GetDLLName()
 		releaseLib(path, libname.LibName)
 	}
-	//if !tools.IsExist(resourcePath) {
-	//	fmt.Println("resources is not exist.")
-	//	releaseResource()
-	//	fmt.Println("resources release success.")
-	//}
 	initAll()
 	return true
 }
