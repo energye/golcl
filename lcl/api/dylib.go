@@ -9,16 +9,12 @@
 package api
 
 import (
-	"runtime"
 	"sync"
 
 	"github.com/energye/golcl/dylib"
 )
 
 var (
-	// 专用于判断是否为Windows系统
-	IsWindows = runtime.GOOS == "windows"
-
 	// 全局导入库
 	liblcl *dylib.LazyDLL // = loadUILib()
 
