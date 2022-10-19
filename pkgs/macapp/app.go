@@ -3,7 +3,7 @@ package macapp
 var (
 	//1. macos调式时临时创建一个符合macapp的程序包
 	//
-	//2. 如果基于cef，需要指定cef frameworks的根目录【/homt/xxx/cef_binary_xxxxxxx_macosx64/Release】
+	//2. 如果基于cef，需要指定cef frameworks 根目录【/homt/xxx/cef_binary_xxxxxxx_macosx64/Release】
 	MacApp = &macApp{}
 )
 
