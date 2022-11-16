@@ -26,20 +26,41 @@ var (
 	isInit       = false
 )
 
+func libPath() string {
+	//当前目录
+	var currentPathLibName = consts.ExePath + consts.Separator + libname.GetDLLName()
+	if tools.IsExist(currentPathLibName) {
+		return currentPathLibName
+	}
+	//用户目录
+	var homePathLibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
+	if tools.IsExist(currentPathLibName) {
+		return homePathLibName
+	}
+	//环境变量
+	var envPathLibName = os.Getenv("LCL_HOME") + consts.Separator + libname.GetDLLName()
+	if tools.IsExist(envPathLibName) {
+		return envPathLibName
+	}
+	var energyPathLibName = os.Getenv("ENERGY_HOME") + consts.Separator + libname.GetDLLName()
+	if tools.IsExist(energyPathLibName) {
+		return energyPathLibName
+	}
+	return ""
+}
+
 func Init(libs *embed.FS, resources *embed.FS) bool {
 	emfs.SetLibsFS(libs)
 	emfs.SetResourcesFS(resources)
 
-	var currentPathLibName = consts.ExePath + consts.Separator + libname.GetDLLName()
-	if tools.IsExist(currentPathLibName) {
-		libname.LibName = currentPathLibName
-	} else if libname.LibName == "" {
+	libname.LibName = libPath()
+	if libname.LibName == "" {
 		libname.LibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
-	}
-	tools.MkdirAll(consts.HomeDir)
-	if !tools.IsExist(libname.LibName) {
-		var path = libsPath + "/" + libname.GetDLLName()
-		releaseLib(path, libname.LibName)
+	} else {
+		//lcllib都没有的情况
+		//尝试在内置中获取-并释放到用户目录
+		tools.MkdirAll(consts.HomeDir)
+		releaseLib(fmt.Sprintf("%s/%s", libsPath, libname.GetDLLName()), libname.LibName)
 	}
 	initAll()
 	return true
