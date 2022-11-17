@@ -55,8 +55,6 @@ func Init(libs *embed.FS, resources *embed.FS) bool {
 
 	libname.LibName = libPath()
 	if libname.LibName == "" {
-		libname.LibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
-	} else {
 		//lcllib都没有的情况
 		//尝试在内置中获取-并释放到用户目录
 		tools.MkdirAll(consts.HomeDir)
