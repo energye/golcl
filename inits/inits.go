@@ -55,6 +55,7 @@ func Init(libs *embed.FS, resources *embed.FS) bool {
 
 	libname.LibName = libPath()
 	if libname.LibName == "" {
+		libname.LibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
 		//lcllib都没有的情况
 		//尝试在内置中获取-并释放到用户目录
 		tools.MkdirAll(consts.HomeDir)
@@ -68,21 +69,19 @@ func releaseResource() {
 
 }
 
-func releaseLib(path, dllName string) {
+func releaseLib(fsPath, out string) {
 	if emfs.GetLibsFS() != nil {
 		var err error
 		var fsFile fs.File
 		var file *os.File
-		file, err = os.OpenFile(dllName, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+		file, err = os.OpenFile(out, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
 		if err != nil {
 			panic(err)
 		}
-		fsFile, err = emfs.GetLibsFS().Open(path)
-		if err != nil {
-			fmt.Println("emfs error:", err)
-			file.Close()
-			os.Remove(dllName)
-		} else {
+		defer file.Close()
+		fsFile, err = emfs.GetLibsFS().Open(fsPath)
+		if err == nil {
+			defer fsFile.Close()
 			var n int
 			//读取数据
 			buf := make([]byte, 4096)
@@ -93,9 +92,7 @@ func releaseLib(path, dllName string) {
 				}
 				file.Write(buf[:n])
 			}
-			fsFile.Close()
-			file.Close()
-			fmt.Println("liblcl", libname.LibName, "release success.")
+			fmt.Println("release success.")
 		}
 	}
 }
