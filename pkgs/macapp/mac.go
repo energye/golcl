@@ -166,10 +166,10 @@ func (m *macApp) IsCEF(s bool) {
 func (m *macApp) cefHelper() {
 	if m.isCEF {
 		if m.cefFrameworksDir == "" {
-			panic("未指定cef frameworks根目录")
+			m.cefFrameworksDir = os.Getenv("ENERGY_HOME")
 		}
 		if !fileExists(m.cefFrameworksDir) {
-			panic("cef frameworks根目录不存在: " + m.cefFrameworksDir)
+			panic("cef frameworks 不存在: " + m.cefFrameworksDir)
 		}
 		if !fileExists(m.macAppFrameworksDir) {
 			os.Mkdir(m.macAppFrameworksDir, 0755)
