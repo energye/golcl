@@ -5,7 +5,6 @@ import (
 	"github.com/energye/golcl/tools/homedir"
 	"os"
 	"path/filepath"
-	"strings"
 )
 
 const (
@@ -23,8 +22,9 @@ var (
 )
 
 func init() {
-	ExePath = os.Args[0]
-	ExePath = ExePath[:strings.LastIndex(ExePath, Separator)]
+	//ExePath = os.Args[0]
+	//ExePath = ExePath[:strings.LastIndex(ExePath, Separator)]
+	ExePath, err = os.Getwd()
 	if err != nil {
 		panic(err)
 	}

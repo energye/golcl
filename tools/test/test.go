@@ -8,7 +8,7 @@ import (
 func main() {
 	var conf conf
 	tags := tools.NewFindStructTags(&conf, "json", "label", "default")
-	tag := tags.GetFieldTag("AppName")
+	tag := tags.GetTags("AppName")
 	fmt.Println(tag.Get("json"))
 	fmt.Println(tag.Get("label"))
 	fmt.Println(tag.Get("default"))

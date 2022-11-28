@@ -13,7 +13,7 @@ import (
 type CMD struct {
 	HideWindow      bool
 	Dir             string
-	MessageCallback func(string, error)
+	MessageCallback func([]byte, error)
 	stdout          io.ReadCloser
 }
 
@@ -32,7 +32,7 @@ func (m *CMD) Close() {
 }
 
 func (m *CMD) Command(name string, args ...string) {
-	fmt.Println("命令：", name, args)
+	fmt.Println("command name:", name, "args:", args)
 	cmd := exec.Command(name, args...)
 	if m.Dir != "" {
 		cmd.Dir = m.Dir
@@ -44,9 +44,8 @@ func (m *CMD) Command(name string, args ...string) {
 	//StdoutPipe方法返回一个在命令Start后与命令标准输出关联的管道。Wait方法获知命令结束后会关闭这个管道，一般不需要显式的关闭该管道。
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		//fmt.Println("cmd.StdoutPipe-stdout: ", err)
 		if m.MessageCallback != nil {
-			m.MessageCallback("", err)
+			m.MessageCallback(nil, err)
 		}
 		return
 	}
@@ -54,9 +53,8 @@ func (m *CMD) Command(name string, args ...string) {
 	cmd.Stderr = os.Stderr
 	err = cmd.Start()
 	if err != nil {
-		//fmt.Println("cmd.StdoutPipe-start: ", err)
 		if m.MessageCallback != nil {
-			m.MessageCallback("", err)
+			m.MessageCallback(nil, err)
 		}
 		return
 	}
@@ -64,30 +62,27 @@ func (m *CMD) Command(name string, args ...string) {
 	reader := bufio.NewReader(stdout)
 	//实时循环读取输出流中的一行内容
 	for {
-		//line, err := reader.ReadString('\n')
 		byt, b, err := reader.ReadLine()
 		if err != nil || io.EOF == err {
-			//fmt.Println("cmd.StdoutPipe-err-reader: ", err)
 			if m.MessageCallback != nil {
-				m.MessageCallback("exit", nil)
+				m.MessageCallback([]byte("exit"), nil)
 			}
 			break
 		}
-		var data = string(byt)
 		if m.MessageCallback != nil {
-			m.MessageCallback(data, nil)
+			m.MessageCallback(byt, nil)
 		} else {
-			fmt.Println(data, b)
+			fmt.Println("line:", string(byt), b)
 		}
 	}
 	err = cmd.Wait()
 	if err != nil {
 		if m.MessageCallback != nil {
-			m.MessageCallback("", errors.New("wait end error "+err.Error()))
+			m.MessageCallback(nil, errors.New("wait end error "+err.Error()))
 		}
 	} else {
 		if m.MessageCallback != nil {
-			m.MessageCallback("", nil)
+			m.MessageCallback(nil, nil)
 		}
 	}
 }
