@@ -53,7 +53,7 @@ func (m *RSRC) Gen() error {
 		}
 	}
 	cmd := command.NewCMD()
-	cmd.MessageCallback = func(s string, e error) {
+	cmd.MessageCallback = func(s []byte, e error) {
 		fmt.Println("GEN - CMD", s, " error", e)
 		err = e
 	}

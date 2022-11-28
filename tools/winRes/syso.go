@@ -196,7 +196,7 @@ func (m *SYSO) Gen() error {
 		return errors.New(icoFile + " 文件未找到")
 	}
 	cmd := command.NewCMD()
-	cmd.MessageCallback = func(s string, e error) {
+	cmd.MessageCallback = func(s []byte, e error) {
 		fmt.Println("GEN - CMD", s, " error", e)
 		err = e
 	}
