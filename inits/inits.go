@@ -60,6 +60,20 @@ func Init(libs *embed.FS, resources *embed.FS) bool {
 		//尝试在内置中获取-并释放到用户目录
 		tools.MkdirAll(consts.HomeDir)
 		releaseLib(fmt.Sprintf("%s/%s", libsPath, libname.GetDLLName()), libname.LibName)
+		if tools.IsExist(libname.LibName) {
+			fmt.Println(`Hint:
+	Golcl dependency library liblcl was not found
+	Please check whether liblcl exists locally
+	If local liblcl exist, please put it in the specified location, if not please from the network to download a binary package (https://github.com/energye/energy/releases), or to compile.
+	Configuration Location:
+		1. Current program execution directory
+		2. User root /golcl/
+		3. Environment variables LCL_HOME or ENERGY_HOME
+			environment variable LCL_HOME is configured preferentially in the non-energy framework
+			environment variable ENERGY_HOME takes precedence in the Energy framework
+			ENERGY_HOME environment variable is recommended
+`)
+		}
 	}
 	initAll()
 	return true
