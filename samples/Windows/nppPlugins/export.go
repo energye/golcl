@@ -88,7 +88,7 @@ func setInfo(nppHandle, scintillaMainHandle, scintillaSecondHandle HWND) {
 	//lcl.Application.Run()
 
 	// 在go的dll中应该使用专用的初始函数
-	// 此方法也只适合第三方非golcl程序，不适合go+golcl+godll+golcl方式
+	// 此方法也只适合第三方非govcl程序，不适合go+govcl+godll+govcl方式
 	rtl.InitGoDll(0) //0则自动获取当前线程Id
 
 	// 设置application的icon为notepad++的icon

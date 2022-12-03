@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
@@ -69,6 +68,5 @@ func (f *TMainForm) OnFormCreate(object lcl.IObject) {
 }
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }

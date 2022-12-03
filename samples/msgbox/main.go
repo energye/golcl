@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
 	_ "github.com/energye/golcl/lcl/locales/zh_CN"
 	"github.com/energye/golcl/lcl/types"
@@ -10,7 +9,7 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 

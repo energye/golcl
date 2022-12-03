@@ -1,3 +1,11 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 package rtl
 
 import (
@@ -5,6 +13,8 @@ import (
 	"github.com/energye/golcl/lcl/win"
 )
 
+// MainInstance
+//
 // exe自身实例。
 //
 // Instance of an EXE.

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"net"
 
 	"time"
@@ -31,7 +30,6 @@ var (
 )
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.Application.SetOnException(applicationException)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)

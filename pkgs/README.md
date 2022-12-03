@@ -8,7 +8,7 @@
 [bass](http://www.un4seen.com/)库的Go接口。  
 
 * libname  
-自定义加载指定位置的liblcl或者liblcl。  
+自定义加载指定位置的libvcl或者liblcl。  
 
 * libvlc  
 libvlc库的Go接口。  

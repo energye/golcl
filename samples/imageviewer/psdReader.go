@@ -2,7 +2,7 @@
 // 功能：转换photoshop PSD格式为TBITMAP
 //
 // 日期：2018-06-01
-// 作者：sxm
+// 作者：ying32
 // QQ  ：1444386932
 // 注  ：参考出处
 //       Photoshop文件格式参考官网

@@ -1,10 +1,14 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
+	"embed"
+	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
-	_ "github.com/energye/golcl/pkgs/winappres"
 )
+import _ "github.com/energye/golcl/pkgs/winappres"
+
+//go:embed resources
+var resources embed.FS
 
 func main() {
 	inits.Init(nil, nil)

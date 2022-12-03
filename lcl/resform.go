@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -9,7 +9,7 @@
 //----------------------------------------
 // 加载文件或者内存中的窗口资源文件功能
 // 需要配合窗口设计器使用。
-// 设计器是独立于golcl的，设计器的目的是用于简化窗口的创建，设计器不开源。
+// 设计器是独立于govcl的，设计器的目的是用于简化窗口的创建，设计器不开源。
 //
 // 例：
 //    type TMainForm struct {
@@ -33,7 +33,7 @@
 //        ...
 //     }
 
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 //----------------------------------------
 
@@ -62,7 +62,7 @@ func setFiledVal(name string, instance uintptr, v reflect.Value) {
 		}
 		// idx = 0 = TForm
 		setVal(1, instance) // idx = 1 = instance
-		setVal(2, instance) // idx = 2 = ptr
+		//setVal(2, instance) // idx = 2 = ptr
 		// instance ord = 1
 		//*(*uintptr)(unsafe.Pointer(fv.Elem().Field(1).UnsafeAddr())) = instance
 		// ptr ord = 2
@@ -142,11 +142,8 @@ func resObjectBuild(typ int, owner IComponent, appInst uintptr, fields ...interf
 	var field1 interface{}
 	var goInstance reflect.Value
 
-	// 初始创建时是否使用缩放
-	initScale := false
-
 	// 检测是否为MainForm，通过判断 指定方法为nil。
-	isMainForm := Application_GetMainForm(Application.instance) == 0
+	isMainForm := Application_GetMainForm(Application._instance()) == 0
 	instancePtr := uintptr(0)
 	// 不检查一些了，也不做最初版本的兼容
 	if len(fields) > 0 {
@@ -166,9 +163,9 @@ func resObjectBuild(typ int, owner IComponent, appInst uintptr, fields ...interf
 	switch typ {
 	case 0:
 		// 由参数的个数决定，创建窗口时是否使用缩放，此值需要 lcl.Application.SetScaled(true) 后才能生效。
-		resObj = AsForm(Application_CreateForm(appInst, initScale))
+		resObj = AsForm(Application_CreateForm(appInst))
 	case 1:
-		resObj = AsForm(Form_Create2(CheckPtr(owner), initScale))
+		resObj = AsForm(Form_Create2(CheckPtr(owner)))
 	case 2:
 		// TFrame
 		resObj = NewFrame(owner)

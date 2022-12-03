@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"time"
 
 	"github.com/energye/golcl/lcl"
@@ -11,7 +10,7 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -222,7 +221,7 @@ func main() {
 	img := lcl.NewImage(mainForm)
 	img.SetBounds(10, top, 167, 97)
 	img.SetParent(mainForm)
-	img.Picture().LoadFromFile("/home/sxm/app/swt/gopath/src/github.com/energye/golcl/samples/stdcontrols/1.jpg")
+	img.Picture().LoadFromFile("1.jpg")
 	//img.SetStretch(true)
 	img.SetProportional(true)
 
@@ -255,7 +254,16 @@ func main() {
 	dtp := lcl.NewDateTimePicker(mainForm)
 	dtp.SetParent(mainForm)
 	dtp.SetBounds(left, top, 167, 25)
-	//dtp.SetFormat("yyyy-MM-dd HH:mm:ss")
+	//dtp.SetDateMode(types.DmUpDown)
+	dtp.SetKind(types.DtkDateTime)
+	dtp.SetOptions(dtp.Options().Include(types.DtpoFlatButton))
+	//dtp.SetShowMonthNames(true)
+	dtp.SetTimeFormat(types.Tf12)
+	//dtp.SetArrowShape(types.AsYetAnotherShape)
+	dtp.SetDateDisplayOrder(types.DdoMDY)
+	dtp.SetDateSeparator("-")
+	dtp.SetTimeSeparator(".")
+	dtp.SetHideDateTimeParts(dtp.HideDateTimeParts().Include(types.DtpYear))
 
 	top += dtp.Height() + 10
 

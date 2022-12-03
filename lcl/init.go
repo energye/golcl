@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -9,10 +9,17 @@
 package lcl
 
 import (
+	"fmt"
 	"os"
 	"runtime"
 
 	. "github.com/energye/golcl/lcl/api"
+)
+
+const (
+	// CN: 要求最小liblcl二进制版本
+	// EN: Requires a minimum liblcl binary version.
+	requireMinBinaryVersion = 0x02020300
 )
 
 var (
@@ -25,6 +32,13 @@ var (
 	Printer     *TPrinter     // 打印机
 )
 
+func toVersionString(ver uint32) string {
+	if byte(ver) == 0 {
+		return fmt.Sprintf("%d.%d.%d", byte(ver>>24), byte(ver>>16), byte(ver>>8))
+	}
+	return fmt.Sprintf("%d.%d.%d.%d", byte(ver>>24), byte(ver>>16), byte(ver>>8), byte(ver))
+}
+
 func LCLInit() {
 	if !DEBUG {
 		defer func() {
@@ -33,6 +47,12 @@ func LCLInit() {
 				os.Exit(1)
 			}
 		}()
+	}
+	libVersion := DLibVersion()
+	// go build -tags hideversion 可以不打印版本号
+	printVersion(toVersionString(libVersion))
+	if libVersion < requireMinBinaryVersion {
+		panic(fmt.Sprintf("Require liblcl binary version >=%s. Please go to \"https://github.com/energye/golcl\" to download the latest binary.", toVersionString(requireMinBinaryVersion)))
 	}
 	// 这个似乎得默认加上，锁定主线程，防止中间被改变
 	runtime.LockOSThread()
@@ -44,6 +64,8 @@ func LCLInit() {
 	SetThreadSyncCallback(threadSyncCallback)
 	// 调求回调CreateParams方法
 	SetRequestCallCreateParamsCallback(requestCallCreateParamsCallback)
+	// 清除事件回调
+	SetRemoveEventCallback(removeEventCallback)
 
 	// 导入几个实例类
 	Application = AsApplication(Application_Instance())

@@ -1,9 +1,16 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 package version
 
 import "runtime"
 
 func VersionInit() {
-	//func init() {
 	switch runtime.GOARCH {
 	case "386":
 		OSVersion.Architecture = ArIntelX86

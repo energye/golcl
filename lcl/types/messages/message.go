@@ -1,3 +1,11 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 package messages
 
 const (
@@ -529,10 +537,10 @@ const (
 	PSM_SHEETINFO = WM_USER + 101
 )
 
-//--------------------------- lcl 消息------------------------------
+//--------------------------- VCL 消息------------------------------
 
 const (
-	/* lcl control message IDs */
+	/* VCL control message IDs */
 
 	CM_BASE = 0xB000
 	//CM_CLROFFSET                   = 0x100  CRL
@@ -633,7 +641,7 @@ const (
 )
 
 const (
-	/* lcl control notification IDs */
+	/* VCL control notification IDs */
 
 	CN_BASE              = 0xBC00
 	CN_CHARTOITEM        = CN_BASE + WM_CHARTOITEM

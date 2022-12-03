@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"math/rand"
 
 	"github.com/energye/golcl/lcl"
@@ -11,7 +10,6 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 
 	mainForm := lcl.Application.CreateForm()

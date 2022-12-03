@@ -54,7 +54,6 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.ImgViewer.SetStretch(true)
 	f.ImgViewer.SetAutoSize(false)
 	f.ImgIcon.Picture().Assign(lcl.Application.Icon())
-	f.loadImage("D:\\图标\\微信截图_20220331161807.png")
 	if len(os.Args) > 1 {
 		if f.canAccept(os.Args[1]) {
 			f.loadImage(os.Args[1])
@@ -245,7 +244,7 @@ func (f *TMainForm) loadImage(aFileName string) {
 	f.imgThumb.SetSize(thumbW, thumbH)
 	f.imgThumb.Canvas().StretchDraw(types.TRect{0, 0, thumbW, thumbH}, f.ImgViewer.Picture().Graphic())
 
-	// liblcl下可以动的gif
+	// libvcl下可以动的gif
 	//if !rtl.LcLLoaded() && f.ImgViewer.Picture().Graphic().ClassName() == "TGIFImage" {
 	//	lcl.AsGIFImage(f.ImgViewer.Picture().Graphic()).SetAnimate(true)
 	//}
@@ -301,7 +300,7 @@ func (f *TMainForm) updateTitle() {
 	if ratio != 100 {
 		title += fmt.Sprintf(" - %d%%", f.getRatio())
 	}
-	title += " - sxm图片浏览器"
+	title += " - ying32图片浏览器"
 
 	f.SetCaption(title)
 	f.LblCaption.SetCaption(title)
@@ -357,7 +356,7 @@ func (f *TMainForm) OnLblCaptionMouseUp(sender lcl.IObject, button types.TMouseB
 
 func (f *TMainForm) OnLblCaptionMouseDown(sender lcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
 	if button == types.MbLeft {
-		// windows下可以用这种，貌似只对liblcl生效，lcl不生效的
+		// windows下可以用这种，貌似只对libvcl生效，lcl不生效的
 		//win.ReleaseCapture()
 		//f.Perform(win.WM_SYSCOMMAND, win.SC_MOVE+1, 0)
 		f.isMouseDown = true
@@ -500,7 +499,7 @@ func (f *TMainForm) OnPnlClientMouseMove(sender lcl.IObject, shift types.TShiftS
 
 }
 
-func (f *TMainForm) OnBtnPrelclick(sender lcl.IObject) {
+func (f *TMainForm) OnBtnPrevClick(sender lcl.IObject) {
 	if len(f.curDirImages) == 0 {
 		return
 	}

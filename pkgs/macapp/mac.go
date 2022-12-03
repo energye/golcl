@@ -46,21 +46,6 @@ func init() {
 	MacApp.lsUIElement = "false"
 }
 
-//func copyFile(src, dest string) error {
-//	fileDest, err := os.Create(dest)
-//	if err != nil {
-//		return err
-//	}
-//	defer fileDest.Close()
-//	fileSrc, err := os.Open(src)
-//	if err != nil {
-//		return err
-//	}
-//	defer fileSrc.Close()
-//	_, err = io.Copy(fileDest, fileSrc)
-//	return err
-//}
-
 func fileExists(path string) bool {
 	_, err := os.Stat(path)
 	if err == nil {

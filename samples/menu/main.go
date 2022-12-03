@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"runtime"
 
 	"github.com/energye/golcl/lcl/types/colors"
@@ -23,7 +22,6 @@ var (
 )
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }
 
@@ -34,6 +32,9 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 
 	// TMainMenu
 	f.mainMenu = lcl.NewMainMenu(f)
+	f.mainMenu.SetOnMeasureItem(func(sender lcl.IObject, aCanvas *lcl.TCanvas, width, height *int32) {
+		*height = 44
+	})
 
 	// macOS下专有的
 	if runtime.GOOS == "darwin" {

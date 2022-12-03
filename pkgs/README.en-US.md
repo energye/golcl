@@ -7,7 +7,7 @@
 [bass](http://www.un4seen.com/) Go interface of the library.    
 
 * libname  
-Custom load liblcl or liblcl in the specified location.    
+Custom load libvcl or liblcl in the specified location.    
 
 * libvlc  
 Go interface to the libvlc library.    

@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -11,16 +11,36 @@
 
 package api
 
-import "github.com/energye/golcl/dylib"
+import "github.com/energye/golcl/lcl/api/dllimports"
 
-var (
-	NSWindow_FromForm                      *dylib.LazyProc
-	NSWindow_titleVisibility               *dylib.LazyProc
-	NSWindow_setTitleVisibility            *dylib.LazyProc
-	NSWindow_titlebarAppearsTransparent    *dylib.LazyProc
-	NSWindow_setTitlebarAppearsTransparent *dylib.LazyProc
-	NSWindow_styleMask                     *dylib.LazyProc
-	NSWindow_setStyleMask                  *dylib.LazyProc
-	NSWindow_setRepresentedURL             *dylib.LazyProc
-	//NSWindow_release                       = liblcl.NewProc("NSWindow_release")
-)
+func NSWindow_FromForm(obj uintptr) uintptr {
+	return defSyscallN(dllimports.NSWINDOW_FROMFORM, obj)
+}
+
+func NSWindow_titleVisibility(n uintptr) uintptr {
+	return defSyscallN(dllimports.NSWINDOW_TITLEVISIBILITY, n)
+}
+
+func NSWindow_setTitleVisibility(n uintptr, flag uintptr) {
+	defSyscallN(dllimports.NSWINDOW_SETTITLEVISIBILITY, n, flag)
+}
+
+func NSWindow_titlebarAppearsTransparent(n uintptr) bool {
+	return GoBool(defSyscallN(dllimports.NSWINDOW_TITLEBARAPPEARSTRANSPARENT, n))
+}
+
+func NSWindow_setTitlebarAppearsTransparent(n uintptr, flag bool) {
+	defSyscallN(dllimports.NSWINDOW_SETTITLEBARAPPEARSTRANSPARENT, n, PascalBool(flag))
+}
+
+func NSWindow_setRepresentedURL(n uintptr, url uintptr) {
+	defSyscallN(dllimports.NSWINDOW_SETREPRESENTEDURL, n, url)
+}
+
+func NSWindow_styleMask(n uintptr) uint {
+	return uint(defSyscallN(dllimports.NSWINDOW_STYLEMASK, n))
+}
+
+func NSWindow_setStyleMask(n uintptr, mask uint) {
+	defSyscallN(dllimports.NSWINDOW_SETSTYLEMASK, n, uintptr(mask))
+}

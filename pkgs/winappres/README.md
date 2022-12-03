@@ -3,7 +3,7 @@
 
 ----
 
-**生成的方式请前往wiki查看： https://gitee.com/ying32/golcl/wikis/pages?sort_id=410058&doc_id=102420** 
+**生成的方式请前往wiki查看： https://gitee.com/ying32/govcl/wikis/pages?sort_id=410058&doc_id=102420** 
 
 ##### 使用方法
 
@@ -24,7 +24,7 @@ import _ "github.com/energye/golcl/pkgs/winappres/uac"
 **只有windows下有效，里面包含默认的一些东西**  
 
 * MANIFEST 文件
-* 默认Golcl的图标
+* 默认GoVCL的图标
 * 默认空的版本信息
 
 ### 编译命令

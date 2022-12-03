@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -10,8 +10,10 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/energye/golcl/lcl/rtl"
 	"io/ioutil"
+	"os"
+
+	"github.com/energye/golcl/lcl/rtl"
 )
 
 type TConnConfig struct {
@@ -23,8 +25,7 @@ type TConnConfig struct {
 
 // 全局配置
 var (
-	//appConfFileName = rtl.ExtractFilePath(os.Args[0]) + "app.conf"
-	appConfFileName = "/home/sxm/app/swt/gopath/src/github.com/energye/golcl/samples/redisViewer/app.conf"
+	appConfFileName = rtl.ExtractFilePath(os.Args[0]) + "app.conf"
 	config          = make(map[string]TConnConfig, 0)
 )
 

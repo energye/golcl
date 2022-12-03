@@ -13,7 +13,7 @@ const htmlTemplate = `
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="sxm">
+	<meta name="author" content="ying32">
 
 	<title>Markdown 预览</title>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@1.11.1/dist/jquery.min.js"></script>

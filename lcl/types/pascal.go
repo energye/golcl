@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -12,7 +12,7 @@ import "fmt"
 
 type TModalResult = int32
 
-// 常用值请见 types/colors 包
+// TColor 常用值请见 types/colors 包
 type TColor uint32
 
 type THelpEventData = uintptr
@@ -37,7 +37,7 @@ type TFontCharset = uint8
 
 type TSpacingSize int32
 
-// Unicode 主要用于keymap, 参见types/keys包
+// Char Unicode 主要用于keymap, 参见types/keys包
 type Char = uint16
 
 type TClass uintptr
@@ -105,21 +105,26 @@ type TAlignInfo struct {
 	Scratch      int32
 }
 
+// TCreateParams
+//
 // Moved from Controls to avoid circles
 // Since it is part of the interface now
 type TCreateParams struct {
-	Caption       LPCWSTR
-	Style         uint32
-	ExStyle       uint32
-	X, Y          int32
-	Width, Height int32
-	WndParent     HWND
-	Param         uintptr
-	WindowClass   TWndClass
-	WinClassName  [64]int8
+	Caption      LPCWSTR
+	Style        uint32
+	ExStyle      uint32
+	X            int32
+	Y            int32
+	Width        int32
+	Height       int32
+	WndParent    HWND
+	Param        uintptr
+	WindowClass  TWndClass
+	WinClassName [64]int8
 }
 
 // TColor
+
 func (c TColor) R() byte {
 	return byte(c)
 }
@@ -158,6 +163,7 @@ func (g TGUID) IsEqual(val TGUID) bool {
 }
 
 // TSmallPoint
+
 func (s TSmallPoint) Empty() TSmallPoint {
 	return TSmallPoint{}
 }

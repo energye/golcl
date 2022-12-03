@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	rtl.CreateURLShortCut(win.GetDesktopPath(), "golcl", "https://github.com/energye/golcl")
+	rtl.CreateURLShortCut(win.GetDesktopPath(), "govcl", "https://github.com/energye/golcl")
 
 	rtl.CreateShortCut(win.GetDesktopPath(), "shortcut", os.Args[0], "", "描述", "-b -c")
 

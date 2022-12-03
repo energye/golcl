@@ -28,7 +28,7 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.web.OnTitleChanged = func(sender *miniblink.TMiniBlinkWebview, title string) {
 		//fmt.Println("标题改变:", title)
 		fmt.Println("onTitleChanged:", win.GetCurrentThreadId())
-		f.SetCaption(title + " - sxm")
+		f.SetCaption(title + " - ying32")
 	}
 
 	f.web.OnURLChanged = func(sender *miniblink.TMiniBlinkWebview, url string) {

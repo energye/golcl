@@ -46,7 +46,7 @@ func main() {
 	fmt.Println("IsWow64:", win.IsWow64())
 
 	// 在资源管理器中定位指定文件名
-	// win.OpenInExplorer("F:\\Golang\\bin\\liblclx64.dll")
+	// win.OpenInExplorer("F:\\Golang\\bin\\libvclx64.dll")
 	var s string
 	fmt.Scan(&s)
 

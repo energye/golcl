@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -10,7 +10,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
@@ -46,8 +45,6 @@ var (
 )
 
 func main() {
-
-	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }
 
@@ -91,7 +88,13 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.grid.SetFixedCols(0)
 	//f.grid.SetFixedRows(0)
 	// 设置一些选项
-	f.grid.SetOptions(f.grid.Options().Include(types.GoAlwaysShowEditor, types.GoCellHints, types.GoEditing, types.GoTabs))
+	// GoAlwaysShowEditor
+	// GoCellHints  显示鼠标悬停提示
+	// GoEditing    允许编辑表格项目数据
+	// GoTabs       Tab键可移动选择
+	// GoRowSizing  行可鼠标调整 FixedRows > 0
+	// GoColSizing  列可鼠标调整 FixedCols > 0
+	f.grid.SetOptions(f.grid.Options().Include(types.GoAlwaysShowEditor, types.GoCellHints, types.GoEditing, types.GoTabs, types.GoRowSizing, types.GoColSizing))
 
 	// 设置不可操作列的背景颜色
 	f.grid.SetFixedColor(colors.ClGreen)

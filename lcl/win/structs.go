@@ -1,3 +1,11 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 //go:build windows
 // +build windows
 
@@ -72,7 +80,7 @@ type TItemIDList struct {
 	Mkid TSHItemID
 }
 
-// ShellExecuteEx
+// TShellExecuteInfo ShellExecuteEx
 type TShellExecuteInfo struct {
 	CbSize       uint32
 	FMask        uint32

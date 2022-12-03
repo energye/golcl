@@ -1,3 +1,11 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 //go:build arm || 386
 // +build arm 386
 
@@ -6,7 +14,7 @@ package types
 type TDWordFiller struct {
 }
 
-//  TWMKey
+// TWMKey
 type TWMKey struct {
 	Msg       uint32
 	MsgFiller TDWordFiller

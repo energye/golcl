@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"runtime"
 
-	"github.com/energye/golcl/lcl/rtl"
-	"github.com/energye/golcl/lcl/types/colors"
-
 	"time"
+
+	"github.com/energye/golcl/lcl/rtl"
 
 	"math/rand"
 
@@ -40,7 +38,6 @@ var (
 )
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.CreateForm(&MainFrom)
 	lcl.Application.Run()
@@ -65,7 +62,9 @@ func (f *TMainFrom) OnFormCreate(sender lcl.IObject) {
 	f.ListView.SetOnData(f.OnListView1Data)
 
 	// 要显示状态图标就得添加
-	f.ListView.SetCheckboxes(true)
+	// lazarus 2.2又出新bug了，，windows下ownerdata时会异常
+	f.ListView.SetCheckboxes(!f.isWindows)
+	//f.ListView.SetCheckboxes(true)
 
 	// windows下OwnerData不能显示checkbox
 	// linux和macOS在OwnerData下支持显示CheckBox
@@ -123,26 +122,14 @@ func (f *TMainFrom) OnFormCreate(sender lcl.IObject) {
 	fmt.Println("t:", ns, "ns, ", ns/1e6, "ms")
 	f.ListView.Items().SetCount(int32(len(tempData))) //   必须主动的设置Virtual List的行数
 
-	// 解决subitem数据为空时，不能连续绘制背景色
-	if f.isWindows {
-		f.ListView.SetOnAdvancedCustomDrawItem(f.onAdvancedCustomDrawItem)
-	} else {
+	// windows上ownerdata时不能显示checkbox，得自己模拟个
+	if !f.isWindows {
 		f.ListView.SetOnItemChecked(f.onListView1ItemChecked)
 	}
-
 }
 
 func (f *TMainFrom) onListView1ItemChecked(sender lcl.IObject, item *lcl.TListItem) {
 	tempData[item.Index()].Checked = item.Checked()
-}
-
-func (f *TMainFrom) onAdvancedCustomDrawItem(sender *lcl.TListView, item *lcl.TListItem, state types.TCustomDrawState, Stage types.TCustomDrawStage, defaultDraw *bool) {
-	if state.In(types.CdsSelected) && Stage == types.CdPrePaint {
-		r := item.DisplayRect(types.DrBounds)
-		canvas := sender.Canvas()
-		canvas.Brush().SetColor(types.TColor(colors.RGB(0, 120, 215)))
-		canvas.FillRect(r)
-	}
 }
 
 func (f *TMainFrom) OnListView1Data(sender lcl.IObject, item *lcl.TListItem) {
@@ -166,7 +153,9 @@ func (f *TMainFrom) OnListView1Data(sender lcl.IObject, item *lcl.TListItem) {
 }
 
 func (f *TMainFrom) OnListView1MouseDown(sender lcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
-	if f.ListView.Checkboxes() && x <= 16 { //16= f.stateImages.Width
+	//if f.ListView.Checkboxes() && x <= 16 { //16= f.stateImages.Width
+	// lazarus 2.2又出新bug。checkbox时windows下的 DoItemChecked 会报错。。。
+	if x <= 16 { //16= f.stateImages.Width
 		item := f.ListView.GetItemAt(x, y)
 		if item != nil {
 			idx := item.Index()

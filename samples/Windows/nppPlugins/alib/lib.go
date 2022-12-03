@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -20,7 +20,6 @@ func ExtractFilePath(path string) string {
 	return path[:len(path)-len(filename)]
 }
 
-//func AlibInit() {
 func init() {
 	fileName, _ := win.GetModuleFileName(win.GetModuleHandle("nppPlugins.dll"))
 	libname.LibName = ExtractFilePath(fileName) + "liblcl.dll"

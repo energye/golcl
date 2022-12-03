@@ -1,10 +1,11 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
 //----------------------------------------
+
 //go:build darwin
 // +build darwin
 
@@ -49,62 +50,34 @@ func HandleToPlatformHandle(h HWND) NSObject {
 }
 
 func (f *TForm) PlatformWindow() NSWindow {
-	if NSWindow_FromForm == nil {
-		NSWindow_FromForm = GetLibLCL().NewProc("NSWindow_FromForm")
-	}
-	r, _, _ := NSWindow_FromForm.Call(f.instance)
-	return NSWindow(r)
+	return NSWindow(NSWindow_FromForm(f._instance()))
 }
 
 func (n NSWindow) TitleVisibility() NSWindowTitleVisibility {
-	if NSWindow_titleVisibility == nil {
-		NSWindow_titleVisibility = GetLibLCL().NewProc("NSWindow_titleVisibility")
-	}
-	r, _, _ := NSWindow_titleVisibility.Call(uintptr(n))
-	return NSWindowTitleVisibility(r)
+	return NSWindowTitleVisibility(NSWindow_titleVisibility(uintptr(n)))
 }
 
 func (n NSWindow) SetTitleVisibility(flag NSWindowTitleVisibility) {
 	//C.NSWindow_setTitleVisibility(unsafe.Pointer(n))
-	if NSWindow_setTitleVisibility == nil {
-		NSWindow_setTitleVisibility = GetLibLCL().NewProc("NSWindow_setTitleVisibility")
-	}
-	NSWindow_setTitleVisibility.Call(uintptr(n), uintptr(flag))
+	NSWindow_setTitleVisibility(uintptr(n), uintptr(flag))
 }
 
 func (n NSWindow) TitleBarAppearsTransparent() bool {
-	if NSWindow_titlebarAppearsTransparent == nil {
-		NSWindow_titlebarAppearsTransparent = GetLibLCL().NewProc("NSWindow_titlebarAppearsTransparent")
-	}
-	r, _, _ := NSWindow_titlebarAppearsTransparent.Call(uintptr(n))
-	return DBoolToGoBool(r)
+	return NSWindow_titlebarAppearsTransparent(uintptr(n))
 }
 
 func (n NSWindow) SetTitleBarAppearsTransparent(flag bool) {
-	if NSWindow_setTitlebarAppearsTransparent == nil {
-		NSWindow_setTitlebarAppearsTransparent = GetLibLCL().NewProc("NSWindow_setTitlebarAppearsTransparent")
-	}
-	NSWindow_setTitlebarAppearsTransparent.Call(uintptr(n), GoBoolToDBool(flag))
+	NSWindow_setTitlebarAppearsTransparent(uintptr(n), flag)
 }
 
 func (n NSWindow) SetRepresentedURL(url NSURL) {
-	if NSWindow_setRepresentedURL == nil {
-		NSWindow_setRepresentedURL = GetLibLCL().NewProc("NSWindow_setRepresentedURL")
-	}
-	NSWindow_setRepresentedURL.Call(uintptr(n), uintptr(url))
+	NSWindow_setRepresentedURL(uintptr(n), uintptr(url))
 }
 
 func (n NSWindow) StyleMask() uint {
-	if NSWindow_styleMask == nil {
-		NSWindow_styleMask = GetLibLCL().NewProc("NSWindow_styleMask")
-	}
-	r, _, _ := NSWindow_styleMask.Call(uintptr(n))
-	return uint(r)
+	return NSWindow_styleMask(uintptr(n))
 }
 
 func (n NSWindow) SetStyleMask(mask uint) {
-	if NSWindow_setStyleMask == nil {
-		NSWindow_setStyleMask = GetLibLCL().NewProc("NSWindow_setStyleMask")
-	}
-	NSWindow_setStyleMask.Call(uintptr(n), uintptr(mask))
+	NSWindow_setStyleMask(uintptr(n), mask)
 }

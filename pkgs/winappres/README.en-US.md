@@ -3,7 +3,7 @@
 
 ----
 
-**How to generate it, please go to the wiki: https://gitee.com/ying32/golcl/wikis/pages?sort_id=410058&doc_id=102420** 
+**How to generate it, please go to the wiki: https://gitee.com/ying32/govcl/wikis/pages?sort_id=410058&doc_id=102420** 
 
 ##### usage
 
@@ -24,7 +24,7 @@ import _ "github.com/energye/golcl/pkgs/winappres/uac"
 **Only valid under windows, which contains some default things**  
 
 * MANIFEST file  
-* Icon for default Golcl  
+* Icon for default GoVCL  
 * Default empty version information  
 
 ### Compile command

@@ -1,6 +1,15 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 package types
 
-// MessageBox or MessageDlg 返回值
+// MessageBox 或 MessageDlg 的返回值
+// MessageBox or MessageDlg return value
 const (
 	IdOK       = 1
 	IdCancel   = 2
@@ -30,6 +39,7 @@ const (
 	MrYesToAll = MrNoToAll + 1
 )
 
+// 预定义的剪贴板格式
 // Predefined Clipboard Formats
 const (
 	CF_BITMAP          = 2

@@ -61,7 +61,7 @@ func (f *TForm1) OnFormCreate(sender lcl.IObject) {
 		f.addFoler(usrHome + "/Music/网易云音乐")
 		f.addFoler(usrHome + "/Music/iTunes/iTunes Media/Music")
 	case "linux":
-		f.addFoler("/home/sxm/音乐")
+		f.addFoler("/home/ying32/音乐")
 	}
 }
 
@@ -221,7 +221,7 @@ func (f *TForm1) OnPanel1MouseDown(sender lcl.IObject, button types.TMouseButton
 	}
 }
 
-func (f *TForm1) OnBtnPrelclick(sender lcl.IObject) {
+func (f *TForm1) OnBtnPrevClick(sender lcl.IObject) {
 	f.playCtl.Prev()
 }
 

@@ -1,10 +1,19 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 package zh_CN
 
 import "github.com/energye/golcl/lcl/locales"
 
+// 引用此包即可将原来英文按钮或者某些英文字符汉化（macOS暂时有些不可用）
+
 // 默认资源
 var resItems = map[string]string{
-	// lcl/LCL共有
 	"SOpenFileTitle":     "打开文件",
 	"SOKButton":          "确定(&O)",
 	"SCancelButton":      "取消(&C)",
@@ -35,16 +44,6 @@ var resItems = map[string]string{
 	"SMsgDlgYesToAll":    "全是(&A)",
 	"SMsgDlgClose":       "关闭(&C)",
 
-	// lcl专有
-	//"SSelectDirCap":  "选择目录",
-	//"SDirNameCap":    "目录名(&N)：",
-	//"SDrivesCap":     "驱动器(&R)：",
-	//"SDirsCap":       "目录(&D)：",
-	//"SFilesCap":      "文件(&F)：(*.*)",
-	//"SNetworkCap":    "网络(&T)...",
-	//"SEncodingLabel": "编码：",
-
-	// LCL专有
 	// TFindDialog And TReplaceDialog
 	"rsFind":           "查找",
 	"rsHelp":           "帮助",
@@ -65,6 +64,5 @@ var resItems = map[string]string{
 }
 
 func ZH_CNInit() {
-	//func init() {
 	locales.ModifyResources(resItems)
 }

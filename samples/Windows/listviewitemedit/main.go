@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 	lcl.Application.CreateForm(&Form1)

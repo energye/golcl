@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
@@ -17,7 +16,6 @@ type TForm1 struct {
 var form1 *TForm1
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 	lcl.Application.CreateForm(&form1)
@@ -56,6 +54,9 @@ func (f *TForm1) OnFormWndProc(msg *types.TMessage) {
 
 	case messages.WM_RBUTTONDBLCLK:
 		fmt.Println("右键双击")
+
+	case messages.WM_MOUSEWHEEL:
+		fmt.Println("鼠标滚轮")
 
 	}
 }

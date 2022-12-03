@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"runtime"
 
 	"github.com/energye/golcl/lcl"
@@ -13,7 +12,6 @@ import (
 
 func main() {
 
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -28,19 +26,6 @@ func main() {
 
 	trayicon := lcl.NewTrayIcon(mainForm)
 
-	if runtime.GOOS != "darwin" {
-		trayicon.SetOnClick(func(sender lcl.IObject) {
-			fmt.Println("TrayIcon Click.")
-		})
-		trayicon.SetOnDblClick(func(lcl.IObject) {
-			// macOS似乎不支持双击
-			trayicon.SetBalloonTitle("test")
-			trayicon.SetBalloonTimeout(10000)
-			trayicon.SetBalloonHint("我是提示正文啦")
-			trayicon.ShowBalloonHint()
-			fmt.Println("TrayIcon DClick.")
-		})
-	}
 	btn := lcl.NewButton(mainForm)
 	btn.SetParent(mainForm)
 	btn.SetCaption("ShowBalloon")
@@ -103,6 +88,41 @@ func main() {
 	})
 
 	// 这里写啥好呢，macOS下似乎这些事件跟PopupMenu有冲突
+	if runtime.GOOS != "darwin" {
+		trayicon.SetOnDblClick(func(lcl.IObject) {
+			// macOS似乎不支持双击
+			trayicon.SetBalloonTitle("test")
+			trayicon.SetBalloonTimeout(10000)
+			trayicon.SetBalloonHint("我是提示正文啦")
+			trayicon.ShowBalloonHint()
+			fmt.Println("TrayIcon DClick.")
+		})
+	}
+
+	// 托盘图片可闪烁 1 秒闪一次
+	//tmr1 := lcl.NewTimer(mainForm)
+	//tmr1.SetOnTimer(func(sender lcl.IObject) {
+	//	if trayicon.Icon().Empty() {
+	//		trayicon.SetIcon(lcl.Application.Icon())
+	//	} else {
+	//		trayicon.SetIcon(nil)
+	//	}
+	//})
+	//tmr1.SetEnabled(true)
+
+	// 加载其他格式的ico方式一
+	//png := lcl.NewPngImage()
+	//png.LoadFromFile("bow.png")
+	//trayicon.Icon().Assign(png)
+	//png.Free()
+	// 方式二可以通过imagelist操作
+	//imglist := lcl.NewImageList(mainForm)
+	//png := lcl.NewPngImage()
+	//png.LoadFromFile("bow.png")
+	//imglist.Add(png, nil)
+	//png.Free()
+	//imglist.GetIcon(0, trayicon.Icon())
+
 	lcl.Application.Run()
 }
 

@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -12,5 +12,5 @@ import "unsafe"
 
 var (
 	// nullptr
-	nullptr = unsafe.Pointer(uintptr(0))
+	nullptr unsafe.Pointer = nil //unsafe.Pointer(uintptr(0))
 )

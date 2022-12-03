@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"net"
 	"sync"
 
@@ -26,7 +25,6 @@ var (
 
 func main() {
 
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 

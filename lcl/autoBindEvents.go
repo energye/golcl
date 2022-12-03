@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -44,8 +44,6 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-
-	"github.com/energye/golcl/lcl/api"
 )
 
 type eventMethod struct {
@@ -227,9 +225,9 @@ func findAndSetEvent(v reflect.Value, name, eventType string, method eventMethod
 	}
 	if event := v.MethodByName("SetOn" + eventType); event.IsValid() {
 		// 设置EventId
-		api.BeginAddEvent()
-		defer api.EndAddEvent()
-		api.SetCurrentEventId(api.GetUID(v.Pointer(), method.FuncPtr))
+		//api.BeginAddEvent()
+		//defer api.EndAddEvent()
+		//api.SetCurrentEventId(api.GetUID(v.Pointer(), method.FuncPtr))
 		event.Call([]reflect.Value{method.Method})
 	} else {
 		if len(eventType) > 0 {

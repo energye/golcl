@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
@@ -10,7 +9,7 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetShowHint(true)
 
@@ -54,20 +53,20 @@ func main() {
 	statusbar.SetAutoHint(true)
 
 	// 一般配合AutoHint使用
-	statusbar.SetSimplePanel(true)
+	statusbar.SetSimplePanel(false)
 
 	// 原本是不需这下面这样的，在dll中创建的貌似有些问题，所以手动来操作了
-	lcl.Application.SetOnHint(func(sender lcl.IObject) {
-		if statusbar.IsValid() {
-			if statusbar.SimplePanel() {
-				statusbar.SetSimpleText(lcl.Application.Hint())
-			} else {
-				if statusbar.Panels().Count() > 0 {
-					statusbar.Panels().Items(0).SetText(lcl.Application.Hint())
-				}
-			}
-		}
-	})
+	//lcl.Application.SetOnHint(func(sender lcl.IObject) {
+	//	if statusbar.IsValid() {
+	//		if statusbar.SimplePanel() {
+	//			statusbar.SetSimpleText(lcl.Application.Hint())
+	//		} else {
+	//			if statusbar.Panels().Count() > 0 {
+	//				statusbar.Panels().Items(0).SetText(lcl.Application.Hint())
+	//			}
+	//		}
+	//	}
+	//})
 
 	pnl := statusbar.Panels().Add()
 	pnl.SetText("pnl1")

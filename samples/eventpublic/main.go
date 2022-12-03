@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
 
 	"fmt"
@@ -14,7 +13,7 @@ import (
 // 事件公用。啥叫事件公用呢，比如btn, btn2两个控件，处理的大部分是相同的，只是根据不同按钮处理进行不同的选择
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -70,7 +69,7 @@ func main() {
 	lcl.Application.Run()
 }
 
-// 两个按钮使用同一个事件回调,Delphi里称为方法(method)
+// 两个按钮使用同一个事件回调,Lazarus里称为方法(method)
 func buttonOnClick(sender lcl.IObject) {
 	// 这里就可以根据sender去做选择了
 	btn := lcl.AsButton(sender)

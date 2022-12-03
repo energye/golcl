@@ -70,10 +70,6 @@ func (f *TMainForm) initComponents() {
 	f.Btn.SetParent(f)
 	f.Btn.SetLeft(80)
 	f.Btn.SetTop(f.Tlbar.Top() + f.Tlbar.Height() + 10)
-	Btn := lcl.NewButton(f)
-	Btn.SetParent(f)
-	Btn.SetLeft(180)
-	Btn.SetCaption("文字")
 
 	f.Chk = lcl.NewCheckBox(f)
 	f.Chk.SetParent(f)

@@ -13,15 +13,15 @@
 | [customLibTest](customLibTest) | 自定义加载指定位置的liblcl | Windows, Linux |
 | [draganddrop](draganddrop) | 数据拖放 | |
 | [draw](draw) | canvas自绘演示 | |
-| [drawchart](drawchart) | 使用[Charts for Go](https://github.com/vdobler/chart)绘制图表并显示到Golcl的控件上 | |
-| [drawfilterusegift](drawfilterusegift) | 使用[Go Image Filtering Toolkit](https://gitee.com/disintegration/gift)处理图片滤镜并显示到Golcl的控件上，演示视频见`drawfilterusegift/video.mp4` | |
+| [drawchart](drawchart) | 使用[Charts for Go](https://github.com/vdobler/chart)绘制图表并显示到GoVCL的控件上 | |
+| [drawfilterusegift](drawfilterusegift) | 使用[Go Image Filtering Toolkit](https://github.com/disintegration/gift)处理图片滤镜并显示到GoVCL的控件上，演示视频见`drawfilterusegift/video.mp4` | |
 | [drawrose](drawrose) | canvas自绘一朵玫瑰花 | |
-| [drawusegg](drawusegg) | 使用[Go Graphics - 2D](github.com/fogleman/gg)绘制并显示到Golcl的控件上，演示视频见`drawusegg/video.mp4` | |
+| [drawusegg](drawusegg) | 使用[Go Graphics - 2D](github.com/fogleman/gg)绘制并显示到GoVCL的控件上，演示视频见`drawusegg/video.mp4` | |
 | [dropfiles](dropfiles) | 鼠标拖放文件演示  | |
 | [eventpublic](eventpublic) | 控件事件的公用演示  | |
 | [fileshelltree](fileshelltree) | 文件目录树  | |
 | [formEvents](formEvents) | 演示自动关联事件    |  |
-| [golcl](golcl) | 开发golcl时的总测试例程，包含很多功能的演示 | |  
+| [govcl](govcl) | 开发govcl时的总测试例程，包含很多功能的演示 | |  
 | [grids/stringgrid](grids/stringgrid) | 表格控件1，常规 | |
 | [grids/stringgrid2](grids/stringgrid2) | 表格控件2，高级 | |
 | [grids/drawgrid](grids/drawgrid) | Draw表格控件 | |
@@ -40,7 +40,7 @@
 | [memstream](memstream) | 内存流演示  | |
 | [menu](menu) | 菜单演示  | |
 | [messageTest](messageTest) | 跨平台的窗口消息捕获，与WindowsMessages例程功能一样，只是可以跨平台 | |  
-| [miniwebview](miniwebview) | 跨平台浏览器组件演示 | liblcl, liblcl win32/win64,  liblcl macOS-cocoa, liblcl linux-gtk2 |  
+| [miniwebview](miniwebview) | 跨平台浏览器组件演示 | libvcl, liblcl win32/win64,  liblcl macOS-cocoa, liblcl linux-gtk2 |  
 | [mp3Player](mp3Player) | 基于bass.dll的音频播放器 |  |  
 | [msgbox](msgbox) | 各种消息框演示  | |
 | [multilanguage](multilanguage) | 多国语言演示例程 | |  
@@ -63,7 +63,7 @@
 | [trayicon](trayicon) | 系统拖盘图标演示  | Windows  MacOS 部分linux |
 | [treeview](treeview) |  树型列表框演示  | |
 | [valuelisteditor](valuelisteditor) |  键值编辑器 | | 
-| [videosrtgui](videosrtgui) |  一个用golcl重写[video-srt-windows ](https://gitee.com/wxbool/video-srt-windows)的（仅UI和交互） | | 
+| [videosrtgui](videosrtgui) |  一个用govcl重写[video-srt-windows ](https://github.com/wxbool/video-srt-windows)的（仅UI和交互） | | 
 | [simplecalc](simplecalc) | 简易计算器（演示布局用，内有布局解析）  | | 
 
 

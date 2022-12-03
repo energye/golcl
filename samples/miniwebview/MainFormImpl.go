@@ -4,7 +4,10 @@ package main
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/energye/golcl/lcl"
+	"github.com/energye/golcl/lcl/rtl"
 	"github.com/energye/golcl/lcl/types"
 )
 
@@ -21,15 +24,14 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.webView.SetAlign(types.AlClient)
 
 	// 不知道原因，有些不设置有些反而好些。。。
-	SetIEVersion(f.webView)
+	//SetIEVersion(f.webView)
 
 	f.webView.SetOnTitleChange(f.OnWebTitleChange)
 	f.webView.SetOnJSExternal(f.OnWebJsExternal)
 
-	//f.webView.Navigate("https://github.com/ying32/golcl")
+	//f.webView.Navigate("https://github.com/energye/golcl")
 
-	//URL := "file:///" + strings.Replace(rtl.ExtractFilePath(lcl.Application.ExeName()), "\\", "/", -1) + "test.html"
-	URL := "http://82.157.148.57:9000"
+	URL := "file:///" + strings.Replace(rtl.ExtractFilePath(lcl.Application.ExeName()), "\\", "/", -1) + "test.html"
 	f.EdtURL.SetText(URL)
 	f.webView.Navigate(URL)
 

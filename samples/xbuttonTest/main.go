@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/colors"
@@ -17,7 +16,6 @@ type TForm1 struct {
 var form1 *TForm1
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.RunApp(&form1)
 }
 

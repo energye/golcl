@@ -17,6 +17,7 @@ type TForm1Fields struct {
 }
 
 func (f *TForm1) OnFormCreate(sender lcl.IObject) {
+	f.SetCaption("Press Ctrl+F1")
 	f.ScreenCenter()
 	f.hotKeyId = win.GlobalAddAtom("HotKeyId") - 0xC000
 	//rtl.ShortCutToText()

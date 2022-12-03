@@ -6,17 +6,15 @@ package main
 /*
 	wke浏览器测试，wke暂时只能在windows上跑，也只支持32位
 	现选择的wke头文件及二进制为cexer维护的一个支
-	https://gitee.com/cexer/wke
+	https://github.com/cexer/wke
 
     其实可以直接调用wke.h吧，没有试过
 
-	注：目前这个只是一个例程，暂不会做封装正式入到golcl中。只支持win32，并且限liblcl库。
+	注：目前这个只是一个例程，暂不会做封装正式入到govcl中。只支持win32，并且限libvcl库。
 	    wke也许不能满足你，要求高的无解了，cef暂时不打算弄进来。
 */
 
 import (
-	"github.com/energye/golcl/lcl"
-
 	"fmt"
 
 	"github.com/energye/golcl/lcl/types"
@@ -92,7 +90,7 @@ func main() {
 	edit.SetAlign(types.AlClient)
 	edit.Font().SetSize(10)
 	//edit.SetName("editURL")
-	// https://github.com/energye
+	// https://github.com/ying32
 	edit.SetText("https://www.baidu.com")
 	edit.SetAlignWithMargins(true)
 	edit.Margins().SetBounds(10, 5, 10, 5)

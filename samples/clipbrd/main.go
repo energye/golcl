@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -10,9 +10,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
-
-	"github.com/energye/golcl/lcl"
 )
 import _ "github.com/energye/golcl/pkgs/winappres"
 
@@ -26,7 +23,6 @@ type TMainForm struct {
 var mainForm *TMainForm
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 	lcl.Application.CreateForm(&mainForm)

@@ -5,7 +5,6 @@ package main
 import (
 	"fmt"
 
-	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/i18n"
 	"github.com/energye/golcl/lcl/types"
 )
@@ -66,7 +65,6 @@ func (f *TForm1) OnButton3Click(sender lcl.IObject) {
 
 // 初始就注册
 func init() {
-	i18n.RegsiterVarString("testMessage", &testMessage)
-	i18n.RegsiterVarString("testMessage2", &testMessage2)
-	//multilang.RegsiterVar(&testMessage)
+	i18n.RegisterVarString("testMessage", &testMessage)
+	i18n.RegisterVarString("testMessage2", &testMessage2)
 }

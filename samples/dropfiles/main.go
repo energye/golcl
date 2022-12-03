@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 
@@ -16,7 +15,6 @@ type TMainForm struct {
 var mainForm *TMainForm
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }
 

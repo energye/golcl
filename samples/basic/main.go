@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
+	"github.com/energye/golcl/lcl/types/colors"
 
 	"github.com/energye/golcl/lcl/types"
 	_ "github.com/energye/golcl/pkgs/winappres"
@@ -25,7 +25,7 @@ var (
 )
 
 func main() {
-	inits.Init(nil, nil)
+	lcl.DEBUG = true
 	lcl.RunApp(&mainForm, &form1)
 }
 
@@ -33,8 +33,8 @@ func main() {
 func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.SetCaption("Hello")
 	f.EnabledMaximize(false)
-	f.SetWidth(300)
-	f.SetHeight(200)
+	f.SetWidth(600)
+	f.SetHeight(600)
 	f.ScreenCenter()
 
 	f.Button1 = lcl.NewButton(f)
@@ -43,30 +43,35 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.Button1.SetLeft(50)
 	f.Button1.SetTop(50)
 	f.Button1.SetOnClick(f.OnButton1Click)
+	f.Button1.Font().SetStyle(types.NewSet(types.FsBold)) //f.Button1.Font().Style().Include(types.FsBold))
+	//f.Button1.Hide()
+	//
+	de := lcl.NewDirectoryEdit(f)
+	de.SetParent(f)
+	cbb := lcl.NewComboBox(f)
+	cbb.SetParent(f)
+	cbb.SetLeft(100)
+	cbb.SetTop(100)
+	//cbb.SetStyle(types.CsOwnerDrawVariable)
+	cbb.Items().Add("1111")
+	cbb.Items().Add("2222")
+	cbb.Items().Add("3333")
+	cbb.SetOnDrawItem(func(control lcl.IWinControl, index int32, aRect types.TRect, state types.TOwnerDrawState) {
+		switch index {
+		case 0:
+			cbb.Canvas().Font().SetColor(colors.ClRed)
+		case 1:
+			cbb.Canvas().Font().SetColor(colors.ClGreen)
+		case 2:
+			cbb.Canvas().Font().SetColor(colors.ClBlue)
+		}
+		cbb.Canvas().TextOut(aRect.Left, aRect.Top, cbb.Items().Strings(index))
+	})
 
-	x := lcl.NewFloatSpinEdit(f)
-	x.SetParent(f)
-	x.SetLeft(100)
-	x.SetTop(100)
-	x.SetMaxValue(10.0)
-	x.SetIncrement(0.2)
-	x.SetMinValue(0.1)
-	x.SetValue(3.0)
-	x.SetWidth(100)
-
-	d := lcl.NewDirectoryEdit(f)
-	d.SetParent(f)
-	d.SetLeft(100)
-	d.SetTop(150)
-	d.SetWidth(200)
-	d.SetDirectory("/home/sxm/app/swt")
-
-	c := lcl.NewColorButton(f)
-	c.SetParent(f)
-	c.SetOnColorChanged(func(sender lcl.IObject) {
-		lcl.QueueAsyncCall(func(id int) {
-			fmt.Println(c.ButtonColor())
-		})
+	f.SetOnUTF8KeyPress(func(sender lcl.IObject, utf8key *types.TUTF8Char) {
+		fmt.Println("打印：1111", utf8key.ToString(), utf8key)
+		utf8key.SetString("这") //每次只一个字符
+		fmt.Println("打印：2222", utf8key.ToString(), utf8key)
 	})
 
 }
@@ -76,10 +81,17 @@ func (f *TMainForm) OnFormCloseQuery(Sender lcl.IObject, CanClose *bool) {
 }
 
 func (f *TMainForm) OnButton1Click(object lcl.IObject) {
-	lcl.QueueAsyncCall(func(id int) {
-		fmt.Println("OnButton1Click")
-		form1.Show()
-	})
+	//_SetParent.Call(0x50C40, uintptr(f.Handle()))
+	//	form1.Show()
+	fmt.Println("清除事件")
+	//f.Button1.SetOnClick(nil)
+	f.Button1.SetOnClick(f.OnButton1Click)
+	fmt.Println("更换事件")
+	f.Button1.SetOnClick(f.OnButton2Click)
+}
+
+func (f *TMainForm) OnButton2Click(object lcl.IObject) {
+	fmt.Println("换成button2click事件了啊")
 }
 
 // ---------- Form1 ----------------

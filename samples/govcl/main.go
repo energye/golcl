@@ -1,10 +1,9 @@
-// golcl project main.go
+// govcl project main.go
 // go.exe build -i -ldflags="-H windowsgui"
 package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 	_ "github.com/energye/golcl/lcl/locales/zh_CN"
@@ -22,7 +21,6 @@ var (
 
 func main() {
 
-	inits.Init(nil, nil)
 	// 异常捕获
 	defer func() {
 		err := recover()
@@ -129,9 +127,7 @@ func main() {
 	btn.SetAction(action)
 
 	trayicon = lcl.NewTrayIcon(mainForm)
-	if rtl.LcLLoaded() {
-		trayicon.SetIcon(lcl.Application.Icon()) //不设置会自动使用Application.Icon
-	}
+	trayicon.SetIcon(lcl.Application.Icon()) //不设置会自动使用Application.Icon
 
 	trayicon.SetHint(mainForm.Caption())
 	trayicon.SetVisible(true)
@@ -154,7 +150,7 @@ func main() {
 	// linklabel
 	linklbl := lcl.NewLinkLabel(mainForm)
 	linklbl.SetAlign(types.AlBottom)
-	linklbl.SetCaption("<a href=\"https://github.com/energye/golcl\">golcl测试链接</a>")
+	linklbl.SetCaption("<a href=\"https://github.com/energye/golcl\">govcl测试链接</a>")
 	linklbl.SetParent(mainForm)
 	linklbl.SetOnLinkClick(func(sender lcl.IObject, link string, linktype types.TSysLinkType) {
 		fmt.Println("link label: ", link, ", type: ", linktype)

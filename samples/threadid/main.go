@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -10,13 +10,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl/rtl"
 )
 
 func main() {
-	inits.Init(nil, nil)
 	fmt.Println("MainThreadId: ", rtl.MainThreadId())
 	fmt.Println("CurrentThreadId: ", rtl.CurrentThreadId())
 	go func() {

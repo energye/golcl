@@ -63,7 +63,7 @@ func (f *TForm1) drawClock() {
 			len = 6
 			pen.SetWidth(1)
 		}
-		pen.SetColor(colors.ClSienna)
+		pen.SetColor(colors.ClTeal)
 
 		sline := cp.X - pen.Width()
 

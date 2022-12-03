@@ -5,7 +5,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"syscall"
 
 	"github.com/energye/golcl/lcl"
@@ -49,7 +48,6 @@ func (f *TMainForm) OnFormDestroy(object lcl.IObject) {
 }
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }
 

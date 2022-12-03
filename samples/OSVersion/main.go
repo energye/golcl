@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	. "github.com/energye/golcl/lcl/rtl/version"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	fmt.Println("Major: ", OSVersion.Major)
 	fmt.Println("Minor: ", OSVersion.Minor)
 	fmt.Println("Name: ", OSVersion.Name)

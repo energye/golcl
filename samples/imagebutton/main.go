@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/rtl"
 	"github.com/energye/golcl/lcl/types"
@@ -10,8 +9,9 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	path := rtl.ExtractFilePath(lcl.Application.ExeName())
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -20,8 +20,8 @@ func main() {
 	mainForm.SetPosition(types.PoScreenCenter)
 	mainForm.SetDoubleBuffered(true) // 最好开启，以免闪烁
 	mainForm.EnabledMaximize(false)
-	mainForm.SetWidth(1024)
-	mainForm.SetHeight(768)
+	mainForm.SetWidth(300)
+	mainForm.SetHeight(400)
 
 	mainForm.SetShowHint(true)
 

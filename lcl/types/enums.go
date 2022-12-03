@@ -1,3 +1,11 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 package types
 
 /*
@@ -259,8 +267,8 @@ type TStaticBorderStyle int32
 
 const (
 	SbsNone = iota + 0
-	sbsSingle
-	sbsSunken
+	SbsSingle
+	SbsSunken
 )
 
 //ENUM:
@@ -961,8 +969,8 @@ const (
 	MbLeft = iota + 0
 	MbRight
 	MbMiddle
-	mbExtra1
-	mbExtra2
+	MbExtra1
+	MbExtra2
 )
 
 //ENUM:
@@ -1871,10 +1879,10 @@ type TAutoCompleteOptions = TSet
 type TDefaultMonitor int32
 
 const (
-	DmDesktop    = iota + 0 //不特别处理
-	DmPrimary               //将窗体显示到第一个显示器上。这又是一个陷阱，字面上理解是主显示器，而事实上它是指 Screen.Monitor[0] 这个显示器。
-	DmMainForm              //将窗体显示到主窗体所在的显示器
-	DmActiveForm            //将窗体显示到桌面上活动窗体所在的显示器
+	DmDesktop = iota + 0
+	DmPrimary
+	DmMainForm
+	DmActiveForm
 )
 
 //ENUM:
@@ -2043,11 +2051,11 @@ const (
 	SiDescending
 )
 
-// lcl或者LCL，只是用于引入的
+// VCL或者LCL，只是用于引入的
 type TLibType int32
 
 const (
-	Ltlcl TLibType = iota + 0
+	LtVCL TLibType = iota + 0
 	LtLCL
 )
 
@@ -2237,8 +2245,8 @@ type TDateTimePickerOptions = TSet
 type TImageOrientation int32
 
 const (
-	ioHorizontal = iota + 0
-	ioVertical
+	IoHorizontal = iota + 0
+	IoVertical
 )
 
 //ENUM:
@@ -2300,4 +2308,25 @@ const (
 	PcfObject
 	PcfComponent
 	PcfCustomData
+)
+
+//ENUM:
+type TWrapAfter int32
+
+const (
+	WaAuto   = iota + 0 // auto
+	WaForce             // always wrap after this control
+	WaAvoid             // try not to wrap after this control, if the control is already at the beginning of the row, wrap though
+	WaForbid            // never wrap after this control
+)
+
+//ENUM:
+type TGraphicsDrawEffect int32
+
+const (
+	GdeNormal      = iota + 0 // no effect
+	GdeDisabled               // grayed image
+	GdeHighlighted            // a bit highlighted image
+	GdeShadowed               // a bit shadowed image
+	Gde1Bit                   // 1 Bit image (for non-XP windows buttons)
 )

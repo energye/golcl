@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"strings"
 
 	"github.com/energye/golcl/lcl"
@@ -12,7 +11,7 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 	initComponents()

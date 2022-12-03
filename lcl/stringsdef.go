@@ -1,3 +1,11 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 package lcl
 
 func (s *TStrings) AddStrings(list IStrings) {
@@ -38,7 +46,6 @@ func (s *TStrings) AddPair2(name, value string, object IObject) *TStrings {
 	return s
 }
 
-// 文件流加载。
 func (s *TStrings) LoadFromBytes(data []byte) {
 	if len(data) == 0 {
 		return

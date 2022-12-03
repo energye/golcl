@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/colors"
+	_ "github.com/energye/golcl/pkgs/winappres"
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -22,7 +22,7 @@ func main() {
 	var itemHeight int32 = 30
 	listbox := lcl.NewListBox(mainForm)
 	listbox.SetParent(mainForm)
-	listbox.SetStyle(types.LbOwnerDrawVariable)
+	listbox.SetStyle(types.LbOwnerDrawFixed)
 	listbox.SetAlign(types.AlClient)
 	listbox.Items().Add("第一项")
 	listbox.Items().Add("第二项")

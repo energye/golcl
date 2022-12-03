@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -16,7 +16,8 @@ import (
 )
 
 func messageCallbackProc(f uintptr, msg uintptr) uintptr {
-	if v, ok := MessageCallbackOf(f); ok {
+	v := PtrToElementValue(f)
+	if v != nil {
 		v.(TWndProcEvent)(
 			(*TMessage)(unsafe.Pointer(msg)),
 		)

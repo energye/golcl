@@ -24,6 +24,7 @@ const (
 func fullListViewDataAndSetEvent(lv *lcl.TListView, trainData *TTrainSearchResultData) {
 	if trainData != nil {
 		// 填充数据到ListView
+
 		//FormListViewDraw.ImageList1 这个imagelist内部没有项目的，用来撑大ListItem，设置了W=1, H=40
 		//FormListViewDraw.LVTrain.SetGroupView(false)
 		//FormListViewDraw.LVTrain.SetGridLines(false)
@@ -62,7 +63,7 @@ func fullListViewDataAndSetEvent(lv *lcl.TListView, trainData *TTrainSearchResul
 	lv.SetOnCompare(lvTraiCompare)
 	lv.SetOnClick(func(sender lcl.IObject) {
 		sel := lcl.AsListView(sender).Selected()
-		if sel != nil && sel.IsValid() {
+		if sel.IsValid() {
 			fmt.Println("select, index:", sel.Index(), ", caption:", sel.Caption(), ", data:", sel.Data())
 		}
 	})

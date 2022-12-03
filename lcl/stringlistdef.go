@@ -1,14 +1,12 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
 //----------------------------------------
 
 package lcl
-
-import "github.com/energye/golcl/emfs"
 
 func (s *TStringList) AddStrings(list IStrings) {
 	s.AddStrings3(list, false)
@@ -48,7 +46,6 @@ func (s *TStringList) AddPair2(name, value string, object IObject) *TStrings {
 	return AsStrings(s)
 }
 
-// 文件流加载。
 func (s *TStringList) LoadFromBytes(data []byte) {
 	if len(data) == 0 {
 		return
@@ -57,14 +54,4 @@ func (s *TStringList) LoadFromBytes(data []byte) {
 	defer mem.Free()
 	mem.SetPosition(0)
 	s.LoadFromStream(mem)
-}
-
-// 从FS文件加载。
-func (m *TStringList) LoadFromFSFile(Filename string) error {
-	bytes, err := emfs.GetResources(Filename)
-	if err != nil {
-		return err
-	}
-	m.LoadFromBytes(bytes)
-	return nil
 }

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	_ "github.com/energye/golcl/pkgs/winappres"
@@ -20,7 +19,6 @@ var (
 )
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }
 

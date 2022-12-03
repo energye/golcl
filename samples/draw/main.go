@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/rtl"
@@ -22,11 +21,11 @@ var (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
-	jpgFileName := "/home/sxm/app/swt/gopath/src/github.com/energye/golcl/samples/draw/s1.jpg"
+	jpgFileName := "./imgs/1.jpg"
 	canLoad := rtl.FileExists(jpgFileName)
 	var jpgimg *lcl.TJPEGImage
 	if canLoad {
@@ -90,9 +89,8 @@ func main() {
 		//		canvas.TextRect(r, 0, 0, s)
 		canvas.TextRect2(&r, s, textFmt)
 
-		//canvas.Draw(0, 80, jpgimg)
-		jpgimg.SetTransparent(true)
-		canvas.Draw2(0, 80, jpgimg, 1)
+		canvas.Draw(0, 80, jpgimg)
+		//canvas.Draw2(0, 200, jpgimg, 10)
 
 		// 画多边形
 

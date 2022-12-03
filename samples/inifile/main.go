@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"time"
 
 	"github.com/energye/golcl/lcl"
@@ -10,7 +9,6 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
 
 	iniFile := lcl.NewIniFile(".\\test.ini")
 	defer iniFile.Free()

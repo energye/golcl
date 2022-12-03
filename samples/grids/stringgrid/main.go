@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
@@ -10,8 +9,6 @@ import (
 )
 
 func main() {
-
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	mainForm := lcl.Application.CreateForm()
 	mainForm.SetWidth(700)
@@ -30,6 +27,7 @@ func main() {
 	// 10x10
 	grid.SetColCount(10)
 	grid.SetRowCount(10)
+
 	var i, j int32
 	// 横第一行
 	for i = 0; i < grid.ColCount(); i++ {

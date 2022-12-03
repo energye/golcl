@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/colors"
@@ -14,7 +13,7 @@ var (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -26,7 +25,7 @@ func main() {
 	richEdit = lcl.NewRichEdit(mainForm)
 	richEdit.SetParent(mainForm)
 	richEdit.SetAlign(types.AlClient)
-	richEdit.Lines().Add("这是一段文字红色，粗体，斜体")
+	richEdit.Lines().Add("这是一段文字红色，粗体，斜體")
 	richEdit.SetSelStart(6)
 	richEdit.SetSelLength(2)
 	richEdit.SelAttributes().SetColor(colors.ClRed)

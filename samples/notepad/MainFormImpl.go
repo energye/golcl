@@ -129,7 +129,6 @@ func (m *TMainForm) OnActFormatWordWapExecute(sender lcl.IObject) {
 	lcl.AsAction(sender).SetChecked(val)
 	m.StatusBar1.SetVisible(!val && m.ActViewStatusBar.Checked())
 	m.MemoBody.SetWordWrap(val)
-	fmt.Println(val)
 }
 
 func (m *TMainForm) OnActFormatFontExecute(sender lcl.IObject) {

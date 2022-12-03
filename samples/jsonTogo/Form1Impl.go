@@ -19,7 +19,7 @@ import (
 type TMainFormFields struct {
 }
 
-// https://api.gitee.com/repos/sxm/golcl
+// https://api.github.com/repos/ying32/govcl
 
 func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 

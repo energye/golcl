@@ -2,12 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 
 	"github.com/energye/golcl/lcl"
 	_ "github.com/energye/golcl/pkgs/winappres"
 
-	"github.com/energye/golcl/lcl/rtl"
 	"github.com/energye/golcl/lcl/types"
 )
 
@@ -19,7 +17,6 @@ type TMainForm struct {
 var MainForm *TMainForm
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.CreateForm(&MainForm, true)
 	lcl.Application.Run()
@@ -69,12 +66,8 @@ func (f *TMainForm) OnBtn1Click(sender lcl.IObject) {
 	btn.SetCaption("保持")
 	btn.SetModalResult(types.MrNo)
 
-	if rtl.LcLLoaded() {
-		taskdlg.SetMainIcon(types.TdiQuestion)
-	} else {
-		taskdlg.SetMainIcon(types.TdiInformation)
-	}
-	taskdlg.SetMainIcon(types.TdiNone)
+	taskdlg.SetMainIcon(types.TdiQuestion)
+
 	if taskdlg.Execute() {
 		if taskdlg.ModalResult() == types.MrYes {
 			lcl.ShowMessage("项目已移除")

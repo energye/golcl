@@ -31,7 +31,7 @@ func (f *TForm1) OnFormCreate(sender lcl.IObject) {
 	f.LstLeft.Items().Add("第三项")
 	f.LstLeft.Items().Add("第四项")
 
-	//f.LstRight.SetStyle(types.LbOwnerDrawFixed)
+	f.LstRight.SetStyle(types.LbOwnerDrawFixed)
 	f.LstRight.SetItemHeight(53)
 	for i := int32(0); i < 20; i++ {
 		f.LstRight.Items().Add(fmt.Sprintf("ListBox Item of %d\nSecond of %d\nThird of %d", i, i, i))

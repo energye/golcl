@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -12,6 +12,8 @@ import (
 	"unsafe"
 )
 
+// StringToUTF8Ptr
+//
 // 字符串到UTF8指针
 func StringToUTF8Ptr(s string) *uint8 {
 	temp := []byte(s)
@@ -20,12 +22,11 @@ func StringToUTF8Ptr(s string) *uint8 {
 	return &utf8StrArr[0]
 }
 
-// Go的string转换为Lazarus的string
-func GoStrToDStr(s string) uintptr {
-	if s == "" {
+func PascalStr(str string) uintptr {
+	if str == "" {
 		return 0
 	}
-	return uintptr(unsafe.Pointer(StringToUTF8Ptr(s)))
+	return uintptr(unsafe.Pointer(StringToUTF8Ptr(str)))
 }
 
 // 这种跟copyStr3基本一样，只是用go来处理了
@@ -67,23 +68,11 @@ func copyStr3(str uintptr, strLen int) string {
 	return string(buffer)
 }
 
-// Lazarus的string转换为Go的string
-func DStrToGoStr(ustr uintptr) string {
-	l := DStrLen(ustr)
+// GoStr pascal string to go string
+func GoStr(str uintptr) string {
+	l := DStrLen(str)
 	if l == 0 {
 		return ""
 	}
-	return copyStr(ustr, int(l))
-}
-
-func getBuff(size int32) interface{} {
-	return make([]uint8, size+1)
-}
-
-func getBuffPtr(buff interface{}) uintptr {
-	return uintptr(unsafe.Pointer(&(buff.([]uint8))[0]))
-}
-
-func getTextBuf(strBuff interface{}, Buffer *string, slen int) {
-	*Buffer = string((strBuff.([]uint8))[:slen])
+	return copyStr(str, int(l))
 }

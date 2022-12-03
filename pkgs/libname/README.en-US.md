@@ -4,7 +4,7 @@
 ----
 
 
-**Custom load liblcl or liblcl at the specified location**
+**Custom load libvcl or liblcl at the specified location**
 
 > Custom loading dll or so, you need to operate according to the rules of the go initial package.
  
@@ -12,7 +12,7 @@
 ```go
 package main
 
-import "yourpackage" // Must take effect after being sorted automatically before the lcl package.
+import "yourpackage" // Must take effect after being sorted automatically before the vcl package.
 import "github.com/energye/golcl/lcl"
 
 ```

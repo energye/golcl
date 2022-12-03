@@ -1,13 +1,35 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 //go:build linux
 // +build linux
 
 package api
 
-import "github.com/energye/golcl/dylib"
+import (
+	"unsafe"
 
-var (
-	GdkWindow_GetXId      *dylib.LazyProc
-	GdkWindow_FromForm    *dylib.LazyProc
-	GtkWidget_GetGtkFixed *dylib.LazyProc
-	GtkWidget_Window      *dylib.LazyProc
+	"github.com/energye/golcl/lcl/api/dllimports"
 )
+
+func GdkWindow_GetXId(g uintptr) (res uintptr) {
+	defSyscallN(dllimports.GDKWINDOW_GETXID, g, uintptr(unsafe.Pointer(&res)))
+	return
+}
+
+func GdkWindow_FromForm(obj uintptr) uintptr {
+	return defSyscallN(dllimports.GDKWINDOW_FROMFORM, obj)
+}
+
+func GtkWidget_GetGtkFixed(g uintptr) uintptr {
+	return defSyscallN(dllimports.GTKWIDGET_GETGTKFIXED, g)
+}
+
+func GtkWidget_Window(g uintptr) uintptr {
+	return defSyscallN(dllimports.GTKWIDGET_WINDOW, g)
+}

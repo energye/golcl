@@ -1,42 +1,68 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © yanghy. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
 //----------------------------------------
+// energy extension
+//
+//govcl/vcl/api/dylib.go -> golcl/lcl/api/dylib.go
 
 package api
 
 import (
-	"sync"
-
-	"github.com/energye/golcl/dylib"
+	"github.com/energye/golcl/lcl/api/dllimports"
+	"github.com/energye/golcl/pkgs/libname"
+	"unsafe"
 )
 
 var (
 	// 全局导入库
-	liblcl *dylib.LazyDLL // = loadUILib()
-
-	// 导出的DLL，考虑到导入的函数太多了，导致go无法编译通过
-	// 只能动态作，这样可能牺牲一点性能吧，但文件大小会减小几M左右吧。
-	functions sync.Map
+	uiLib dllimports.DLL
 )
 
-func getLazyProc(name string) *dylib.LazyProc {
-	if val, ok := functions.Load(name); !ok {
-		proc := liblcl.NewProc(name)
-		functions.Store(name, proc)
-		return proc
-	} else {
-		return val.(*dylib.LazyProc)
+func loadUILib() dllimports.DLL {
+	libName := libname.LibName
+	lib, err := dllimports.NewDLL(libName)
+	if err != nil {
+		panic(err)
+	}
+	return lib
+}
+
+func closeLib() {
+	if uiLib != 0 {
+		uiLib.Release()
+		uiLib = 0
 	}
 }
 
-func GetLazyProc(name string) *dylib.LazyProc {
-	return getLazyProc(name)
+func getDLLName() string {
+	return libname.GetDLLName()
 }
 
-func APIInit() {
-	liblcl = loadUILib()
+// 调用自动生成的API列表中的函数
+func syscallN(trap int, args ...uintptr) uintptr {
+	r1, r2, err := dllimports.GetImportFunc(uiLib, trap).Call(args...)
+	println("syscall-n:", r1, r2, err)
+	return r1
+}
+
+func syscallGetTextBuf(trap int, obj uintptr, buffer *string, bufSize uintptr) uintptr {
+	if buffer == nil || bufSize == 0 {
+		return 0
+	}
+	strPtr := make([]uint8, bufSize+1)
+	sLen := syscallN(trap, obj, uintptr(unsafe.Pointer(&strPtr[0])), bufSize)
+	if sLen > 0 {
+		*buffer = string(strPtr[:sLen])
+	}
+	return sLen
+}
+
+// 调用手动导入的API列表中的函数
+func defSyscallN(trap int, args ...uintptr) uintptr {
+	r1, _, _ := dllimports.GetImportDefFunc(uiLib, trap).Call(args...)
+	return r1
 }

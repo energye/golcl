@@ -2,7 +2,6 @@
 package main
 
 import (
-	"github.com/energye/golcl/inits"
 	"github.com/energye/golcl/lcl"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
@@ -10,7 +9,7 @@ import (
 const Lazarus = true
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.CreateForm(&MainForm)
 	lcl.Application.CreateForm(&About)

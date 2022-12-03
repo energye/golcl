@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"math/rand"
 	"runtime"
 
@@ -13,7 +12,7 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -41,7 +40,7 @@ func main() {
 	lv1.SetViewStyle(types.VsReport)
 	lv1.SetGridLines(true)
 	//lv1.SetColumnClick(false)
-	lv1.SetHideSelection(true)
+	lv1.SetHideSelection(false)
 
 	col := lv1.Columns().Add()
 	col.SetCaption("序号")
@@ -90,7 +89,7 @@ func main() {
 		item := lv1.Items().Add()
 		// 第一列为Caption属性所管理
 		item.SetCaption(fmt.Sprintf("%d", i+rand.Int()))
-		item.SubItems().Add(fmt.Sprintf("1：%d", i+rand.Int()))
+		item.SubItems().Add(fmt.Sprintf("值：%d", i+rand.Int()))
 	}
 	lv1.Items().EndUpdate()
 
@@ -204,14 +203,6 @@ func main() {
 		}
 	})
 
-	lv3.SetOnCustomDrawItem(func(sender *lcl.TListView, item *lcl.TListItem, state types.TCustomDrawState, defaultDraw *bool) {
-		//*defaultDraw = false
-		rect := item.DisplayRect(types.DrBounds)
-		fmt.Printf("%+v\n", rect)
-		//m.TDrawGrid.SetDefaultDrawing(false)
-		fmt.Println(item.Caption(), item.SubItems().Strings(0))
-	})
-
 	btnTest3 := lcl.NewButton(mainForm)
 	btnTest3.SetParent(pnlbottom)
 	btnTest3.SetTop(10)
@@ -222,12 +213,14 @@ func main() {
 		item := lv3.Items().Add()
 		item.SetCaption("111")
 		item.SubItems().Add("sub")
+
 		// 总是显示
-		//item.MakeVisible(true)
+		item.MakeVisible(true)
 
 		// 如果要选中的话
-		//item.SetSelected(true)
+		item.SetSelected(true)
 
 	})
+
 	lcl.Application.Run()
 }

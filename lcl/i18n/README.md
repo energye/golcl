@@ -10,7 +10,7 @@
 		"Author": "ying32",           // 作者名，选填
 		"AuthorEmail": "1444386932@qq.com" // 作者Email，选填
 	},
-	"!libresources": {                // liblcl或者liblcl中的字符资源，固定项目
+	"!libresources": {                // libvcl或者liblcl中的字符资源，固定项目
 		"SOpenFileTitle": "打开",
 		"SOKButton": "确定",
 		"SCancelButton": "取消",

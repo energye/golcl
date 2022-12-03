@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
 	"io/ioutil"
 	"net/http"
 
@@ -14,7 +13,7 @@ import (
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	fmt.Println("main:currentThreadId:", GetCurrentThreadId())
 
 	lcl.Application.Initialize()

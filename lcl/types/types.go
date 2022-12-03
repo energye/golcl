@@ -1,6 +1,6 @@
 //----------------------------------------
 //
-// Copyright © sxm. All Rights Reserved.
+// Copyright © ying32. All Rights Reserved.
 //
 // Licensed under Apache License 2.0
 //
@@ -79,7 +79,7 @@ type HGLOBAL = uintptr
 
 type TFNWndEnumProc = uintptr
 
-type TXID = uint64
+type TXId = uint64
 
 type ATOM = uint16
 
@@ -89,8 +89,33 @@ type SIZE_T = uintptr
 
 type DWORD_PTR = uintptr
 
-// Pascal集合类型 set of xxx
+// TSet Pascal集合类型 set of xxx
 type TSet uint32
+
+// TUTF8Char
+//  UTF-8 character is at most 6 bytes plus a #0
+type TUTF8Char struct {
+	Len     byte
+	Content [7]byte
+}
+
+func (u *TUTF8Char) ToString() string {
+	if u.Len > 0 && u.Len < 7 {
+		return string(u.Content[0:u.Len])
+	}
+	return ""
+}
+
+func (u *TUTF8Char) SetString(str string) {
+	if str != "" {
+		bs := []byte(str)
+		u.Len = byte(len(bs))
+		if u.Len > 6 {
+			u.Len = 6
+		}
+		copy(u.Content[:], bs[:u.Len])
+	}
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 // -- TRect
@@ -195,7 +220,9 @@ func (p *TPoint) Scale2(val int) {
 	p.Scale(float64(val))
 }
 
-// TMsg: Only Windows,  tagMSG
+// TMsg
+//
+// Only Windows, tagMSG
 type TMsg struct {
 	Hwnd    HWND
 	Message uint32
@@ -243,13 +270,21 @@ type TWndClass struct {
 
 // -------------- TSet
 
+// NewSet
+//
 // 新建TSet，初始值为0，然后添加元素
+//
+// Create a new TSet, the initial value is 0, and then add elements.
 func NewSet(opts ...uint8) TSet {
 	var s TSet
 	return s.Include(opts...)
 }
 
+// Include
+//
 // 集合加法，val...中存储为位的索引，下标为0
+//
+// Set addition, stored as bit index in val..., subscript 0.
 func (s TSet) Include(val ...uint8) TSet {
 	r := uint32(s)
 	for _, v := range val {
@@ -258,7 +293,11 @@ func (s TSet) Include(val ...uint8) TSet {
 	return TSet(r)
 }
 
+// Exclude
+//
 // 集合减法，val...中存储为位的索引，下标为0
+//
+// Set subtraction, stored as bit index in val..., subscript 0.
 func (s TSet) Exclude(val ...uint8) TSet {
 	r := uint32(s)
 	for _, v := range val {
@@ -267,7 +306,11 @@ func (s TSet) Exclude(val ...uint8) TSet {
 	return TSet(r)
 }
 
+// In
+//
 // 集合类型的判断，val表示位数，下标为0
+//
+// Judgment of the Set type, val represents the number of digits, and the subscript is 0.
 func (s TSet) In(val uint32) bool {
 	if s&(1<<uint8(val)) != 0 {
 		return true

@@ -1,4 +1,13 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 // 实现一些Go的Image转lcl的
+
 package bitmap
 
 import (
@@ -23,6 +32,8 @@ var (
 	ErrUnknownError          = errors.New("unknown error")
 )
 
+// ToPngImage
+//
 // 将Go的Image转为LCL的 TPngImage
 //     返回的Png对象用完记得Free掉
 //
@@ -38,6 +49,8 @@ func ToPngImage(img image.Image) (*lcl.TPngImage, error) {
 	return obj, nil
 }
 
+// ToBitmap
+//
 // 32bit bmp
 //     返回的Bmp对象用完记得Free掉
 //
@@ -75,6 +88,8 @@ func ToBitmap2(img image.Image, bmp *lcl.TBitmap) error {
 	return nil
 }
 
+// ToJPEGImage
+//
 // 将Go的Image转为LCL的 TJPEGImage
 //     返回的jpg对象用完记得Free掉
 //
@@ -82,7 +97,7 @@ func ToBitmap2(img image.Image, bmp *lcl.TBitmap) error {
 //     Remember to free the returned jpg object
 func ToJPEGImage(img image.Image, quality int) (*lcl.TJPEGImage, error) {
 	buff := bytes.NewBuffer([]byte{})
-	if err := jpeg.Encode(buff, img, &jpeg.Options{quality}); err != nil {
+	if err := jpeg.Encode(buff, img, &jpeg.Options{Quality: quality}); err != nil {
 		return nil, err
 	}
 	obj := lcl.NewJPEGImage()
@@ -90,6 +105,8 @@ func ToJPEGImage(img image.Image, quality int) (*lcl.TJPEGImage, error) {
 	return obj, nil
 }
 
+// ToGIFImage
+//
 // 将Go的Image转为LCL的 TGIFImage
 //     返回的gif对象用完记得Free掉
 //
@@ -136,6 +153,8 @@ func toBitmap(width, height int, pix []uint8, bmp *lcl.TBitmap) error {
 	return nil
 }
 
+// ToGoImage
+//
 // 将lcl的Graphic对象转为Go的Image
 //
 // Convert the graphic object of LCL to the image of go

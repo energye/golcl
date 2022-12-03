@@ -5,11 +5,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/inits"
-	"github.com/go-ole/go-ole"
 
 	"github.com/energye/golcl/lcl"
 	_ "github.com/energye/golcl/pkgs/winappres"
+	"github.com/go-ole/go-ole"
 	"github.com/go-ole/go-ole/oleutil"
 )
 
@@ -45,6 +44,5 @@ func (f *TMainForm) OnBtn1Click(object lcl.IObject) {
 }
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }
