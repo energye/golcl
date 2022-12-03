@@ -34,7 +34,7 @@ func libPath() string {
 	}
 	//用户目录
 	var homePathLibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
-	if tools.IsExist(currentPathLibName) {
+	if tools.IsExist(homePathLibName) {
 		return homePathLibName
 	}
 	//环境变量
