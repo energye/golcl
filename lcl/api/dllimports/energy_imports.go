@@ -12,31 +12,34 @@
 
 package dllimports
 
-type EnergyImportTable struct {
-	importTable
-}
+//Energy extend
+var energyImportDefs []*ImportTable
 
-func New(name string, addr ProcAddr) EnergyImportTable {
-	r := EnergyImportTable{}
+func NewEnergyImport(name string, addr ProcAddr) *ImportTable {
+	r := &ImportTable{}
 	r.name = name
 	r.addr = addr
 	return r
 }
 
-func (m *EnergyImportTable) SetName(name string) {
-	m.name = name
+//Energy Set Import
+func SetEnergyImportDefs(eis []*ImportTable) {
+	energyImportDefs = eis
 }
 
-func (m *EnergyImportTable) SetAddr(addr ProcAddr) {
-	m.addr = addr
+//Energy Get Import
+func GetEnergyImportDefFunc(uiLib DLL, index int) ProcAddr {
+	return internalGetImportFunc(uiLib, energyImportDefs, index)
 }
 
-func ProcSize() int {
-	return len(dllImports)
+func GetEnergyImport(index int) *ImportTable {
+	return energyImportDefs[index]
 }
 
-func RegisterEnergy(eis []EnergyImportTable) {
-	for _, e := range eis {
-		dllImports = append(dllImports, e.importTable)
-	}
+func (m *ImportTable) Name() string {
+	return m.name
+}
+
+func (m *ImportTable) Addr() ProcAddr {
+	return m.addr
 }

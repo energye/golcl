@@ -14,12 +14,12 @@ import (
 	"unsafe"
 )
 
-type importTable struct {
+type ImportTable struct {
 	name string
 	addr ProcAddr
 }
 
-func internalGetImportFunc(uiLib DLL, table []importTable, index int) ProcAddr {
+func internalGetImportFunc(uiLib DLL, table []*ImportTable, index int) ProcAddr {
 	item := table[index]
 	if atomic.LoadPointer((*unsafe.Pointer)(unsafe.Pointer(&item.addr))) == nil {
 		var err error

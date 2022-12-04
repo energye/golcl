@@ -8,7 +8,7 @@
 
 package dllimports
 
-var dllImportDefs = []importTable{
+var dllImportDefs = []*ImportTable{
 	/*0*/ {"Application_Instance", 0},
 	/*1*/ {"Application_CreateForm", 0},
 	/*2*/ {"Application_Run", 0},
