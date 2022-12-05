@@ -19,9 +19,8 @@ func APIInit() {
 }
 
 // 调用Energy导入的API列表中的函数
-func EnergyDefSyscallN(trap int, args ...uintptr) uintptr {
-	r1, _, _ := dllimports.GetEnergyImportDefFunc(uiLib, trap).Call(args...)
-	return r1
+func EnergyDefSyscallN(index int) dllimports.ProcAddr {
+	return dllimports.GetEnergyImportDefFunc(uiLib, index)
 }
 
 func GetEnergyImport(index int) *dllimports.ImportTable {

@@ -27,11 +27,12 @@ func SetEnergyImportDefs(eis []*ImportTable) {
 	energyImportDefs = eis
 }
 
-//Energy Get Import
+//Energy Get Import Addr
 func GetEnergyImportDefFunc(uiLib DLL, index int) ProcAddr {
 	return internalGetImportFunc(uiLib, energyImportDefs, index)
 }
 
+//Energy Get Import
 func GetEnergyImport(index int) *ImportTable {
 	return energyImportDefs[index]
 }
