@@ -44,8 +44,7 @@ func getDLLName() string {
 
 // 调用自动生成的API列表中的函数
 func syscallN(trap int, args ...uintptr) uintptr {
-	r1, r2, err := dllimports.GetImportFunc(uiLib, trap).Call(args...)
-	println("syscall-n:", r1, r2, err)
+	r1, _, _ := dllimports.GetImportFunc(uiLib, trap).Call(args...)
 	return r1
 }
 
