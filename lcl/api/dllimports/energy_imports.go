@@ -37,6 +37,10 @@ func GetEnergyImport(index int) *ImportTable {
 	return energyImportDefs[index]
 }
 
+func GetEnergyImports() []*ImportTable {
+	return energyImportDefs
+}
+
 func (m *ImportTable) Name() string {
 	return m.name
 }
