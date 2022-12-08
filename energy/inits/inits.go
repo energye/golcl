@@ -24,7 +24,6 @@ import (
 	"github.com/energye/golcl/lcl/locales/zh_CN"
 	"github.com/energye/golcl/lcl/rtl"
 	"github.com/energye/golcl/lcl/rtl/version"
-	"github.com/energye/golcl/lcl/win"
 	"github.com/energye/golcl/pkgs/libname"
 	"github.com/energye/golcl/pkgs/macapp"
 	"io"
@@ -104,7 +103,7 @@ func initAll() {
 	//zh_cn
 	zh_CN.ZH_CNInit()
 	//win
-	win.Init()
+	winInit()
 	//lcl
 	lcl.LCLInit()
 	//i18n
