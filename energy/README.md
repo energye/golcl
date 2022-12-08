@@ -26,6 +26,7 @@ func main() {
     2. golcl/tools/command
 修改 包
     1. golcl/tools/winRes
+移除 包
 
 文件
 
@@ -46,5 +47,6 @@ func main() {
     9. golcl/lcl/i18n/mlang.go
     10. golcl/pkgs/macapp/other.go
     11. golcl/pkgs/macapp/plist.go
+移除 xxx.go
 ```
 
