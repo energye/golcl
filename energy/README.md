@@ -9,7 +9,7 @@ func main() {
 }
 ```
 
-#### 修改版本 v1.0.0
+### 修改版本 v1.0.0
 
 > 1. 修改 govcl to golcl
 >> github.com/ying32/govcl
@@ -17,37 +17,53 @@ func main() {
 >> to
 >>
 >> github.com/energye/golcl
-
-```go
-包-Package
-
-新增 包
-    1. golcl/energy
-    2. golcl/tools/command
-修改 包
-    1. golcl/tools/winRes
-移除 包
-
-文件-File
-
-新增 xxx.go
-    1. golcl/lcl/api/energy_api.go
-    2. golcl/lcl/energy_emfs_load.go
-    3. golcl/lcl/api/dllimports
-修改 xxx.go
-    1. golcl/pkgs/macapp/app.go
-    2. golcl/pkgs/macapp/deficon.go
-    3. golcl/lcl/api/dylib.go
-    4. golcl/lcl/rtl/version/init.go
-    5. golcl/lcl/win/init.go
-    6. golcl/lcl/init.go
-    7. golcl/lcl/rtl/init_posix.go
-    8. golcl/lcl/rtl/init_windows.go
-    8. golcl/pkgs/libname/lib.go
-    9. golcl/lcl/i18n/mlang.go
-    10. golcl/pkgs/macapp/other.go
-    11. golcl/pkgs/macapp/plist.go
-    12. golcl/lcl/api/dllimports/dll_posix.go
-移除 xxx.go
-```
-
+>
+> 新增 包
+>> golcl/energy
+>>
+>> golcl/tools/command
+>
+> 修改 包
+>> 
+>> golcl/tools/winRes
+>>
+> 移除 包
+> 
+>>
+>
+> 新增 文件 xxx.go
+>> golcl/lcl/api/energy_api.go
+>>
+>> golcl/lcl/energy_emfs_load.go
+>>
+>> golcl/lcl/api/dllimports
+> 
+> 修改文件 xxx.go
+>> golcl/pkgs/macapp/app.go
+>>
+>> golcl/pkgs/macapp/deficon.go
+>>
+>> golcl/pkgs/macapp/mac.go
+>>
+>> golcl/lcl/api/dylib.go
+>>
+>> golcl/lcl/rtl/version/init.go
+>>
+>> golcl/lcl/win/init.go
+>>
+>> golcl/lcl/init.go
+>>
+>> golcl/lcl/rtl/init_posix.go
+>>
+>> golcl/lcl/rtl/init_windows.go
+>>
+>> golcl/pkgs/libname/lib.go
+>>
+>> golcl/lcl/i18n/mlang.go
+>>
+>>  golcl/pkgs/macapp/other.go
+>>
+>>  golcl/pkgs/macapp/plist.go
+> 
+> 移除文件 xxx.go
+>>
