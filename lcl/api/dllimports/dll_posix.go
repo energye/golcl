@@ -23,7 +23,6 @@ package dllimports
 import "C"
 import (
 	"errors"
-	"runtime"
 	"syscall"
 	"unsafe"
 )
@@ -33,10 +32,6 @@ func NewDLL(name string) (DLL, error) {
 	cPath := (*C.char)(C.malloc(C.PATH_MAX + 1))
 	defer C.free(unsafe.Pointer(cPath))
 
-	// macOS下强制加载执行文件路径下的liblcl
-	if runtime.GOOS == "darwin" {
-		name = "@executable_path/" + name
-	}
 	cRelName := C.CString(name)
 	defer C.free(unsafe.Pointer(cRelName))
 

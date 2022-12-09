@@ -19,7 +19,7 @@ func main() {
 >> github.com/energye/golcl
 
 ```go
-包 
+包-Package
 
 新增 包
     1. golcl/energy
@@ -28,7 +28,7 @@ func main() {
     1. golcl/tools/winRes
 移除 包
 
-文件
+文件-File
 
 新增 xxx.go
     1. golcl/lcl/api/energy_api.go
@@ -47,6 +47,7 @@ func main() {
     9. golcl/lcl/i18n/mlang.go
     10. golcl/pkgs/macapp/other.go
     11. golcl/pkgs/macapp/plist.go
+    12. golcl/lcl/api/dllimports/dll_posix.go
 移除 xxx.go
 ```
 

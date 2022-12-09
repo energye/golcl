@@ -46,7 +46,7 @@ func Init(libs *embed.FS, resources *embed.FS) {
 		tools.MkdirAll(consts.HomeDir)
 		releaseLib(fmt.Sprintf("%s/%s", libsPath, libname.GetDLLName()), libname.LibName)
 		if tools.IsExist(libname.LibName) {
-			fmt.Println(`Hint:
+			println(`Hint:
 	Golcl dependency library liblcl was not found
 	Please check whether liblcl exists locally
 	If local liblcl exist, please put it in the specified location, if not please from the network to download a binary package (https://github.com/energye/energy/releases), or to compile.

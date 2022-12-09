@@ -38,7 +38,12 @@ func GetDLLName() string {
 
 func LibPath() string {
 	//当前目录
-	var currentPathLibName = consts.ExePath + consts.Separator + GetDLLName()
+	var currentPathLibName string
+	if runtime.GOOS == "darwin" {
+		currentPathLibName = "@executable_path/" + GetDLLName()
+	} else {
+		currentPathLibName = consts.ExePath + consts.Separator + GetDLLName()
+	}
 	if tools.IsExist(currentPathLibName) {
 		return currentPathLibName
 	}

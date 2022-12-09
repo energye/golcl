@@ -7,7 +7,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/energye/golcl/consts"
+	"github.com/energye/golcl/energy/consts"
 	"github.com/energye/golcl/pkgs/libname"
 	"io"
 	"io/ioutil"
