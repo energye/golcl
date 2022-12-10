@@ -48,12 +48,12 @@ func LCLInit() {
 			}
 		}()
 	}
-	libVersion := DLibVersion()
+	//libVersion := DLibVersion()
 	// go build -tags hideversion 可以不打印版本号
-	printVersion(toVersionString(libVersion))
-	if libVersion < requireMinBinaryVersion {
-		panic(fmt.Sprintf("Require liblcl binary version >=%s. Please go to \"https://github.com/energye/golcl\" to download the latest binary.", toVersionString(requireMinBinaryVersion)))
-	}
+	//printVersion(toVersionString(libVersion))
+	//if libVersion < requireMinBinaryVersion {
+	//	panic(fmt.Sprintf("Require liblcl binary version >=%s. Please go to \"https://github.com/energye/golcl\" to download the latest binary.", toVersionString(requireMinBinaryVersion)))
+	//}
 	// 这个似乎得默认加上，锁定主线程，防止中间被改变
 	runtime.LockOSThread()
 	// 设置事件的回调函数，因go中callback数量有限，只好折中处理
