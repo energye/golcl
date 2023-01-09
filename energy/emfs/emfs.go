@@ -3,6 +3,7 @@ package emfs
 import (
 	"embed"
 	"io/ioutil"
+	"os"
 )
 
 var (
@@ -26,11 +27,28 @@ func GetResourcesFS() *embed.FS {
 	return resourcesFS
 }
 
-func GetResources(fileName string) ([]byte, error) {
-	if GetResourcesFS() != nil {
-		return GetResourcesFS().ReadFile(fileName)
+func IsExist(file string) bool {
+	if GetResourcesFS() == nil {
+		return false
+	}
+	if fs, err := GetResourcesFS().Open(file); err != nil {
+		return false
 	} else {
-		return ioutil.ReadFile(fileName)
+		_, err := fs.Stat()
+		if os.IsExist(err) {
+			return true
+		} else if os.IsNotExist(err) {
+			return false
+		}
+		return true
+	}
+}
+
+func GetResources(file string) ([]byte, error) {
+	if GetResourcesFS() != nil {
+		return GetResourcesFS().ReadFile(file)
+	} else {
+		return ioutil.ReadFile(file)
 	}
 }
 

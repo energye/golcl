@@ -13,7 +13,6 @@
 package tools
 
 import (
-	"fmt"
 	"os"
 	"reflect"
 )
@@ -23,11 +22,9 @@ func IsExist(path string) bool {
 	if err != nil {
 		if os.IsExist(err) {
 			return true
-		}
-		if os.IsNotExist(err) {
+		} else if os.IsNotExist(err) {
 			return false
 		}
-		fmt.Println(err)
 		return false
 	}
 	return true
