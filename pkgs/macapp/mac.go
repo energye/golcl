@@ -205,7 +205,7 @@ func (m *macApp) runMacOSApp() {
 			os.Exit(0)
 		}
 	} else {
-		println("hint: ide development environment requires the configuration of command line parameters, energy_env=dev")
+		println("hint: ide development environment requires the configuration of command line parameters, [energy_env=dev]")
 	}
 }
 
