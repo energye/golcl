@@ -193,14 +193,17 @@ func (m *macApp) cefHelper() {
 }
 
 func (m *macApp) runMacOSApp() {
-	cmd := exec.Command(m.execFile, os.Args...)
-	cmd.Stderr = os.Stderr
-	cmd.Stdin = os.Stdin
-	cmd.Stdout = os.Stdout
-	if err := cmd.Run(); err != nil {
-		os.Exit(1)
-	} else {
-		os.Exit(0)
+	var isRun = m.energyEnv == ENERGY_ENV_DEV
+	if isRun {
+		cmd := exec.Command(m.execFile, os.Args...)
+		cmd.Stderr = os.Stderr
+		cmd.Stdin = os.Stdin
+		cmd.Stdout = os.Stdout
+		if err := cmd.Run(); err != nil {
+			os.Exit(1)
+		} else {
+			os.Exit(0)
+		}
 	}
 }
 
