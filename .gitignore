@@ -93,6 +93,5 @@ lib
 /samples/testbindevents
 /samples/cgoTest/
 /samples/multilanguage2
-go.sum
 /samples/controls
 midform
