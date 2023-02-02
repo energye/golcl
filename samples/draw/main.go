@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/lcl/win"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/rtl"
@@ -21,7 +23,7 @@ var (
 )
 
 func main() {
-
+	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -36,7 +38,7 @@ func main() {
 	mainForm := lcl.Application.CreateForm()
 	mainForm.SetCaption("Hello")
 	mainForm.SetPosition(types.PoScreenCenter)
-	mainForm.EnabledMaximize(false)
+	//mainForm.EnabledMaximize(false)
 	mainForm.SetWidth(600)
 	mainForm.SetHeight(600)
 	mainForm.SetDoubleBuffered(true)
@@ -45,6 +47,17 @@ func main() {
 			jpgimg.Free()
 		}
 	})
+	mainForm.SetBorderStyle(types.BsNone)
+	mainForm.SetColor(colors.ClNavy)
+	Exstyle := win.GetWindowLong(mainForm.Handle(), win.GWL_EXSTYLE)
+	Exstyle = Exstyle | win.WS_EX_LAYERED&^win.WS_EX_TRANSPARENT
+	win.SetWindowLong(mainForm.Handle(), win.GWL_EXSTYLE, uintptr(Exstyle))
+	win.SetLayeredWindowAttributes(mainForm.Handle(), //指定分层窗口句柄
+		colors.ClNavy,                  //crKey指定需要透明的背景颜色值，可用RGB()宏  0-255
+		255,                            //bAlpha设置透明度，0表示完全透明，255表示不透明
+		win.LWA_ALPHA|win.LWA_COLORKEY) //LWA_ALPHA: crKey无效，bAlpha有效；
+	//LWA_COLORKEY：窗体中的所有颜色为crKey的地方全透明，bAlpha无效。
+	//LWA_ALPHA | LWA_COLORKEY：crKey的地方全透明，其它地方根据bAlpha确定透明度
 
 	mainForm.SetOnPaint(func(lcl.IObject) {
 
@@ -59,6 +72,7 @@ func main() {
 		canvas.Brush().SetStyle(types.BsClear)
 		canvas.Font().SetStyle(style.Include(types.FsBold, types.FsItalic))
 		canvas.TextOut(100, 30, s)
+		fmt.Println("canvas.Font()", canvas.Font().Height(), canvas.Font().Size())
 
 		r := types.TRect{0, 0, 80, 80}
 
@@ -98,15 +112,18 @@ func main() {
 		canvas.Polygon([]types.TPoint{{15, 40}, {43, 123}, {81, 42}, {45, 11}})
 
 		canvas.Polyline([]types.TPoint{{15 + 100, 40}, {43 + 100, 123}, {81 + 100, 42}, {45 + 100, 11}})
+
 	})
 
 	paintbox := lcl.NewPaintBox(mainForm)
 	paintbox.SetParent(mainForm)
 	paintbox.SetAlign(types.AlBottom)
 	paintbox.SetHeight(mainForm.Height() - 280)
+	//paintbox.SetColor(colors.ClRed)
 	paintbox.SetOnPaint(func(lcl.IObject) {
 		canvas := paintbox.Canvas()
 		canvas.Pen().SetColor(colors.ClRed)
+		canvas.Pen().SetWidth(10)
 		r := paintbox.ClientRect()
 		canvas.Rectangle(r.Left, r.Top, r.Right, r.Bottom)
 
@@ -124,6 +141,7 @@ func main() {
 				canvas.LineTo(p.X, p.Y)
 			}
 		}
+
 	})
 
 	paintbox.SetOnMouseDown(func(sender lcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {

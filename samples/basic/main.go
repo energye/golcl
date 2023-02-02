@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
-	"github.com/energye/golcl/lcl/types/colors"
-
 	"github.com/energye/golcl/lcl/types"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
@@ -33,48 +31,51 @@ func main() {
 
 // --------------MainForm -----------------
 func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
-	f.SetCaption("Hello")
+	//f.SetCaption("Hello")
 	f.EnabledMaximize(false)
-	f.SetWidth(600)
-	f.SetHeight(600)
-	f.ScreenCenter()
+	//f.SetWidth(600)
+	//f.SetHeight(600)
+	//f.ScreenCenter()
+	//f.BorderIcons().Exclude(types.BiMaximize)
+	f.SetBorderStyle(types.BsNone)
+	f.ShowInTaskBar()
 
-	f.Button1 = lcl.NewButton(f)
-	f.Button1.SetParent(f)
-	f.Button1.SetCaption("窗口1")
-	f.Button1.SetLeft(50)
-	f.Button1.SetTop(50)
-	f.Button1.SetOnClick(f.OnButton1Click)
-	f.Button1.Font().SetStyle(types.NewSet(types.FsBold)) //f.Button1.Font().Style().Include(types.FsBold))
-	//f.Button1.Hide()
+	//f.Button1 = lcl.NewButton(f)
+	//f.Button1.SetParent(f)
+	//f.Button1.SetCaption("窗口1")
+	//f.Button1.SetLeft(50)
+	//f.Button1.SetTop(50)
+	//f.Button1.SetOnClick(f.OnButton1Click)
+	//f.Button1.Font().SetStyle(types.NewSet(types.FsBold)) //f.Button1.Font().Style().Include(types.FsBold))
+	////f.Button1.Hide()
+	////
+	//de := lcl.NewDirectoryEdit(f)
+	//de.SetParent(f)
+	//cbb := lcl.NewComboBox(f)
+	//cbb.SetParent(f)
+	//cbb.SetLeft(100)
+	//cbb.SetTop(100)
+	////cbb.SetStyle(types.CsOwnerDrawVariable)
+	//cbb.Items().Add("1111")
+	//cbb.Items().Add("2222")
+	//cbb.Items().Add("3333")
+	//cbb.SetOnDrawItem(func(control lcl.IWinControl, index int32, aRect types.TRect, state types.TOwnerDrawState) {
+	//	switch index {
+	//	case 0:
+	//		cbb.Canvas().Font().SetColor(colors.ClRed)
+	//	case 1:
+	//		cbb.Canvas().Font().SetColor(colors.ClGreen)
+	//	case 2:
+	//		cbb.Canvas().Font().SetColor(colors.ClBlue)
+	//	}
+	//	cbb.Canvas().TextOut(aRect.Left, aRect.Top, cbb.Items().Strings(index))
+	//})
 	//
-	de := lcl.NewDirectoryEdit(f)
-	de.SetParent(f)
-	cbb := lcl.NewComboBox(f)
-	cbb.SetParent(f)
-	cbb.SetLeft(100)
-	cbb.SetTop(100)
-	//cbb.SetStyle(types.CsOwnerDrawVariable)
-	cbb.Items().Add("1111")
-	cbb.Items().Add("2222")
-	cbb.Items().Add("3333")
-	cbb.SetOnDrawItem(func(control lcl.IWinControl, index int32, aRect types.TRect, state types.TOwnerDrawState) {
-		switch index {
-		case 0:
-			cbb.Canvas().Font().SetColor(colors.ClRed)
-		case 1:
-			cbb.Canvas().Font().SetColor(colors.ClGreen)
-		case 2:
-			cbb.Canvas().Font().SetColor(colors.ClBlue)
-		}
-		cbb.Canvas().TextOut(aRect.Left, aRect.Top, cbb.Items().Strings(index))
-	})
-
-	f.SetOnUTF8KeyPress(func(sender lcl.IObject, utf8key *types.TUTF8Char) {
-		fmt.Println("打印：1111", utf8key.ToString(), utf8key)
-		utf8key.SetString("这") //每次只一个字符
-		fmt.Println("打印：2222", utf8key.ToString(), utf8key)
-	})
+	//f.SetOnUTF8KeyPress(func(sender lcl.IObject, utf8key *types.TUTF8Char) {
+	//	fmt.Println("打印：1111", utf8key.ToString(), utf8key)
+	//	utf8key.SetString("这") //每次只一个字符
+	//	fmt.Println("打印：2222", utf8key.ToString(), utf8key)
+	//})
 
 }
 
