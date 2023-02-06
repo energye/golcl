@@ -26,3 +26,9 @@ func EnergyDefSyscallN(index int) dllimports.ProcAddr {
 func GetEnergyImport(index int) *dllimports.ImportTable {
 	return dllimports.GetEnergyImport(index)
 }
+
+// EnergyLibRelease 在energy中释放
+func EnergyLibRelease() {
+	callGC()
+	closeLib()
+}
