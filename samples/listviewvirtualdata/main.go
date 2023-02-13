@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
 	"runtime"
 
 	"time"
@@ -38,6 +39,7 @@ var (
 )
 
 func main() {
+	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.CreateForm(&MainFrom)
 	lcl.Application.Run()

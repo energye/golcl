@@ -1,4 +1,4 @@
-package main
+package src
 
 import (
 	"github.com/energye/golcl/lcl"
@@ -18,7 +18,7 @@ type TMainForm struct {
 	MainMenu *lcl.TMainMenu
 }
 
-var mainForm *TMainForm
+var MainForm *TMainForm
 
 func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 
@@ -39,7 +39,7 @@ func (f *TMainForm) OnActExecute(sender lcl.IObject) {
 }
 
 func (f *TMainForm) OnActUpdate(sender lcl.IObject) {
-	lcl.AsAction(sender).SetEnabled(f.Chk.Checked())
+	//lcl.AsAction(sender).SetEnabled(f.Chk.Checked())
 }
 
 func (f *TMainForm) initComponents() {
@@ -52,31 +52,31 @@ func (f *TMainForm) initComponents() {
 	f.ActList = lcl.NewActionList(f)
 	f.ActList.SetImages(f.ImgList)
 
-	// 顶部工具条
-	f.Tlbar = lcl.NewToolBar(f)
-	f.Tlbar.SetParent(f)
-	f.Tlbar.SetImages(f.ImgList)
-
-	f.Tlbtn = lcl.NewToolButton(f)
-	f.Tlbtn.SetParent(f.Tlbar)
-
-	// 底部状态条
-	f.Stbar = lcl.NewStatusBar(f)
-	f.Stbar.SetParent(f)
-	f.Stbar.SetAutoHint(true)
-	f.Stbar.SetSimplePanel(true)
-
+	//// 顶部工具条
+	//f.Tlbar = lcl.NewToolBar(f)
+	//f.Tlbar.SetParent(f)
+	//f.Tlbar.SetImages(f.ImgList)
+	//
+	//f.Tlbtn = lcl.NewToolButton(f)
+	//f.Tlbtn.SetParent(f.Tlbar)
+	//
+	//// 底部状态条
+	//f.Stbar = lcl.NewStatusBar(f)
+	//f.Stbar.SetParent(f)
+	//f.Stbar.SetAutoHint(true)
+	//f.Stbar.SetSimplePanel(true)
+	//
 	f.Btn = lcl.NewButton(f)
 	f.Btn.SetParent(f)
 	f.Btn.SetLeft(80)
-	f.Btn.SetTop(f.Tlbar.Top() + f.Tlbar.Height() + 10)
-
-	f.Chk = lcl.NewCheckBox(f)
-	f.Chk.SetParent(f)
-	f.Chk.SetCaption("action状态演示")
-	f.Chk.SetLeft(f.Btn.Left())
-	f.Chk.SetTop(f.Btn.Top() + f.Btn.Height() + 10)
-	f.Chk.SetChecked(true)
+	//f.Btn.SetTop(f.Tlbar.Top() + f.Tlbar.Height() + 10)
+	//
+	//f.Chk = lcl.NewCheckBox(f)
+	//f.Chk.SetParent(f)
+	//f.Chk.SetCaption("action状态演示")
+	//f.Chk.SetLeft(f.Btn.Left())
+	//f.Chk.SetTop(f.Btn.Top() + f.Btn.Height() + 10)
+	//f.Chk.SetChecked(true)
 
 	// action
 	f.Act = lcl.NewAction(f)
@@ -84,7 +84,7 @@ func (f *TMainForm) initComponents() {
 	f.Act.SetImageIndex(0)
 	f.Act.SetHint("这是一个提示|长提示了")
 	f.Act.SetOnExecute(f.OnActExecute)
-	f.Act.SetOnUpdate(f.OnActUpdate)
+	//f.Act.SetOnUpdate(f.OnActUpdate)
 
 	// mainMenu
 	f.MainMenu = lcl.NewMainMenu(f)
@@ -98,5 +98,5 @@ func (f *TMainForm) initComponents() {
 	menu.Add(subMenu)
 
 	f.Btn.SetAction(f.Act)
-	f.Tlbtn.SetAction(f.Act)
+	//f.Tlbtn.SetAction(f.Act)
 }

@@ -5,6 +5,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
 	"math"
 	"os"
 	"path/filepath"
@@ -43,6 +44,7 @@ var (
 )
 
 func main() {
+	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.CreateForm(&MainFrom)
 	lcl.Application.Run()

@@ -2,10 +2,12 @@
 package main
 
 import (
+	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
 )
 
 func main() {
+	inits.Init(nil, nil)
 	lcl.Application.SetScaled(true)
 	lcl.Application.SetTitle("project1")
 	lcl.Application.Initialize()

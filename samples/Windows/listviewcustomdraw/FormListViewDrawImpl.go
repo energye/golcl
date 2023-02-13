@@ -10,13 +10,13 @@ import (
 	"github.com/energye/golcl/lcl"
 )
 
-//::private::
+// ::private::
 type TFormListViewDrawFields struct {
 }
 
 func (f *TFormListViewDraw) OnFormCreate(sender lcl.IObject) {
 	// 加载信息
-	trainData, err := parseFromFile("testtraindata.json")
+	trainData, err := parseFromFile("E:\\SWT\\gopath\\src\\github.com\\energye\\golcl\\samples\\Windows\\listviewcustomdraw\\testtraindata.json")
 	if err == nil {
 		// 设计器设计的ListView
 		fullResFormListViewInstance(trainData)

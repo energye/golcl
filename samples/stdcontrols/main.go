@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"time"
-
+	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
 
 func main() {
+	inits.Init(nil, nil)
 
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
@@ -151,79 +151,79 @@ func main() {
 		}
 	})
 
-	// TListBox
-	top += cb.Height() + 5
-	lst := lcl.NewListBox(mainForm)
-	lst.SetParent(mainForm)
-	lst.SetBounds(10, top, 167, 50)
-	lst.Items().Add("1")
-	lst.Items().Add("2")
-	lst.Items().Add("3")
+	//// TListBox
+	//top += cb.Height() + 5
+	//lst := lcl.NewListBox(mainForm)
+	//lst.SetParent(mainForm)
+	//lst.SetBounds(10, top, 167, 50)
+	//lst.Items().Add("1")
+	//lst.Items().Add("2")
+	//lst.Items().Add("3")
 
-	// TPanel
-	top += lst.Height() + 5
-	pnl := lcl.NewPanel(mainForm)
-	pnl.SetParent(mainForm)
-	pnl.SetCaption("fff")
-	//    pnl.SetShowCaption(false)
-	pnl.SetBounds(10, top, 167, 50)
-
-	// color
-	top += pnl.Height() + 5
-	clr := lcl.NewColorBox(mainForm)
-	clr.SetParent(mainForm)
-	clr.SetLeft(10)
-	clr.SetTop(top)
-	clr.SetOnChange(func(lcl.IObject) {
-		if clr.ItemIndex() != -1 {
-			lbl.Font().SetColor(clr.Selected())
-		}
-	})
-
-	// TPageControl
-	top += clr.Height() + 5
-	pgc := lcl.NewPageControl(mainForm)
-	pgc.SetParent(mainForm)
-	pgc.SetBounds(10, top, 167, 100)
-	pgc.SetOnChange(func(lcl.IObject) {
-		fmt.Println("当前索引:", pgc.ActivePageIndex())
-	})
-
-	sheet := lcl.NewTabSheet(mainForm)
-	sheet.SetPageControl(pgc)
-	sheet.SetCaption("一")
-	btn = lcl.NewButton(mainForm)
-	btn.SetParent(sheet)
-	btn.SetLeft(10)
-	btn.SetTop(10)
-	btn.SetCaption("按钮1")
-
-	sheet = lcl.NewTabSheet(mainForm)
-	sheet.SetPageControl(pgc)
-	sheet.SetCaption("二")
-	btn = lcl.NewButton(mainForm)
-	btn.SetParent(sheet)
-	btn.SetLeft(10)
-	btn.SetTop(10)
-	btn.SetCaption("按钮2")
-
-	sheet = lcl.NewTabSheet(mainForm)
-	sheet.SetPageControl(pgc)
-	sheet.SetCaption("三")
-	btn = lcl.NewButton(mainForm)
-	btn.SetParent(sheet)
-	btn.SetLeft(10)
-	btn.SetTop(10)
-	btn.SetCaption("按钮3")
-
-	// TImage
-	top += pgc.Height() + 5
-	img := lcl.NewImage(mainForm)
-	img.SetBounds(10, top, 167, 97)
-	img.SetParent(mainForm)
-	img.Picture().LoadFromFile("1.jpg")
-	//img.SetStretch(true)
-	img.SetProportional(true)
+	//// TPanel
+	//top += lst.Height() + 5
+	//pnl := lcl.NewPanel(mainForm)
+	//pnl.SetParent(mainForm)
+	//pnl.SetCaption("fff")
+	////    pnl.SetShowCaption(false)
+	//pnl.SetBounds(10, top, 167, 50)
+	//
+	//// color
+	//top += pnl.Height() + 5
+	//clr := lcl.NewColorBox(mainForm)
+	//clr.SetParent(mainForm)
+	//clr.SetLeft(10)
+	//clr.SetTop(top)
+	//clr.SetOnChange(func(lcl.IObject) {
+	//	if clr.ItemIndex() != -1 {
+	//		lbl.Font().SetColor(clr.Selected())
+	//	}
+	//})
+	//
+	//// TPageControl
+	//top += clr.Height() + 5
+	//pgc := lcl.NewPageControl(mainForm)
+	//pgc.SetParent(mainForm)
+	//pgc.SetBounds(10, top, 167, 100)
+	//pgc.SetOnChange(func(lcl.IObject) {
+	//	fmt.Println("当前索引:", pgc.ActivePageIndex())
+	//})
+	//
+	//sheet := lcl.NewTabSheet(mainForm)
+	//sheet.SetPageControl(pgc)
+	//sheet.SetCaption("一")
+	//btn = lcl.NewButton(mainForm)
+	//btn.SetParent(sheet)
+	//btn.SetLeft(10)
+	//btn.SetTop(10)
+	//btn.SetCaption("按钮1")
+	//
+	//sheet = lcl.NewTabSheet(mainForm)
+	//sheet.SetPageControl(pgc)
+	//sheet.SetCaption("二")
+	//btn = lcl.NewButton(mainForm)
+	//btn.SetParent(sheet)
+	//btn.SetLeft(10)
+	//btn.SetTop(10)
+	//btn.SetCaption("按钮2")
+	//
+	//sheet = lcl.NewTabSheet(mainForm)
+	//sheet.SetPageControl(pgc)
+	//sheet.SetCaption("三")
+	//btn = lcl.NewButton(mainForm)
+	//btn.SetParent(sheet)
+	//btn.SetLeft(10)
+	//btn.SetTop(10)
+	//btn.SetCaption("按钮3")
+	//
+	//// TImage
+	//top += pgc.Height() + 5
+	//img := lcl.NewImage(mainForm)
+	//img.SetBounds(10, top, 167, 97)
+	//img.SetParent(mainForm)
+	//img.Picture().LoadFromFile("E:\\SWT\\gopath\\src\\github.com\\energye\\golcl\\samples\\stdcontrols\\1.jpg")
+	////img.SetStretch(true)
+	//img.SetProportional(true)
 
 	left = 210
 	top = 10
@@ -265,42 +265,42 @@ func main() {
 	dtp.SetTimeSeparator(".")
 	dtp.SetHideDateTimeParts(dtp.HideDateTimeParts().Include(types.DtpYear))
 
-	top += dtp.Height() + 10
-
-	mdtp := lcl.NewMonthCalendar(mainForm)
-	mdtp.SetParent(mainForm)
-	mdtp.SetBounds(left, top, 250, 250)
-	mdtp.SetOnClick(func(lcl.IObject) {
-		fmt.Println(mdtp.Date())
-	})
-
-	top += mdtp.Height() + 10
-	dtp.SetDateTime(time.Now().Add(time.Hour * 48))
-	dtp.SetDate(time.Now().AddDate(1, 0, 0))
-
-	fmt.Println("time: ", mdtp.Date(), dtp.DateTime())
-
-	btn = lcl.NewButton(mainForm)
-	btn.SetParent(mainForm)
-	btn.SetLeft(left)
-	btn.SetTop(top)
-	btn.SetCaption("改变日期")
-	btn.SetOnClick(func(lcl.IObject) {
-		mdtp.SetDate(time.Now().AddDate(7777, 1, 23))
-	})
-
-	top += btn.Height() + 10
-	spinedit := lcl.NewSpinEdit(mainForm)
-	spinedit.SetParent(mainForm)
-	spinedit.SetLeft(left)
-	spinedit.SetTop(top)
-	spinedit.SetWidth(100)
-	spinedit.SetMaxValue(10000)
-	spinedit.SetMinValue(50)
-	spinedit.SetValue(100)
-	spinedit.SetOnChange(func(sender lcl.IObject) {
-		fmt.Println(spinedit.Value())
-	})
+	//top += dtp.Height() + 10
+	//
+	//mdtp := lcl.NewMonthCalendar(mainForm)
+	//mdtp.SetParent(mainForm)
+	//mdtp.SetBounds(left, top, 250, 250)
+	//mdtp.SetOnClick(func(lcl.IObject) {
+	//	fmt.Println(mdtp.Date())
+	//})
+	//
+	//top += mdtp.Height() + 10
+	//dtp.SetDateTime(time.Now().Add(time.Hour * 48))
+	//dtp.SetDate(time.Now().AddDate(1, 0, 0))
+	//
+	//fmt.Println("time: ", mdtp.Date(), dtp.DateTime())
+	//
+	//btn = lcl.NewButton(mainForm)
+	//btn.SetParent(mainForm)
+	//btn.SetLeft(left)
+	//btn.SetTop(top)
+	//btn.SetCaption("改变日期")
+	//btn.SetOnClick(func(lcl.IObject) {
+	//	mdtp.SetDate(time.Now().AddDate(7777, 1, 23))
+	//})
+	//
+	//top += btn.Height() + 10
+	//spinedit := lcl.NewSpinEdit(mainForm)
+	//spinedit.SetParent(mainForm)
+	//spinedit.SetLeft(left)
+	//spinedit.SetTop(top)
+	//spinedit.SetWidth(100)
+	//spinedit.SetMaxValue(10000)
+	//spinedit.SetMinValue(50)
+	//spinedit.SetValue(100)
+	//spinedit.SetOnChange(func(sender lcl.IObject) {
+	//	fmt.Println(spinedit.Value())
+	//})
 
 	// run
 	lcl.Application.Run()
