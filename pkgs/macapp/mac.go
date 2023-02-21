@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"github.com/energye/golcl/energy/consts"
 	"github.com/energye/golcl/pkgs/libname"
+	"github.com/energye/golcl/tools/command"
 	"io"
 	"io/ioutil"
 	"os"
@@ -39,10 +40,10 @@ func init() {
 	MacApp.macOSDir = MacApp.macContentsDir + "/MacOS"
 	MacApp.macResources = MacApp.macContentsDir + "/Resources"
 	MacApp.execFile = MacApp.macOSDir + "/" + MacApp.execName
-	MacApp.lclLibFileName = MacApp.macOSDir + "/liblcl.dylib"
 	MacApp.plistFileName = MacApp.macContentsDir + "/Info.plist"
 	MacApp.pkgInfoFileName = MacApp.macContentsDir + "/PkgInfo"
 	MacApp.macAppFrameworksDir = MacApp.macContentsDir + "/Frameworks"
+	MacApp.lclLibFileName = MacApp.macContentsDir + "/Frameworks/liblcl.dylib" //liblcl to frameworks
 	MacApp.lsUIElement = "false"
 }
 
@@ -95,7 +96,7 @@ func copyDir(srcPath string, destPath string) error {
 	return err
 }
 
-//生成目录并拷贝文件
+// 生成目录并拷贝文件
 func copyFile(src, dest string) (w int64, err error) {
 	srcFile, err := os.Open(src)
 	if err != nil {
@@ -188,6 +189,12 @@ func (m *macApp) cefHelper() {
 			helper.macAppFrameworksDir = helper.macContentsDir + "/Frameworks"
 			helper.lsUIElement = "true"
 			m.createMacOSApp(helper)
+			cmd := command.NewCMD()
+			cmd.Dir = helper.macAppFrameworksDir
+			cmd.Command("ln", "-shf", "../../../liblcl.dylib", "liblcl.dylib")
+
+			//cmd.Dir=helper.macOSDir
+			//cmd.Command("ln", "-shf", "../../../../MacOS/" + m.execName,helper.execName)
 		}
 	}
 }
@@ -210,18 +217,19 @@ func (m *macApp) runMacOSApp() {
 }
 
 func (m *macApp) copyDylib() {
+	var libPath = libname.LibPath()
 	// 文件不存在，复制
 	if !fileExists(m.lclLibFileName) {
-		if fileExists(libname.LibName) {
-			copyFile(libname.LibName, m.lclLibFileName)
+		if fileExists(libPath) {
+			copyFile(libPath, m.lclLibFileName)
 		}
 	} else {
 		// 文件存在，对比后更新
-		if fileExists(libname.LibName) {
-			f1, _ := os.Stat(libname.LibName)
+		if fileExists(libPath) {
+			f1, _ := os.Stat(libPath)
 			f2, _ := os.Stat(m.lclLibFileName)
 			if f1.Size() != f2.Size() {
-				copyFile(libname.LibName, m.lclLibFileName)
+				copyFile(libPath, m.lclLibFileName)
 			}
 		}
 	}
@@ -237,6 +245,9 @@ func (*macApp) createMacOSApp(m *macApp) bool {
 	}
 	if !fileExists(m.macResources) {
 		os.MkdirAll(m.macResources, 0755)
+	}
+	if !fileExists(m.macAppFrameworksDir) {
+		os.MkdirAll(m.macAppFrameworksDir, 0755)
 	}
 	resName := fmt.Sprintf("%s/%s.icns", m.macResources, m.execName)
 	if !fileExists(resName) {
@@ -264,11 +275,12 @@ func (*macApp) createMacOSApp(m *macApp) bool {
 			os.Chmod(m.execFile, 0755)
 			return true
 		}
-	} else {
+	} else /*if m.isMain*/ {
 		if _, err := copyFile(os.Args[0], m.execFile); err == nil {
 			os.Chmod(m.execFile, 0755)
 			return true
 		}
+
 	}
 	return false
 }

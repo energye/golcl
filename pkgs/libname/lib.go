@@ -16,6 +16,7 @@ import (
 	"github.com/energye/golcl/energy/consts"
 	"github.com/energye/golcl/energy/tools"
 	"os"
+	"path"
 	"runtime"
 )
 
@@ -37,28 +38,24 @@ func GetDLLName() string {
 }
 
 func LibPath() string {
+	var dllName = GetDLLName()
 	//当前目录
-	var currentPathLibName string
-	if runtime.GOOS == "darwin" {
-		currentPathLibName = "@executable_path/" + GetDLLName()
-	} else {
-		currentPathLibName = consts.ExePath + consts.Separator + GetDLLName()
-	}
+	var currentPathLibName = path.Join(consts.ExePath, dllName)
 	if tools.IsExist(currentPathLibName) {
 		return currentPathLibName
 	}
 	//用户目录
-	var homePathLibName = consts.HomeDir + consts.Separator + GetDLLName()
+	var homePathLibName = path.Join(consts.HomeDir, dllName)
 	if tools.IsExist(homePathLibName) {
 		return homePathLibName
 	}
 	//环境变量 LCL_HOME
-	var envPathLibName = os.Getenv("LCL_HOME") + consts.Separator + GetDLLName()
+	var envPathLibName = path.Join(os.Getenv("LCL_HOME"), dllName)
 	if tools.IsExist(envPathLibName) {
 		return envPathLibName
 	}
 	//环境变量 ENERGY_HOME
-	var energyPathLibName = os.Getenv("ENERGY_HOME") + consts.Separator + GetDLLName()
+	var energyPathLibName = path.Join(os.Getenv("ENERGY_HOME"), dllName)
 	if tools.IsExist(energyPathLibName) {
 		return energyPathLibName
 	}

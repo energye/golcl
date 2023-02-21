@@ -29,24 +29,31 @@ import (
 	"io"
 	"io/fs"
 	"os"
+	"path"
+	"runtime"
 )
 
 var (
-	resourcePath = "resource"
-	libsPath     = "libs"
+	emfsResourcesPath = "resources"
+	emfsLibsPath      = "libs"
 )
 
 func Init(libs *embed.FS, resources *embed.FS) {
 	emfs.SetEMFS(libs, resources)
-	libname.LibName = libname.LibPath()
 	if libname.LibName == "" {
-		libname.LibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
-		//lcllib都没有的情况
-		//尝试在内置中获取-并释放到用户目录
-		tools.MkdirAll(consts.HomeDir)
-		releaseLib(fmt.Sprintf("%s/%s", libsPath, libname.GetDLLName()), libname.LibName)
-		if tools.IsExist(libname.LibName) {
-			println(`Hint:
+		if runtime.GOOS == "darwin" {
+			//MacOSX从Frameworks加载
+			libname.LibName = "@executable_path/../Frameworks/" + libname.GetDLLName()
+		} else {
+			libname.LibName = libname.LibPath()
+		}
+		if libname.LibName == "" {
+			libname.LibName = path.Join(consts.HomeDir, libname.GetDLLName())
+			//liblcl都没有的情况, 最后尝试在内置libs中获取-并释放到用户目录
+			tools.MkdirAll(consts.HomeDir)
+			releaseLib(path.Join(emfsLibsPath, libname.GetDLLName()), libname.LibName)
+			if tools.IsExist(libname.LibName) {
+				println(`Hint:
 	Golcl dependency library liblcl was not found
 	Please check whether liblcl exists locally
 	If local liblcl exist, please put it in the specified location, if not please from the network to download a binary package (https://github.com/energye/energy/releases), or to compile.
@@ -58,6 +65,7 @@ func Init(libs *embed.FS, resources *embed.FS) {
 			environment variable ENERGY_HOME takes precedence in the Energy framework
 			ENERGY_HOME environment variable is recommended
 `)
+			}
 		}
 	}
 	initAll()
