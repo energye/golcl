@@ -10,6 +10,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/lcl"
 )
 import _ "github.com/energye/golcl/pkgs/winappres"
 
@@ -23,6 +25,7 @@ type TMainForm struct {
 var mainForm *TMainForm
 
 func main() {
+	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 	lcl.Application.CreateForm(&mainForm)
