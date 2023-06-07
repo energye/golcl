@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/pkgs/macapp"
 	"runtime"
 
 	"github.com/energye/golcl/lcl/types/colors"
@@ -22,6 +24,8 @@ var (
 )
 
 func main() {
+	macapp.MacApp.SetEnergyEnv("dev")
+	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }
 
