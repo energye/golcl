@@ -27,7 +27,6 @@ import (
 	"github.com/energye/golcl/pkgs/libname"
 	"github.com/energye/golcl/pkgs/macapp"
 	"io"
-	"io/fs"
 	"os"
 	"path"
 	"runtime"
@@ -71,18 +70,18 @@ func Init(libs *embed.FS, resources *embed.FS) {
 	initAll()
 }
 
+// 释放文件
+//  如果liblcl动态库内置到EXE中, 在EXE中把liblcl释放到out目录
 func releaseLib(fsPath, out string) {
 	if emfs.GetLibsFS() != nil {
-		var err error
-		var fsFile fs.File
-		var file *os.File
-		file, err = os.OpenFile(out, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
-		if err != nil {
-			panic(err)
-		}
-		defer file.Close()
-		fsFile, err = emfs.GetLibsFS().Open(fsPath)
+		var fsFile, err = emfs.GetLibsFS().Open(fsPath)
 		if err == nil {
+			var file *os.File
+			file, err = os.OpenFile(out, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+			if err != nil {
+				panic(err)
+			}
+			defer file.Close()
 			defer fsFile.Close()
 			var n int
 			//读取数据
