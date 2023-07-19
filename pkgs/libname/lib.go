@@ -22,12 +22,17 @@ import (
 
 var (
 	LibName          = ""
+	tempDllDir       = ""
 	platformExtNames = map[string]string{
 		"windows": ".dll",
 		"linux":   ".so",
 		"darwin":  ".dylib",
 	}
 )
+
+func SetTempDllDir(dir string) {
+	tempDllDir = dir
+}
 
 func GetDLLName() string {
 	libName := "liblcl"
@@ -44,6 +49,12 @@ func GetDLLName() string {
 //	推荐[当前目录]或指定[ENERGY_HOME]环境变量
 func LibPath() string {
 	var dllName = GetDLLName()
+
+	//tempdll内置字节码设置目录
+	var tempdllPathLibName = path.Join(tempDllDir, dllName)
+	if tools.IsExist(tempdllPathLibName) {
+		return tempdllPathLibName
+	}
 	//当前目录
 	var currentPathLibName = path.Join(consts.ExePath, dllName)
 	if tools.IsExist(currentPathLibName) {
