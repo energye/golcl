@@ -18,12 +18,29 @@ import (
 )
 
 var (
-	// 全局导入库
-	uiLib dllimports.DLL
+	uiLib             dllimports.DLL                // 全局导入库
+	loadUILibCallback func() (path string, ok bool) // 自定义加载liblcl动态库回调函数
 )
 
+// SetLoadUILibCallback
+//  设置加载liblcl动态库回调函数
+//  如果设置该回调函数我们可以自定义加载动态链接库
+//  在调用 inits.Init 之前设置
+func SetLoadUILibCallback(fn func() (path string, ok bool)) {
+	if loadUILibCallback == nil {
+		loadUILibCallback = fn
+	}
+}
+
 func loadUILib() dllimports.DLL {
-	libName := libname.LibName
+	var libName string
+	if loadUILibCallback != nil {
+		if path, ok := loadUILibCallback(); ok {
+			libName = path
+		}
+	} else {
+		libName = libname.LibName
+	}
 	lib, err := dllimports.NewDLL(libName)
 	if err != nil {
 		panic(err)
@@ -36,10 +53,6 @@ func closeLib() {
 		uiLib.Release()
 		uiLib = 0
 	}
-}
-
-func getDLLName() string {
-	return libname.GetDLLName()
 }
 
 // 调用自动生成的API列表中的函数
