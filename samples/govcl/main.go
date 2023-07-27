@@ -4,7 +4,7 @@ package main
 
 import (
 	"fmt"
-
+	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
 	_ "github.com/energye/golcl/lcl/locales/zh_CN"
 	"github.com/energye/golcl/lcl/rtl"
@@ -29,6 +29,8 @@ func main() {
 			lcl.ShowMessage(err.(error).Error())
 		}
 	}()
+
+	inits.Init(nil, nil)
 
 	fmt.Println("InheritsFrom：", lcl.Application.Is().Object())
 	fmt.Println("InheritsFrom：", lcl.Application.Is().Component())
