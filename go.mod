@@ -12,7 +12,7 @@ require (
 	github.com/tryor/gdiplus v0.0.0-20200830101413-c570de9579b3
 	github.com/tryor/winapi v0.0.0-20200525040926-cd87d62e2f9b
 	github.com/vdobler/chart v1.0.0
-	golang.org/x/image v0.3.0
+	golang.org/x/image v0.5.0
 )
 
 require (

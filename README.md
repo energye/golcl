@@ -6,7 +6,7 @@
 
 ----
 
-## support [Energy](https://github.com/energye/energy) use，Some govcl source code has been added and modified
+## support [Energy](https://github.com/energye/energy) use，Add energy expansion package
 
 ----
 [Apache License 2.0](https://github.com/energye/golcl/blob/master/LICENSE)

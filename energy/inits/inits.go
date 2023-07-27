@@ -27,26 +27,32 @@ import (
 	"github.com/energye/golcl/pkgs/libname"
 	"github.com/energye/golcl/pkgs/macapp"
 	"io"
-	"io/fs"
 	"os"
+	"path"
+	"runtime"
 )
 
 var (
-	resourcePath = "resource"
-	libsPath     = "libs"
+	emfsResourcesPath = "resources"
+	emfsLibsPath      = "libs"
 )
 
 func Init(libs *embed.FS, resources *embed.FS) {
 	emfs.SetEMFS(libs, resources)
-	libname.LibName = libname.LibPath()
 	if libname.LibName == "" {
-		libname.LibName = consts.HomeDir + consts.Separator + libname.GetDLLName()
-		//lcllib都没有的情况
-		//尝试在内置中获取-并释放到用户目录
-		tools.MkdirAll(consts.HomeDir)
-		releaseLib(fmt.Sprintf("%s/%s", libsPath, libname.GetDLLName()), libname.LibName)
-		if tools.IsExist(libname.LibName) {
-			println(`Hint:
+		if runtime.GOOS == "darwin" {
+			//MacOSX从Frameworks加载
+			libname.LibName = "@executable_path/../Frameworks/" + libname.GetDLLName()
+		} else {
+			libname.LibName = libname.LibPath()
+		}
+		if libname.LibName == "" {
+			libname.LibName = path.Join(consts.HomeDir, libname.GetDLLName())
+			//liblcl都没有的情况, 最后尝试在内置libs中获取-并释放到用户目录
+			tools.MkdirAll(consts.HomeDir)
+			releaseLib(path.Join(emfsLibsPath, libname.GetDLLName()), libname.LibName)
+			if tools.IsExist(libname.LibName) {
+				println(`Hint:
 	Golcl dependency library liblcl was not found
 	Please check whether liblcl exists locally
 	If local liblcl exist, please put it in the specified location, if not please from the network to download a binary package (https://github.com/energye/energy/releases), or to compile.
@@ -58,23 +64,24 @@ func Init(libs *embed.FS, resources *embed.FS) {
 			environment variable ENERGY_HOME takes precedence in the Energy framework
 			ENERGY_HOME environment variable is recommended
 `)
+			}
 		}
 	}
 	initAll()
 }
 
+// 释放文件
+//  如果liblcl动态库内置到EXE中, 在EXE中把liblcl释放到out目录
 func releaseLib(fsPath, out string) {
 	if emfs.GetLibsFS() != nil {
-		var err error
-		var fsFile fs.File
-		var file *os.File
-		file, err = os.OpenFile(out, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
-		if err != nil {
-			panic(err)
-		}
-		defer file.Close()
-		fsFile, err = emfs.GetLibsFS().Open(fsPath)
+		var fsFile, err = emfs.GetLibsFS().Open(fsPath)
 		if err == nil {
+			var file *os.File
+			file, err = os.OpenFile(out, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+			if err != nil {
+				panic(err)
+			}
+			defer file.Close()
 			defer fsFile.Close()
 			var n int
 			//读取数据

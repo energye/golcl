@@ -18,13 +18,9 @@ func APIInit() {
 	uiLib = loadUILib()
 }
 
-// 调用Energy导入的API列表中的函数
-func EnergyDefSyscallN(index int) dllimports.ProcAddr {
-	return dllimports.GetEnergyImportDefFunc(uiLib, index)
-}
-
-func GetEnergyImport(index int) *dllimports.ImportTable {
-	return dllimports.GetEnergyImport(index)
+// Get Import
+func ImportDefFunc(importTable []*dllimports.ImportTable, index int) dllimports.ProcAddr {
+	return dllimports.ImportDefFunc(uiLib, importTable, index)
 }
 
 // EnergyLibRelease 在energy中释放
