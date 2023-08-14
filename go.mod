@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/disintegration/gift v1.2.1
+	github.com/energye/dylib v0.0.0-20230814115552-32dda0972e9e
 	github.com/fogleman/gg v1.3.0
 	github.com/go-ole/go-ole v1.2.6
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0

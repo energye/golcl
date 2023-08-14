@@ -3,6 +3,8 @@ github.com/Knetic/govaluate v3.0.0+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8L
 github.com/ajstarks/svgo v0.0.0-20181006003313-6ce6a3bcf6cd/go.mod h1:K08gAheRH3/J6wwsYMMT4xOr94bZjxIelGM0+d/wbFw=
 github.com/disintegration/gift v1.2.1 h1:Y005a1X4Z7Uc+0gLpSAsKhWi4qLtsdEcMIbbdvdZ6pc=
 github.com/disintegration/gift v1.2.1/go.mod h1:Jh2i7f7Q2BM7Ezno3PhfezbR1xpUg9dUg3/RlKGr4HI=
+github.com/energye/dylib v0.0.0-20230814115552-32dda0972e9e h1:vtsQv7Lf1cujnfldYiViosSmQxWdyIUG9fJ5FHGMYXk=
+github.com/energye/dylib v0.0.0-20230814115552-32dda0972e9e/go.mod h1:N8GS4d3Ix83Cff6mLHb+09iiPg9huBB4XETDfuMN5LM=
 github.com/fogleman/gg v1.3.0 h1:/7zJX8F6AaYQc57WQCyN9cAIz+4bCJGO9B+dyW29am8=
 github.com/fogleman/gg v1.3.0/go.mod h1:R/bRT+9gY/C5z7JzPU0zXsXHKM4/ayA+zqcVNZzPa1k=
 github.com/go-gl/gl v0.0.0-20180407155706-68e253793080/go.mod h1:482civXOzJJCPzJ4ZOX/pwvXBWSnzD4OKMdH4ClKGbk=
