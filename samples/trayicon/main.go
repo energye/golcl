@@ -2,17 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/energy/inits"
 	"runtime"
 
-	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	_ "github.com/energye/golcl/pkgs/winappres"
 	//"github.com/energye/golcl/lcl/rtl"
 )
 
 func main() {
-	inits.Init(nil, nil)
+
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 

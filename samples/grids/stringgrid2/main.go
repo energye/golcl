@@ -11,7 +11,6 @@ package main
 import (
 	"fmt"
 
-	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/colors"
 	_ "github.com/energye/golcl/pkgs/winappres"

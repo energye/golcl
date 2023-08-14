@@ -12,7 +12,7 @@ func main() {
 ### 修改版本 v1.0.0
 
 > 1. 修改 govcl to golcl
->> github.com/ying32/govcl
+>> github.com/energye/golcl
 >>
 >> to
 >>

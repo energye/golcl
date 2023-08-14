@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/energye/golcl/energy/inits"
 
-	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/messages"
 	_ "github.com/energye/golcl/pkgs/winappres"
@@ -17,7 +15,6 @@ type TForm1 struct {
 var form1 *TForm1
 
 func main() {
-	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 	lcl.Application.CreateForm(&form1)
@@ -36,7 +33,6 @@ func (f *TForm1) OnFormCreate(sender lcl.IObject) {
 func (f *TForm1) OnFormWndProc(msg *types.TMessage) {
 	// 这句一定要
 	f.InheritedWndProc(msg)
-	fmt.Println("msg", msg)
 	switch msg.Msg {
 	case messages.WM_MOUSEMOVE:
 

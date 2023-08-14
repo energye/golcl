@@ -90,7 +90,7 @@ func main() {
 	edit.SetAlign(types.AlClient)
 	edit.Font().SetSize(10)
 	//edit.SetName("editURL")
-	// https://github.com/ying32
+	// https://github.com/energye
 	edit.SetText("https://www.baidu.com")
 	edit.SetAlignWithMargins(true)
 	edit.Margins().SetBounds(10, 5, 10, 5)

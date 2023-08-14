@@ -36,7 +36,7 @@ func main() {
 	sp := strings.Split(gopaths, ";")
 	libLCLBinResDir := strings.TrimSpace(sp[0])
 	for _, s := range sp {
-		s = strings.TrimSpace(s) + "/src/github.com/ying32/liblclbinres"
+		s = strings.TrimSpace(s) + "/src/github.com/energye/liblclbinres"
 		if fileExists(s) {
 			libLCLBinResDir = s
 			break

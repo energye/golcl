@@ -2,10 +2,6 @@
 
 package main
 
-import (
-	"github.com/energye/golcl/lcl"
-)
-
 type TForm1 struct {
 	*lcl.TForm
 	Button1    *lcl.TButton

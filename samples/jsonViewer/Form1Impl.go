@@ -29,7 +29,7 @@ const jsonData = `{
     "avatar_url": "https://avatars1.githubusercontent.com/u/7037165?v=4",
     "gravatar_id": "",
     "url": "https://api.github.com/users/ying32",
-    "html_url": "https://github.com/ying32",
+    "html_url": "https://github.com/energye",
     "followers_url": "https://api.github.com/users/ying32/followers",
     "following_url": "https://api.github.com/users/ying32/following{/other_user}",
     "gists_url": "https://api.github.com/users/ying32/gists{/gist_id}",

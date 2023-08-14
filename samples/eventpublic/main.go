@@ -1,8 +1,6 @@
 package main
 
 import (
-	"github.com/energye/golcl/lcl"
-
 	"fmt"
 
 	"github.com/energye/golcl/lcl/types"

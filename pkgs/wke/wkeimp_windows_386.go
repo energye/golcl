@@ -7,7 +7,7 @@
 //----------------------------------------
 
 // govcl wke测试头文件，by: ying32
-// https://github.com/ying32/ying32
+// https://github.com/energye/ying32
 
 package wke
 

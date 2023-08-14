@@ -1,10 +1,7 @@
 package main
 
 import (
-	"github.com/energye/golcl/energy/inits"
-	"github.com/energye/golcl/lcl"
 	_ "github.com/energye/golcl/pkgs/winappres"
-	"github.com/energye/golcl/samples/basicResForm/src"
 )
 
 // windows : stdcall;  其他平台： cdecl
@@ -20,9 +17,8 @@ import (
 }*/
 
 func main() {
-	inits.Init(nil, nil)
 	//lcl.Application.SetRunLoopReceived(runLoopReceivedProc)
-	lcl.RunApp(&src.Form1, &src.Form2)
+	lcl.RunApp(&Form1, &Form2)
 
 	//lcl.Application.SetScaled(true)
 	//lcl.Application.Initialize()

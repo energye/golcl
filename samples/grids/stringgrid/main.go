@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 
-	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )

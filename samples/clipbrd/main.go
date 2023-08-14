@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
+	"github.com/energye/golcl/lcl/types"
 )
 import _ "github.com/energye/golcl/pkgs/winappres"
 
@@ -20,6 +21,9 @@ type TMainForm struct {
 	btn  *lcl.TButton
 	btn2 *lcl.TButton
 	btn3 *lcl.TButton
+	btn4 *lcl.TButton
+	btn5 *lcl.TButton
+	img  *lcl.TImage
 }
 
 var mainForm *TMainForm
@@ -52,6 +56,26 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.btn3.SetWidth(120)
 	f.btn3.SetCaption("SetText")
 	f.btn3.SetOnClick(f.onBtn3Click)
+
+	f.btn4 = lcl.NewButton(f)
+	f.btn4.SetParent(f)
+	f.btn4.SetTop(f.btn3.Top() + 50)
+	f.btn4.SetWidth(120)
+	f.btn4.SetCaption("SetBmp")
+	f.btn4.SetOnClick(f.onBtn4Click)
+
+	f.btn5 = lcl.NewButton(f)
+	f.btn5.SetParent(f)
+	f.btn5.SetTop(f.btn4.Top() + 50)
+	f.btn5.SetWidth(120)
+	f.btn5.SetCaption("GetBmp")
+	f.btn5.SetOnClick(f.onBtn5Click)
+
+	f.img = lcl.NewImage(f)
+	f.img.SetParent(f)
+	f.img.SetTop(f.btn5.Top() + 30)
+	f.img.SetWidth(200)
+	f.img.SetHeight(200)
 }
 
 func (f *TMainForm) onBtnClick(sender lcl.IObject) {
@@ -68,4 +92,45 @@ func (f *TMainForm) onBtn2Click(sender lcl.IObject) {
 func (f *TMainForm) onBtn3Click(sender lcl.IObject) {
 
 	lcl.Clipboard.SetAsText("afdsdf")
+}
+
+func (f *TMainForm) onBtn4Click(sender lcl.IObject) {
+
+	//ss := lcl.NewStringList()
+	//defer ss.Free()
+	//lcl.Clipboard.SupportedFormats(ss)
+	//lcl.ShowMessage(ss.Text())
+	//return
+
+	mem := lcl.NewMemoryStream()
+	defer mem.Free()
+	// only bmp
+	mem.LoadFromFile("bg.bmp")
+	mem.SetPosition(0)
+
+	// 注册自定义的格式
+	//lcl.RegisterClipboardFormat()
+
+	// 预定义格式
+	format := lcl.PredefinedClipboardFormat(types.PcfBitmap)
+	fmt.Println("format:", format)
+
+	if !lcl.Clipboard.SetFormat(format, mem) {
+		lcl.ShowMessage("设置格式失败")
+	} else {
+		lcl.ShowMessage("设置成功")
+	}
+}
+
+func (f *TMainForm) onBtn5Click(sender lcl.IObject) {
+	if !lcl.Clipboard.HasPictureFormat() {
+		return
+	}
+	bmpFormat := lcl.Clipboard.FindPictureFormatID()
+	mem := lcl.NewMemoryStream()
+	defer mem.Free()
+	if lcl.Clipboard.GetFormat(bmpFormat, mem) {
+		mem.SetPosition(0)
+		f.img.Picture().LoadFromStream(mem)
+	}
 }
