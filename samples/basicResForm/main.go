@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/energye/golcl/lcl"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
 

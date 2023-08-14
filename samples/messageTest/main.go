@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/lcl"
 
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/messages"
@@ -15,6 +17,7 @@ type TForm1 struct {
 var form1 *TForm1
 
 func main() {
+	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 	lcl.Application.CreateForm(&form1)

@@ -10,6 +10,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/lcl"
 
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/colors"
@@ -44,6 +46,7 @@ var (
 )
 
 func main() {
+	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm)
 }
 

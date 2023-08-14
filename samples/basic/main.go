@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types/colors"
 
 	"fmt"

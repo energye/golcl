@@ -4,6 +4,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/lcl"
 
 	"github.com/energye/golcl/lcl/i18n"
 	"github.com/energye/golcl/lcl/types"

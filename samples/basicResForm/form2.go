@@ -2,6 +2,8 @@
 
 package main
 
+import "github.com/energye/golcl/lcl"
+
 type TForm2 struct {
 	*lcl.TForm
 	RadioGroup1 *lcl.TRadioGroup

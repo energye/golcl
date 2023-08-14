@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/lcl"
 
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/colors"
@@ -11,7 +13,7 @@ import (
 // 事件公用。啥叫事件公用呢，比如btn, btn2两个控件，处理的大部分是相同的，只是根据不同按钮处理进行不同的选择
 
 func main() {
-
+	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 

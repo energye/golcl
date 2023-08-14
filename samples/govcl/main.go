@@ -4,6 +4,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/lcl"
 
 	_ "github.com/energye/golcl/lcl/locales/zh_CN"
 	"github.com/energye/golcl/lcl/rtl"
@@ -19,7 +21,7 @@ var (
 )
 
 func main() {
-
+	inits.Init(nil, nil)
 	// 异常捕获
 	defer func() {
 		err := recover()

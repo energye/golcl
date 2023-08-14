@@ -1,5 +1,7 @@
 package main
 
+import "github.com/energye/golcl/lcl"
+
 //::private::
 type TForm2Fields struct {
 }

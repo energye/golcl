@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/lcl"
 
 	"github.com/energye/golcl/lcl/types/keys"
 

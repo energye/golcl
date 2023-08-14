@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/lcl"
 
 	"github.com/energye/golcl/lcl/types"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
 
 func main() {
+	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	mainForm := lcl.Application.CreateForm()
 	mainForm.SetWidth(700)
