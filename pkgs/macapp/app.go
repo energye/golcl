@@ -1,16 +1,15 @@
 package macapp
 
-var (
-	//1. macos调式时临时创建一个符合macapp的程序包
-	//
-	//2. 如果基于cef，需要指定cef frameworks 根目录【/homt/xxx/cef_binary_xxxxxxx_macosx64/Release】
-	MacApp = &macApp{}
-)
+// MacApp
+//  1. macos调式时临时创建一个符合macapp的程序包
+//
+//  2. 如果基于cef，需要指定cef frameworks 根目录【/homt/xxx/cef_binary_xxxxxxx_macosx64/Release】
+var MacApp = &macApp{}
 
 type ENERGY_ENV string
 
 const (
-	ENERGY_ENV_DEV ENERGY_ENV = "dev" //ENERGY的开发环境常量配置
+	ENERGY_ENV_DEV ENERGY_ENV = "dev" //MacOSX ENERGY的开发环境常量配置
 )
 
 type macApp struct {

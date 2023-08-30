@@ -108,7 +108,6 @@ func copyFile(src, dest string) (w int64, err error) {
 			destSplitPath = destSplitPath + dir + "/"
 			b := fileExists(destSplitPath)
 			if b == false {
-				//fmt.Println("创建目录:" + destSplitPath)
 				if err := os.Mkdir(destSplitPath, 0755); err != nil {
 					fmt.Println(err)
 				}
@@ -190,9 +189,6 @@ func (m *macApp) cefHelper() {
 			cmd := command.NewCMD()
 			cmd.Dir = helper.macAppFrameworksDir
 			cmd.Command("ln", "-shf", "../../../liblcl.dylib", "liblcl.dylib")
-
-			//cmd.Dir=helper.macOSDir
-			//cmd.Command("ln", "-shf", "../../../../MacOS/" + m.execName,helper.execName)
 		}
 	}
 }
@@ -210,7 +206,7 @@ func (m *macApp) runMacOSApp() {
 			os.Exit(0)
 		}
 	} else {
-		println("hint: ide development environment requires the configuration of command line parameters, [energy_env=dev]")
+		println("hint: ide development environment requires the configuration of command line parameters, [env=dev]")
 	}
 }
 
