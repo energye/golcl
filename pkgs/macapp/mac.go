@@ -81,15 +81,13 @@ func copyDir(srcPath string, destPath string) error {
 			return e
 		}
 	}
+	sps := len(srcPath)
 	err := filepath.Walk(srcPath, func(path string, f os.FileInfo, err error) error {
 		if f == nil {
 			return err
 		}
 		if !f.IsDir() {
-			sPath := strings.Replace(path, "\\", "/", -1)
-			destNewPath := strings.Replace(sPath, srcPath, destPath, -1)
-			//fmt.Println("\n\t复制文件:  ", sPath, "\n\t到  ", destNewPath)
-			copyFile(path, destNewPath)
+			copyFile(path, filepath.Join(destPath, path[sps:]))
 		}
 		return nil
 	})
