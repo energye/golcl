@@ -20,6 +20,7 @@ import (
 
 type CMD struct {
 	HideWindow      bool
+	IsNotPrint      bool
 	Dir             string
 	MessageCallback func([]byte, error)
 	stdout          io.ReadCloser
@@ -40,7 +41,9 @@ func (m *CMD) Close() {
 }
 
 func (m *CMD) Command(name string, args ...string) {
-	fmt.Println("command name:", name, "args:", args)
+	if !m.IsNotPrint {
+		fmt.Println("command name:", name, "args:", args)
+	}
 	cmd := exec.Command(name, args...)
 	if m.Dir != "" {
 		cmd.Dir = m.Dir
@@ -80,7 +83,9 @@ func (m *CMD) Command(name string, args ...string) {
 		if m.MessageCallback != nil {
 			m.MessageCallback(byt, nil)
 		} else {
-			fmt.Println("line:", string(byt), b)
+			if !m.IsNotPrint {
+				fmt.Println("line:", string(byt), b)
+			}
 		}
 	}
 	err = cmd.Wait()
