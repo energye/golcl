@@ -20,14 +20,14 @@ import (
 
 type CMD struct {
 	HideWindow      bool
-	IsNotPrint      bool
+	IsPrint         bool
 	Dir             string
 	MessageCallback func([]byte, error)
 	stdout          io.ReadCloser
 }
 
 func NewCMD() *CMD {
-	return &CMD{}
+	return &CMD{IsPrint: true}
 }
 
 func IsWindows() bool {
@@ -41,7 +41,7 @@ func (m *CMD) Close() {
 }
 
 func (m *CMD) Command(name string, args ...string) {
-	if !m.IsNotPrint {
+	if m.IsPrint {
 		fmt.Println("command name:", name, "args:", args)
 	}
 	cmd := exec.Command(name, args...)
@@ -83,7 +83,7 @@ func (m *CMD) Command(name string, args ...string) {
 		if m.MessageCallback != nil {
 			m.MessageCallback(byt, nil)
 		} else {
-			if !m.IsNotPrint {
+			if !m.IsPrint {
 				fmt.Println("line:", string(byt), b)
 			}
 		}
