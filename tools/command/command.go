@@ -83,7 +83,7 @@ func (m *CMD) Command(name string, args ...string) {
 		if m.MessageCallback != nil {
 			m.MessageCallback(byt, nil)
 		} else {
-			if !m.IsPrint {
+			if m.IsPrint {
 				fmt.Println("line:", string(byt), b)
 			}
 		}
