@@ -14,7 +14,6 @@ package api
 import (
 	"github.com/energye/golcl/lcl/api/dllimports"
 	"github.com/energye/golcl/pkgs/libname"
-	"runtime"
 	"unsafe"
 )
 
@@ -43,10 +42,8 @@ func loadUILib() dllimports.DLL {
 		libName = libname.LibName
 	}
 	lib, err := dllimports.NewDLL(libName)
-	if err != nil {
-		if runtime.GOOS != "linux" { // 解决linux CEF GTK3动态库加载错误问题
-			panic(err)
-		}
+	if lib == 0 && err != nil {
+		panic(err)
 	}
 	return lib
 }
