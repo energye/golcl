@@ -2,7 +2,7 @@
 
 ---
 
-## Base [govcl](https://gitee.com/ying32/govcl/) lib, sources [Github](https://github.com/energye/golcl) | [Gitee](https://gitee.com/ying32/govcl)
+## Base [govcl](https://gitee.com/ying32/govcl/) lib, sync sources [Github](https://gitee.com/ying32/govcl/) | [Gitee](https://gitee.com/ying32/govcl)
 
 ----
 

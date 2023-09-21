@@ -2,7 +2,7 @@
 
 ---
 
-## 基于 [govcl](https://gitee.com/ying32/govcl/) 库, 出处 [Github](https://github.com/energye/golcl) | [Gitee](https://gitee.com/ying32/govcl)
+## 基于 [govcl](https://gitee.com/ying32/govcl/) 库, 同步出处 [Github](https://gitee.com/ying32/govcl/) | [Gitee](https://gitee.com/ying32/govcl)
 
 ----
 
