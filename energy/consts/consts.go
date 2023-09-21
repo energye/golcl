@@ -1,7 +1,14 @@
+//----------------------------------------
+//
+// Copyright © yanghy. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
 package consts
 
 import (
-	"fmt"
 	"github.com/energye/golcl/energy/homedir"
 	"os"
 	"path/filepath"
@@ -12,18 +19,18 @@ const (
 )
 
 var (
-	ExePath string //执行文件目录
-	//用户目录
-	DIR, err = homedir.Dir()
-	//目录结构分割符
-	Separator = string(filepath.Separator)
-	//完整的用户目录
-	HomeDir = fmt.Sprintf("%v%v%v", DIR, Separator, RootPath)
+	ExeDir       string                       // 执行文件所在目录
+	ExePath      string                       // 执行文件完整目录
+	ExeName      string                       // 执行文件名称
+	HomeDir      string                       // 用户目录
+	Separator    = string(filepath.Separator) // 目录结构分割符
+	HomeGoLCLDir string                       // 完整的用户目录
 )
 
 func init() {
-	ExePath, err = os.Getwd()
-	if err != nil {
-		panic(err)
-	}
+	ExePath = os.Args[0]
+	ExeDir, ExeName = filepath.Split(ExePath)
+	//用户目录
+	HomeDir, _ = homedir.Dir()
+	HomeGoLCLDir = filepath.Join(HomeDir, RootPath)
 }

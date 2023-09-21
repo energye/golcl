@@ -47,9 +47,9 @@ func Init(libs *embed.FS, resources *embed.FS) {
 			libname.LibName = libname.LibPath()
 		}
 		if libname.LibName == "" {
-			libname.LibName = path.Join(consts.HomeDir, libname.GetDLLName())
+			libname.LibName = path.Join(consts.HomeGoLCLDir, libname.GetDLLName())
 			//liblcl都没有的情况, 最后尝试在内置libs中获取-并释放到用户目录
-			tools.MkdirAll(consts.HomeDir)
+			tools.MkdirAll(consts.HomeGoLCLDir)
 			releaseLib(path.Join(emfsLibsPath, libname.GetDLLName()), libname.LibName)
 			if tools.IsExist(libname.LibName) {
 				println(`Hint:

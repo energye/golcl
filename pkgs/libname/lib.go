@@ -56,12 +56,12 @@ func LibPath() string {
 		return tempdllPathLibName
 	}
 	//当前目录
-	var currentPathLibName = path.Join(consts.ExePath, dllName)
+	var currentPathLibName = path.Join(consts.ExeDir, dllName)
 	if tools.IsExist(currentPathLibName) {
 		return currentPathLibName
 	}
 	//用户目录
-	var homePathLibName = path.Join(consts.HomeDir, dllName)
+	var homePathLibName = path.Join(consts.HomeGoLCLDir, dllName)
 	if tools.IsExist(homePathLibName) {
 		return homePathLibName
 	}
