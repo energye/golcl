@@ -25,7 +25,7 @@ func internalGetImportFunc(uiLib DLL, table []*ImportTable, index int) ProcAddr 
 		var err error
 		item.addr, err = uiLib.GetProcAddr(item.name)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println(err, item.name)
 			return 0
 		}
 		atomic.StorePointer((*unsafe.Pointer)(unsafe.Pointer(&table[index].addr)), unsafe.Pointer(item.addr))

@@ -14,6 +14,8 @@ package api
 
 import "github.com/energye/golcl/lcl/api/dllimports"
 
+var releaseCallback func()
+
 func APIInit() {
 	uiLib = loadUILib()
 }
@@ -25,6 +27,16 @@ func ImportDefFunc(importTable []*dllimports.ImportTable, index int) dllimports.
 
 // EnergyLibRelease 在energy中释放
 func EnergyLibRelease() {
+	if releaseCallback != nil {
+		releaseCallback()
+	}
 	callGC()
 	closeLib()
+}
+
+// SetReleaseCallback 应用运行结束后释放资源之前执行
+func SetReleaseCallback(fn func()) {
+	if releaseCallback == nil {
+		releaseCallback = fn
+	}
 }
