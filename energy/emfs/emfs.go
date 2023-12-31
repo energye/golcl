@@ -1,47 +1,32 @@
 package emfs
 
 import (
-	"embed"
 	"io/ioutil"
-	"os"
 )
 
 var (
-	resourcesFS *embed.FS
-	libsFS      *embed.FS
+	resourcesFS IEmbedFS
+	libsFS      IEmbedFS
 )
 
-func SetLibsFS(lib *embed.FS) {
+type IEmbedFS interface {
+	ReadFile(name string) ([]byte, error)
+}
+
+func SetLibsFS(lib IEmbedFS) {
 	libsFS = lib
 }
 
-func SetResourcesFS(resource *embed.FS) {
+func SetResourcesFS(resource IEmbedFS) {
 	resourcesFS = resource
 }
 
-func GetLibsFS() *embed.FS {
+func GetLibsFS() IEmbedFS {
 	return libsFS
 }
 
-func GetResourcesFS() *embed.FS {
+func GetResourcesFS() IEmbedFS {
 	return resourcesFS
-}
-
-func IsExist(file string) bool {
-	if GetResourcesFS() == nil {
-		return false
-	}
-	if fs, err := GetResourcesFS().Open(file); err != nil {
-		return false
-	} else {
-		_, err := fs.Stat()
-		if os.IsExist(err) {
-			return true
-		} else if os.IsNotExist(err) {
-			return false
-		}
-		return true
-	}
 }
 
 func GetResources(file string) ([]byte, error) {
@@ -60,7 +45,7 @@ func GetLibs(fileName string) ([]byte, error) {
 	}
 }
 
-func SetEMFS(libs *embed.FS, resources *embed.FS) {
+func SetEMFS(libs IEmbedFS, resources IEmbedFS) {
 	SetLibsFS(libs)
 	SetResourcesFS(resources)
 }

@@ -13,7 +13,6 @@
 package inits
 
 import (
-	"embed"
 	"fmt"
 	"github.com/energye/golcl/energy/consts"
 	"github.com/energye/golcl/energy/emfs"
@@ -26,7 +25,6 @@ import (
 	"github.com/energye/golcl/lcl/rtl/version"
 	"github.com/energye/golcl/pkgs/libname"
 	"github.com/energye/golcl/pkgs/macapp"
-	"io"
 	"os"
 	"path"
 	"runtime"
@@ -37,7 +35,7 @@ var (
 	emfsLibsPath      = "libs"
 )
 
-func Init(libs *embed.FS, resources *embed.FS) {
+func Init(libs emfs.IEmbedFS, resources emfs.IEmbedFS) {
 	emfs.SetEMFS(libs, resources)
 	if libname.LibName == "" {
 		if runtime.GOOS == "darwin" {
@@ -74,7 +72,7 @@ func Init(libs *embed.FS, resources *embed.FS) {
 //  如果liblcl动态库内置到EXE中, 在EXE中把liblcl释放到out目录
 func releaseLib(fsPath, out string) {
 	if emfs.GetLibsFS() != nil {
-		var fsFile, err = emfs.GetLibsFS().Open(fsPath)
+		var liblcl, err = emfs.GetLibsFS().ReadFile(fsPath)
 		if err == nil {
 			var file *os.File
 			file, err = os.OpenFile(out, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
@@ -82,17 +80,7 @@ func releaseLib(fsPath, out string) {
 				panic(err)
 			}
 			defer file.Close()
-			defer fsFile.Close()
-			var n int
-			//读取数据
-			buf := make([]byte, 4096)
-			for {
-				n, err = fsFile.Read(buf)
-				if err == io.EOF {
-					break
-				}
-				file.Write(buf[:n])
-			}
+			file.Write(liblcl)
 			fmt.Println("release success.")
 		}
 	}
