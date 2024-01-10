@@ -13,7 +13,6 @@
 package inits
 
 import (
-	"fmt"
 	"github.com/energye/golcl/energy/consts"
 	"github.com/energye/golcl/energy/emfs"
 	"github.com/energye/golcl/energy/tools"
@@ -47,16 +46,15 @@ func Init(libs emfs.IEmbedFS, resources emfs.IEmbedFS) {
 		if libname.LibName == "" {
 			libname.LibName = path.Join(consts.HomeGoLCLDir, libname.GetDLLName())
 			//liblcl都没有的情况, 最后尝试在内置libs中获取-并释放到用户目录
-			tools.MkdirAll(consts.HomeGoLCLDir)
 			releaseLib(path.Join(emfsLibsPath, libname.GetDLLName()), libname.LibName)
-			if tools.IsExist(libname.LibName) {
+			if !tools.IsExist(libname.LibName) {
 				println(`Hint:
 	Golcl dependency library liblcl was not found
 	Please check whether liblcl exists locally
-	If local liblcl exist, please put it in the specified location, if not please from the network to download a binary package (https://github.com/energye/energy/releases), or to compile.
+	If local liblcl exist, please put it in the specified location, If it does not exist, please download it from the Energy official website.
 	Configuration Location:
 		1. Current program execution directory
-		2. User root /golcl/
+		2. USER_HOME/golcl/
 		3. Environment variables LCL_HOME or ENERGY_HOME
 			environment variable LCL_HOME is configured preferentially in the non-energy framework
 			environment variable ENERGY_HOME takes precedence in the Energy framework
@@ -72,16 +70,17 @@ func Init(libs emfs.IEmbedFS, resources emfs.IEmbedFS) {
 //  如果liblcl动态库内置到EXE中, 在EXE中把liblcl释放到out目录
 func releaseLib(fsPath, out string) {
 	if emfs.GetLibsFS() != nil {
+		// 尝试创建目录, 如果目录已存在则不会创建
+		tools.MkdirAll(consts.HomeGoLCLDir)
 		var liblcl, err = emfs.GetLibsFS().ReadFile(fsPath)
 		if err == nil {
 			var file *os.File
-			file, err = os.OpenFile(out, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+			file, err = os.OpenFile(out, os.O_RDWR|os.O_CREATE, 0644)
 			if err != nil {
 				panic(err)
 			}
 			defer file.Close()
 			file.Write(liblcl)
-			fmt.Println("release success.")
 		}
 	}
 }
