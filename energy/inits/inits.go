@@ -63,7 +63,7 @@ func Init(libs emfs.IEmbedFS, resources emfs.IEmbedFS) {
 			}
 		}
 	}
-	initAll()
+	InitAll()
 }
 
 // 释放文件
@@ -85,12 +85,11 @@ func releaseLib(fsPath, out string) {
 	}
 }
 
-func initAll() {
+func InitAll() {
 	//macapp
 	macapp.MacApp.Init()
 	//api
 	api.APIInit()
-	api.CustomWidgetSetInitialization()
 	//rtl
 	rtl.RtlInit()
 	//version

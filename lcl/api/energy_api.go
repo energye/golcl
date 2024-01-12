@@ -12,11 +12,14 @@
 
 package api
 
-import "github.com/energye/golcl/lcl/api/dllimports"
+import (
+	"github.com/energye/golcl/lcl/api/dllimports"
+)
 
 var (
 	releaseCallback  func()
 	energyImportDefs []*dllimports.ImportTable
+	canWidgetSetInit bool
 )
 
 const (
@@ -55,14 +58,21 @@ func SetReleaseCallback(fn func()) {
 
 // CustomWidgetSetInitialization
 // 自定义组件初始化 Linux
-func CustomWidgetSetInitialization() uintptr {
-	r1, _, _ := dllimports.ImportDefFunc(uiLib, energyImportDefs, interface_CustomWidgetSetInitialization).Call()
-	return r1
+func CustomWidgetSetInitialization() bool {
+	if !canWidgetSetInit {
+		r1, _, _ := dllimports.ImportDefFunc(uiLib, energyImportDefs, interface_CustomWidgetSetInitialization).Call()
+		canWidgetSetInit = GoBool(r1)
+	}
+	return canWidgetSetInit
 }
 
 // CustomWidgetSetFinalization
 //  自定义组件销毁 Linux
-func CustomWidgetSetFinalization() uintptr {
-	r1, _, _ := dllimports.ImportDefFunc(uiLib, energyImportDefs, interface_CustomWidgetSetFinalization).Call()
-	return r1
+func CustomWidgetSetFinalization() bool {
+	if canWidgetSetInit {
+		r1, _, _ := dllimports.ImportDefFunc(uiLib, energyImportDefs, interface_CustomWidgetSetFinalization).Call()
+		canWidgetSetInit = false
+		return GoBool(r1)
+	}
+	return false
 }

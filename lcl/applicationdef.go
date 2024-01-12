@@ -101,6 +101,7 @@ func (a *TApplication) Run() {
 //
 // Initial APP information.
 func (a *TApplication) Initialize() {
+	CustomWidgetSetInitialization()
 	Application_Initialize(a._instance())
 }
 

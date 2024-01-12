@@ -30,6 +30,7 @@ func Application_Run(app uintptr) {
 		if releaseCallback != nil {
 			releaseCallback()
 		}
+		CustomWidgetSetFinalization()
 		// 开启了finalizerOn选项后，以防止关闭库后GC还没开始调用。
 		callGC()
 		// 运行结束后就结束close掉lib，不然他不会关掉的
