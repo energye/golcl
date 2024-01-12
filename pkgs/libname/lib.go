@@ -22,7 +22,7 @@ import (
 
 var (
 	LibName          = ""
-	tempDllDir       = ""
+	tempDllDir       []string
 	platformExtNames = map[string]string{
 		"windows": ".dll",
 		"linux":   ".so",
@@ -30,8 +30,9 @@ var (
 	}
 )
 
+// SetTempDllDir 设置内置dll释放后加载目录
 func SetTempDllDir(dir string) {
-	tempDllDir = dir
+	tempDllDir = append(tempDllDir, dir)
 }
 
 func GetDLLName() string {
@@ -43,17 +44,16 @@ func GetDLLName() string {
 }
 
 // LibPath
-//	获取 liblcl 动态库目录
+//	获取 lib 动态库目录
 //  优先级
-//	  1. 当前目录 > 用户目录 > LCL_HOME > ENERGY_HOME
-//	推荐[当前目录]或指定[ENERGY_HOME]环境变量
-func LibPath() string {
-	var dllName = GetDLLName()
-
-	//tempdll内置字节码设置目录
-	var tempdllPathLibName = path.Join(tempDllDir, dllName)
-	if tools.IsExist(tempdllPathLibName) {
-		return tempdllPathLibName
+//	  tempDllDir > 当前目录 > 用户目录 > LCL_HOME > ENERGY_HOME
+func LibPath(dllName string) string {
+	//tempdll内置目录
+	for _, dir := range tempDllDir {
+		var tempdllPathLibName = path.Join(dir, dllName)
+		if tools.IsExist(tempdllPathLibName) {
+			return tempdllPathLibName
+		}
 	}
 	//当前执行文件目录
 	var currentPathLibName = path.Join(consts.ExeDir, dllName)

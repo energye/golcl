@@ -41,7 +41,7 @@ func Init(libs emfs.IEmbedFS, resources emfs.IEmbedFS) {
 			//MacOSX从Frameworks加载
 			libname.LibName = "@executable_path/../Frameworks/" + libname.GetDLLName()
 		} else {
-			libname.LibName = libname.LibPath()
+			libname.LibName = libname.LibPath(libname.GetDLLName())
 		}
 		if libname.LibName == "" {
 			libname.LibName = path.Join(consts.HomeGoLCLDir, libname.GetDLLName())
@@ -90,6 +90,7 @@ func initAll() {
 	macapp.MacApp.Init()
 	//api
 	api.APIInit()
+	api.CustomWidgetSetInitialization()
 	//rtl
 	rtl.RtlInit()
 	//version

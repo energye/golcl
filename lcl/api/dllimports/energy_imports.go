@@ -27,7 +27,15 @@ func (m *ImportTable) Addr() ProcAddr {
 	return m.addr
 }
 
-// Get Import
-func ImportDefFunc(uiLib DLL, importTable []*ImportTable, index int) ProcAddr {
-	return internalGetImportFunc(uiLib, importTable, index)
+// ImportDefFunc Get Import
+func ImportDefFunc(lib DLL, importTable []*ImportTable, index int) ProcAddr {
+	return internalGetImportFunc(lib, importTable, index)
+}
+
+func DllImportDefs() []*ImportTable {
+	return dllImportDefs
+}
+
+func DllImports() []*ImportTable {
+	return dllImports
 }
