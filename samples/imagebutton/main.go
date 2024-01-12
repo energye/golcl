@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/rtl"
 	"github.com/energye/golcl/lcl/types"
@@ -9,7 +10,7 @@ import (
 )
 
 func main() {
-
+	inits.Init(nil, nil)
 	path := rtl.ExtractFilePath(lcl.Application.ExeName())
 
 	lcl.Application.Initialize()
