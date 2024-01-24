@@ -1,5 +1,5 @@
 // 由GOVCL UI设计器自动生成，不要编辑
-package main
+package src
 
 import (
 	"github.com/energye/golcl/lcl"

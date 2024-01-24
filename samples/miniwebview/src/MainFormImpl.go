@@ -1,14 +1,13 @@
 // 在这里写你的事件
 
-package main
+package src
 
 import (
 	"fmt"
-	"strings"
-
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/rtl"
 	"github.com/energye/golcl/lcl/types"
+	"strings"
 )
 
 //::private::
