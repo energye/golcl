@@ -211,7 +211,7 @@ func (m *macApp) runMacOSApp() {
 }
 
 func (m *macApp) copyDylib() {
-	var libPath = libname.LibPath()
+	var libPath = libname.LibPath(libname.GetDLLName())
 	// 文件不存在，复制
 	if !fileExists(m.lclLibFileName) {
 		if fileExists(libPath) {
