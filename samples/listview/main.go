@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/energye/golcl/energy/inits"
 	"math/rand"
 	"runtime"
+	"strings"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/rtl"
@@ -12,7 +14,10 @@ import (
 )
 
 func main() {
-
+	inits.Init(nil, nil)
+	lcl.Application.SetOnException(func(sender lcl.IObject, e *lcl.Exception) {
+		e.InstanceSize()
+	})
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
 
@@ -69,19 +74,20 @@ func main() {
 	lv1.SetSortType(types.StText) // 按文本排序
 
 	// 不使用这个
-	//lv1.SetOnColumnClick(func(sender lcl.IObject, column *lcl.TListColumn) {
-	//	fmt.Println("index:", column.Index())
-	//	// 按柱头索引排序, lcl兼容版第二个参数永远为 column
-	//	lv1.CustomSort(0, int(column.Index()))
-	//})
+	lv1.SetOnColumnClick(func(sender lcl.IObject, column *lcl.TListColumn) {
+		fmt.Println("index:", column.Index())
+		// 按柱头索引排序, lcl兼容版第二个参数永远为 column
+		lv1.CustomSort(0, int(column.Index()))
+	})
 
-	//lv1.SetOnCompare(func(sender lcl.IObject, item1, item2 *lcl.TListItem, data int32, compare *int32) {
-	//	if data == 0 {
-	//		*compare = int32(strings.Compare(item1.Caption(), item2.Caption()))
-	//	} else {
-	//		*compare = int32(strings.Compare(item1.SubItems().Strings(data-1), item2.SubItems().Strings(data-1)))
-	//	}
-	//})
+	lv1.SetOnCompare(func(sender lcl.IObject, item1, item2 *lcl.TListItem, data int32, compare *int32) {
+		fmt.Println("SetOnCompare", data)
+		if data == 0 {
+			*compare = int32(strings.Compare(item1.Caption(), item2.Caption()))
+		} else {
+			*compare = int32(strings.Compare(item1.SubItems().Strings(data-1), item2.SubItems().Strings(data-1)))
+		}
+	})
 
 	//	lv1.Clear()
 	lv1.Items().BeginUpdate()

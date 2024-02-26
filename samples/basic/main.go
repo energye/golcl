@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
-	"github.com/energye/golcl/lcl/types/colors"
+	"github.com/energye/golcl/pkgs/libname"
 
 	"fmt"
 
@@ -28,12 +28,16 @@ var (
 
 func main() {
 	lcl.DEBUG = true
+	libname.LibName = "C:\\Users\\Administrator\\golcl\\liblcl2.3.5.dll"
 	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm, &form1)
 }
 
 // --------------MainForm -----------------
 func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
+	f.SetOnWndProc(func(msg *types.TMessage) {
+		f.InheritedWndProc()
+	})
 	f.SetCaption("Hello")
 	f.EnabledMaximize(false)
 	f.SetWidth(600)
@@ -49,31 +53,31 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.Button1.Font().SetStyle(types.NewSet(types.FsBold)) //f.Button1.Font().Style().Include(types.FsBold))
 	//f.Button1.Hide()
 
-	cbb := lcl.NewComboBox(f)
-	cbb.SetParent(f)
-	cbb.SetLeft(100)
-	cbb.SetTop(100)
-	cbb.SetStyle(types.CsOwnerDrawVariable)
-	cbb.Items().Add("1111")
-	cbb.Items().Add("2222")
-	cbb.Items().Add("3333")
-	cbb.SetOnDrawItem(func(control lcl.IWinControl, index int32, aRect types.TRect, state types.TOwnerDrawState) {
-		switch index {
-		case 0:
-			cbb.Canvas().Font().SetColor(colors.ClRed)
-		case 1:
-			cbb.Canvas().Font().SetColor(colors.ClGreen)
-		case 2:
-			cbb.Canvas().Font().SetColor(colors.ClBlue)
-		}
-		cbb.Canvas().TextOut(aRect.Left, aRect.Top, cbb.Items().Strings(index))
-	})
-
-	f.SetOnUTF8KeyPress(func(sender lcl.IObject, utf8key *types.TUTF8Char) {
-		fmt.Println("打印：1111", utf8key.ToString(), utf8key)
-		utf8key.SetString("这") //每次只一个字符
-		fmt.Println("打印：2222", utf8key.ToString(), utf8key)
-	})
+	//cbb := lcl.NewComboBox(f)
+	//cbb.SetParent(f)
+	//cbb.SetLeft(100)
+	//cbb.SetTop(100)
+	//cbb.SetStyle(types.CsOwnerDrawVariable)
+	//cbb.Items().Add("1111")
+	//cbb.Items().Add("2222")
+	//cbb.Items().Add("3333")
+	//cbb.SetOnDrawItem(func(control lcl.IWinControl, index int32, aRect types.TRect, state types.TOwnerDrawState) {
+	//	switch index {
+	//	case 0:
+	//		cbb.Canvas().Font().SetColor(colors.ClRed)
+	//	case 1:
+	//		cbb.Canvas().Font().SetColor(colors.ClGreen)
+	//	case 2:
+	//		cbb.Canvas().Font().SetColor(colors.ClBlue)
+	//	}
+	//	cbb.Canvas().TextOut(aRect.Left, aRect.Top, cbb.Items().Strings(index))
+	//})
+	//
+	//f.SetOnUTF8KeyPress(func(sender lcl.IObject, utf8key *types.TUTF8Char) {
+	//	fmt.Println("打印：1111", utf8key.ToString(), utf8key)
+	//	utf8key.SetString("这") //每次只一个字符
+	//	fmt.Println("打印：2222", utf8key.ToString(), utf8key)
+	//})
 	//xx := lcl.NewCheckComboBox(f)
 	//xx.SetParent(f)
 	//xx.Items().Add("fff")

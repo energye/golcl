@@ -75,5 +75,5 @@ func LCLInit() {
 	Printer = AsPrinter(Printer_Instance())
 
 	// 尝试加载ICON，仅Windows下有效，尝试加载名为MAINICON的图标
-	tryLoadAppIcon()
+	//tryLoadAppIcon()
 }

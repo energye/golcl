@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
+	"github.com/energye/golcl/pkgs/libname"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
 
@@ -19,6 +20,7 @@ import (
 }*/
 
 func main() {
+	libname.LibName = "C:\\Users\\Administrator\\golcl\\liblcl2.3.5.dll"
 	//lcl.Application.SetRunLoopReceived(runLoopReceivedProc)
 	inits.Init(nil, nil)
 	lcl.RunApp(&Form1, &Form2)

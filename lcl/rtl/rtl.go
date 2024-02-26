@@ -27,7 +27,7 @@ var (
 
 // Move
 //
-// FreePascal中的内存操作，不过这里传入的是指针
+// # FreePascal中的内存操作，不过这里传入的是指针
 //
 // Memory operations in FreePascal, but pointers are passed here.
 func Move(src, dest uintptr, llen int) {
@@ -48,26 +48,6 @@ func StrLen(str uintptr) int {
 // 从一个FreePascal字符串数组获取成员
 func GetStringArrOf(p uintptr, index int) string {
 	return api.DGetStringArrOf(p, index)
-}
-
-//----------------------------Delphi/Lazarus集合操作-------------------------------------------------------
-
-// Include
-// Deprecated: use value.Include.
-func Include(r uint32, val ...uint8) uint32 {
-	return uint32(types.TSet(r).Include(val...))
-}
-
-// Exclude
-// Deprecated: use value.Exclude.
-func Exclude(r uint32, val ...uint8) uint32 {
-	return uint32(types.TSet(r).Exclude(val...))
-}
-
-// InSets
-// Deprecated: use value.In.
-func InSets(r uint32, s uint32) bool {
-	return types.TSet(r).In(s)
 }
 
 //-------------------------------------------------------------------------------------------------------

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/energye/golcl/energy/inits"
+	"github.com/energye/golcl/pkgs/libname"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/types"
@@ -10,6 +11,7 @@ import (
 )
 
 func main() {
+	libname.LibName = "C:\\Users\\Administrator\\golcl\\liblcl2.3.5.dll"
 	inits.Init(nil, nil)
 
 	lcl.Application.Initialize()

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl/win"
+	"github.com/energye/golcl/pkgs/libname"
 
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/rtl"
@@ -23,6 +24,7 @@ var (
 )
 
 func main() {
+	libname.LibName = "C:\\Users\\Administrator\\golcl\\liblcl2.3.5.dll"
 	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
@@ -104,7 +106,6 @@ func main() {
 		canvas.TextRect2(&r, s, textFmt)
 
 		canvas.Draw(0, 80, jpgimg)
-		//canvas.Draw2(0, 200, jpgimg, 10)
 
 		// 画多边形
 
