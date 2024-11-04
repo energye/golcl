@@ -145,7 +145,7 @@ func (m *macApp) Init() {
 	m.isMain = true
 	if m.createMacOSApp(m) {
 		m.copyDylib()
-		m.cefHelper()
+		m.createCEFHelper()
 		m.runMacOSApp()
 	}
 }
@@ -162,7 +162,7 @@ func (m *macApp) IsCEF(s bool) {
 	m.isCEF = s
 }
 
-func (m *macApp) cefHelper() {
+func (m *macApp) createCEFHelper() {
 	if m.isCEF {
 		if m.cefFrameworksDir == "" {
 			m.cefFrameworksDir = os.Getenv("ENERGY_HOME")
@@ -177,6 +177,14 @@ func (m *macApp) cefHelper() {
 			if !fileExists(m.browseSubprocessPath) {
 				panic("子进程执行文件不存在: " + m.browseSubprocessPath)
 			}
+			// copy helper process to xxx.app/Contents/MacOS/xxxHelper
+			helperName := m.execFile[strings.LastIndex(m.execFile, "/")+1:] + "Helper"
+			helperPath := m.execFile[:strings.LastIndex(m.execFile, "/")]
+			helperFilePath := filepath.Join(helperPath, helperName)
+			if _, err := copyFile(m.browseSubprocessPath, helperFilePath); err == nil {
+				os.Chmod(helperFilePath, 0755)
+			}
+			m.browseSubprocessPath = helperFilePath
 		}
 		b := fileExists(m.macAppFrameworksDir + consts.Separator + cef)
 		if !b {
@@ -204,6 +212,7 @@ func (m *macApp) cefHelper() {
 			m.createMacOSApp(helper)
 			cmd := command.NewCMD()
 			cmd.Dir = helper.macAppFrameworksDir
+			cmd.IsPrint = false
 			cmd.Command("ln", "-shf", "../../../liblcl.dylib", "liblcl.dylib")
 		}
 	}
@@ -281,16 +290,29 @@ func (*macApp) createMacOSApp(m *macApp) bool {
 		ioutil.WriteFile(m.pkgInfoFileName, pkgInfo, 0666)
 	}
 	if m.browseSubprocessPath != "" && !m.isMain {
-		if _, err := copyFile(m.browseSubprocessPath, m.execFile); err == nil {
-			os.Chmod(m.execFile, 0755)
-			return true
-		}
-	} else /*if m.isMain*/ {
+		// CEF helper process
+		lnHelper(m.browseSubprocessPath, m.execFile)
+	} else if m.isMain {
 		if _, err := copyFile(os.Args[0], m.execFile); err == nil {
 			os.Chmod(m.execFile, 0755)
 			return true
 		}
-
+	} else {
+		// CEF helper process
+		lnHelper(os.Args[0], m.execFile)
 	}
 	return false
+}
+
+func lnHelper(lnName, execFile string) {
+	workDir := execFile
+	lnDest := execFile
+	workDir = workDir[:strings.LastIndex(workDir, "/")]
+	lnName = lnName[strings.LastIndex(lnName, "/")+1:]
+	lnDest = lnDest[strings.LastIndex(lnDest, "/")+1:]
+	lnSource := fmt.Sprintf("../../../../MacOS/%s", lnName)
+	cmd := command.NewCMD()
+	cmd.Dir = workDir
+	cmd.IsPrint = false
+	cmd.Command("ln", "-s", lnSource, lnDest)
 }

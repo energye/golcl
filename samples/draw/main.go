@@ -3,13 +3,11 @@ package main
 import (
 	"fmt"
 	"github.com/energye/golcl/energy/inits"
-	"github.com/energye/golcl/lcl/win"
-	"github.com/energye/golcl/pkgs/libname"
-
 	"github.com/energye/golcl/lcl"
 	"github.com/energye/golcl/lcl/rtl"
 	"github.com/energye/golcl/lcl/types"
 	"github.com/energye/golcl/lcl/types/colors"
+	"github.com/energye/golcl/lcl/win"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
 
@@ -24,7 +22,6 @@ var (
 )
 
 func main() {
-	libname.LibName = "C:\\Users\\Administrator\\golcl\\liblcl2.3.5.dll"
 	inits.Init(nil, nil)
 	lcl.Application.Initialize()
 	lcl.Application.SetMainFormOnTaskBar(true)
