@@ -11,8 +11,8 @@
 
 package lcl
 
-// #cgo darwin CFLAGS: -mmacosx-version-min=10.15
-// #cgo darwin LDFLAGS: -mmacosx-version-min=10.15
+// #cgo darwin CFLAGS: -mmacosx-version-min=10.12
+// #cgo darwin LDFLAGS: -mmacosx-version-min=10.12
 // #include <stdint.h>
 //
 // extern void* doEventCallbackProc(uintptr_t f, void* args, long argcount);
