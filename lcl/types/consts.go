@@ -73,3 +73,33 @@ const (
 	CF_HTML      = 701
 	CF_COMPONENT = 702
 )
+
+// WGUI LCL Widget
+type WGUI int32
+
+const (
+	// Windows Win32
+	WGUIWin32 WGUI = 100
+	// MacOS Cocoa
+	WGUICocoa WGUI = 200
+	// Linux GTK2
+	WGUIGTK2 WGUI = 300
+	// Linux GTK3
+	WGUIGTK3 WGUI = 310
+)
+
+func (m WGUI) IsWin32() bool {
+	return m == WGUIWin32
+}
+
+func (m WGUI) IsCocoa() bool {
+	return m == WGUICocoa
+}
+
+func (m WGUI) IsGTK2() bool {
+	return m == WGUIGTK2
+}
+
+func (m WGUI) IsGTK3() bool {
+	return m == WGUIGTK3
+}

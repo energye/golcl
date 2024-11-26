@@ -426,8 +426,12 @@ func DLibStringEncoding() TStringEncoding {
 	return TStringEncoding(defSyscallN(dllimports.DLIBSTRINGENCODING))
 }
 
-func DLibVersion() uint32 {
-	return uint32(defSyscallN(dllimports.DLIBVERSION))
+func DLibVersion() (major, minor, release, patch uint16, fullVersion uint32, version string) {
+	var versionPtr uintptr
+	defSyscallN(dllimports.GetLCLVersion, uintptr(unsafe.Pointer(&major)), uintptr(unsafe.Pointer(&minor)), uintptr(unsafe.Pointer(&release)),
+		uintptr(unsafe.Pointer(&patch)), uintptr(unsafe.Pointer(&fullVersion)), uintptr(unsafe.Pointer(&version)))
+	version = GoStr(versionPtr)
+	return
 }
 
 func DLibAbout() string {
@@ -468,4 +472,8 @@ func DFindLCLWindow(screenPos TPoint, allowDisabled bool) uintptr {
 
 func DFindDragTarget(position TPoint, allowDisabled bool) uintptr {
 	return defSyscallN(dllimports.DFINDDRAGTARGET, uintptr(unsafe.Pointer(&position)), PascalBool(allowDisabled))
+}
+
+func WidgetUI() WGUI {
+	return WGUI(defSyscallN(dllimports.WidgetUI))
 }

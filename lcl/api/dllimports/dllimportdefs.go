@@ -85,7 +85,7 @@ var dllImportDefs = []*ImportTable{
 	/*73*/ {"DModifyLibResource", 0},
 	/*74*/ {"DLibAbout", 0},
 	/*75*/ {"DLibStringEncoding", 0},
-	/*76*/ {"DLibVersion", 0},
+	/*76*/ {"GetLCLVersion", 0},
 	/*77*/ {"DMainThreadId", 0},
 	/*78*/ {"DCurrentThreadId", 0},
 	/*79*/ {"DInitGoDll", 0},
@@ -120,6 +120,7 @@ var dllImportDefs = []*ImportTable{
 	/*108*/ {"DReleaseDC", 0},
 	/*109*/ {"DSetForegroundWindow", 0},
 	/*110*/ {"DWindowFromPoint", 0},
+	/*111*/ {"WidgetUI", 0},
 }
 
 const (
@@ -199,7 +200,7 @@ const (
 	DMODIFYLIBRESOURCE                     = 73
 	DLIBABOUT                              = 74
 	DLIBSTRINGENCODING                     = 75
-	DLIBVERSION                            = 76
+	GetLCLVersion                          = 76
 	DMAINTHREADID                          = 77
 	DCURRENTTHREADID                       = 78
 	DINITGODLL                             = 79
@@ -234,4 +235,5 @@ const (
 	DRELEASEDC                             = 108
 	DSETFOREGROUNDWINDOW                   = 109
 	DWINDOWFROMPOINT                       = 110
+	WidgetUI                               = 111
 )

@@ -1,12 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
-	"github.com/energye/golcl/pkgs/libname"
-
-	"fmt"
-
 	"github.com/energye/golcl/lcl/types"
 	_ "github.com/energye/golcl/pkgs/winappres"
 )
@@ -28,16 +25,12 @@ var (
 
 func main() {
 	lcl.DEBUG = true
-	libname.LibName = "C:\\Users\\Administrator\\golcl\\liblcl2.3.5.dll"
 	inits.Init(nil, nil)
 	lcl.RunApp(&mainForm, &form1)
 }
 
 // --------------MainForm -----------------
 func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
-	f.SetOnWndProc(func(msg *types.TMessage) {
-		f.InheritedWndProc()
-	})
 	f.SetCaption("Hello")
 	f.EnabledMaximize(false)
 	f.SetWidth(600)
@@ -50,7 +43,7 @@ func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
 	f.Button1.SetLeft(50)
 	f.Button1.SetTop(50)
 	f.Button1.SetOnClick(f.OnButton1Click)
-	f.Button1.Font().SetStyle(types.NewSet(types.FsBold)) //f.Button1.Font().Style().Include(types.FsBold))
+	//	f.Button1.Font().SetStyle(types.NewSet(types.FsBold)) //f.Button1.Font().Style().Include(types.FsBold))
 	//f.Button1.Hide()
 
 	//cbb := lcl.NewComboBox(f)

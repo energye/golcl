@@ -207,9 +207,8 @@ func ModifyLibResource(aPtr uintptr, aValue string) {
 }
 
 // LibVersion
-//
-// 获取库的版本，共8位，2位2位的，如：$01020100 表示 1.2.1.0
-func LibVersion() uint32 {
+// Returns lib build
+func LibVersion() (major, minor, release, patch uint16, fullVersion uint32, version string) {
 	return api.DLibVersion()
 }
 
