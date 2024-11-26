@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/energye/golcl/energy/inits"
 	"github.com/energye/golcl/lcl"
+	"github.com/energye/golcl/lcl/api"
 	"runtime"
 
 	"github.com/energye/golcl/lcl/types/colors"
@@ -28,7 +29,8 @@ func main() {
 }
 
 func (f *TMainForm) OnFormCreate(sender lcl.IObject) {
-
+	wg := api.WidgetUI()
+	fmt.Println(wg.IsWin32(), wg.IsGTK2())
 	f.SetCaption("Menu example")
 	f.ScreenCenter()
 
