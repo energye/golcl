@@ -429,7 +429,7 @@ func DLibStringEncoding() TStringEncoding {
 func DLibVersion() (major, minor, release, patch uint16, fullVersion uint32, version string) {
 	var versionPtr uintptr
 	defSyscallN(dllimports.GetLCLVersion, uintptr(unsafe.Pointer(&major)), uintptr(unsafe.Pointer(&minor)), uintptr(unsafe.Pointer(&release)),
-		uintptr(unsafe.Pointer(&patch)), uintptr(unsafe.Pointer(&fullVersion)), uintptr(unsafe.Pointer(&version)))
+		uintptr(unsafe.Pointer(&patch)), uintptr(unsafe.Pointer(&fullVersion)), uintptr(unsafe.Pointer(&versionPtr)))
 	version = GoStr(versionPtr)
 	return
 }
